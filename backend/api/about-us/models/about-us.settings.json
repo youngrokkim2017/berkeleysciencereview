@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_us",
+  "info": {
+    "name": "About Us",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
