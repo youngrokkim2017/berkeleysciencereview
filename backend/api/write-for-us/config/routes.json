@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/write-for-us",
+      "handler": "write-for-us.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/write-for-us",
+      "handler": "write-for-us.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/write-for-us",
+      "handler": "write-for-us.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
