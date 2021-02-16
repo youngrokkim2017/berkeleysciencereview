@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "writing_resources",
+  "info": {
+    "name": "Writing Resources"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

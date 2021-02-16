@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/writing-resources",
+      "handler": "writing-resources.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/writing-resources",
+      "handler": "writing-resources.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/writing-resources",
+      "handler": "writing-resources.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
