@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "join_us",
+  "info": {
+    "name": "Join Us",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
