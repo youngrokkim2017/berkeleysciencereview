@@ -112,3 +112,11 @@ exports
 *.cache
 build
 .strapi-updater.json
+
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.gif
+*.mp3
