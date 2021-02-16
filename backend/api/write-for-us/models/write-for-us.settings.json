@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "write_for_us",
+  "info": {
+    "name": "Write for Us"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

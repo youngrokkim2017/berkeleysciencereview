@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/join-us",
+      "handler": "join-us.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/join-us",
+      "handler": "join-us.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/join-us",
+      "handler": "join-us.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
