@@ -5,6 +5,13 @@ import { graphql } from "gatsby"
 // import { Carousel } from 'react-bootstrap'
 import Preview from "../components/preview"
 
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+
 const IndexPage = ({ data }) => {
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
   const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
@@ -29,20 +36,35 @@ const IndexPage = ({ data }) => {
     // document.node.categories[0].title === 'Noteworthy News'
   )).slice(0, 5);
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
     <Layout>
       <div>
         <div id="carousel">
-          {/* <Carousel>
+          <Carousel>
             {recentArticles.map(document => (
-              <Carousel.Item>
+              <div>
                 {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                <Carousel.Caption>
-                  <h3>{document.node.title}</h3>
-                </Carousel.Caption>
-              </Carousel.Item>
+                <p className="legend">{document.node.title}</p>
+              </div>
             ))}
-          </Carousel> */}
+          </Carousel>
+
+          <Slider {...settings}>
+            {recentArticles.map(document => (
+              <div>
+                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                <p className="legend">{document.node.title}</p>
+              </div>
+            ))}
+          </Slider>
         </div>
         <div>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
