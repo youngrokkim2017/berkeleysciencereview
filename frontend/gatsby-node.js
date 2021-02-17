@@ -4,7 +4,7 @@
  * See: https://www.gatsbyjs.com/docs/node-apis/
  */
 
-// You can delete this file if you're not using it
+//
 
 const path = require(`path`);
 
@@ -49,27 +49,6 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        about: allStrapiAbout {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-        staff: allStrapiStaffListing {
-          edges {
-            node {
-              id
-            }
-          }
-        }
-        subscribe: allStrapiSubscribe {
-          edges {
-            node {
-              id
-            }
-          }
-        }
       }
     `
   );
@@ -83,53 +62,30 @@ exports.createPages = async ({ graphql, actions }) => {
   const categories = result.data.categories.edges;
   const authors = result.data.authors.edges;
   const issues = result.data.issues.edges;
-  const about = result.data.about.edges;
-  const staff = result.data.staff.edges;
-  const subscribe = result.data.subscribe.edges;
+//   const about = result.data.about.edges;
+//   const staff = result.data.staff.edges;
+//   const subscribe = result.data.subscribe.edges;
 
   // ARTICLE CONTENT TYPE
   // const ArticleTemplate = require.resolve("./src/templates/article.js");
-  articles.forEach((article, index) => {
-    const previous = index === articles.length - 1 ? null : articles[index + 1].node;
-    const next = index === 0 ? null : articles[index - 1].node;
-
+  articles.forEach(({ node }) => {
     createPage({
-      // path: `/article/${article.node.title.split(/[\s\.\,\\\/\#\!\$\%\^\&\*\;\:\{\}\=\-\_\`\~\(\)]+/).map((a) => a.toLowerCase()).join("-")}`,
-      path: `/article/${article.node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`,
+      path: `/article/${node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/article.js`),
       context: {
-        id: article.node.id,
-        previous,
-        next,
+        id: node.id,
       },
     });
   });
 
-  // ARCHIVE PAGINATION
-  // const articles = result.data.allStrapiArticle.edges;
-  const postsPerPage = 10;
-  const numPages = Math.ceil(articles.length / postsPerPage);
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/archive/1` : `/archive/${i + 1}`,
-      component: path.resolve('src/pages/archive.js'),
-      context: {
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        numPages,
-        currentPage: i + 1,
-      }
-    })
-  })
-
   // CATEGORY CONTENT TYPE
   // const CategoryTemplate = require.resolve("./src/templates/category.js");
-  categories.forEach((category, index) => {
+  categories.forEach(({ node }) => {
     createPage({
-      path: `/category/${category.node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}`,
+      path: `/category/${node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/category.js`),
       context: {
-        id: category.node.id,
+        id: node.id,
       },
     });
   });
@@ -156,39 +112,39 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // SINGLE TYPES
-  // ABOUT
-  about.forEach(({ node }) => {
-    createPage({
-      path: `/about/`,
-      component: path.resolve(`src/templates/about.js`),
-      context: {
-        id: node.id,
-      },
-    })
-  })
+//   // SINGLE TYPES
+//   // ABOUT
+//   about.forEach(({ node }) => {
+//     createPage({
+//       path: `/about/`,
+//       component: path.resolve(`src/templates/about.js`),
+//       context: {
+//         id: node.id,
+//       },
+//     })
+//   })
 
-  // STAFF
-  staff.forEach(({ node }) => {
-    createPage({
-      path: `/staff/`,
-      component: path.resolve(`src/templates/staff.js`),
-      context: {
-        id: node.id,
-      },
-    })
-  })
+//   // STAFF
+//   staff.forEach(({ node }) => {
+//     createPage({
+//       path: `/staff/`,
+//       component: path.resolve(`src/templates/staff.js`),
+//       context: {
+//         id: node.id,
+//       },
+//     })
+//   })
 
-  // SUBSCRIBE
-  subscribe.forEach(({ node }) => {
-    createPage({
-      path: `/subscribe/`,
-      component: path.resolve(`src/templates/subscribe.js`),
-      context: {
-        id: node.id,
-      },
-    })
-  })
+//   // SUBSCRIBE
+//   subscribe.forEach(({ node }) => {
+//     createPage({
+//       path: `/subscribe/`,
+//       component: path.resolve(`src/templates/subscribe.js`),
+//       context: {
+//         id: node.id,
+//       },
+//     })
+//   })
 };
 
 module.exports.onCreateNode = async ({ node, actions, createNodeId }) => {
