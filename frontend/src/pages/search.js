@@ -62,6 +62,9 @@ const SearchPage = ({ location }) => {
               name
             }
             content
+            image {
+              publicURL
+            }
             categories {
               id
               title
@@ -181,7 +184,7 @@ const SearchPage = ({ location }) => {
               <div className="flex items-start">
                 {document.node.image ?
                   <div className="mr-6">
-                    {/* <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> */}
+                    <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
                   </div>
                 :
                   ""
@@ -226,7 +229,7 @@ const SearchPage = ({ location }) => {
               <div className="flex items-start">
                 {document.node.image ?
                   <div className="mr-6">
-                    {/* <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> */}
+                    <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
                   </div>
                 :
                   ""
