@@ -101,6 +101,9 @@ export const splashQuery = graphql`
             name
           }
           content
+          image {
+            publicURL
+          }
           categories {
             id
             title

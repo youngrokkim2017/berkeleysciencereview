@@ -44,13 +44,13 @@ const CategoryTemplate = ({ data }) => {
           {list.map(document => (
             <li key={document.id} className="mb-4">
               <div className="flex items-start">
-                {/* {document.image ?
+                {document.image ?
                   <div className="mr-6">
-                    <img src={document.image.publicURL} />
+                    <img src={document.image.publicURL}  alt=""/>
                   </div>
                   :
                   ""
-                } */}
+                }
                 <div>
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
@@ -101,6 +101,9 @@ export const query = graphql`
         title
         author
         content
+        image {
+          publicURL
+        }
         magazine
         published_at
       }
