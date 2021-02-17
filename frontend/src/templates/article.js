@@ -123,11 +123,11 @@ class ArticleTemplate extends React.Component {
               <div className="flex flex-wrap lg:flex-no-wrap">
                 <div className={`flex-grow prose tracking-normal text-black lg:max-w-2xl mr-8`}>
                   <div>
-                    {/* {data.strapiArticle.image ?
+                    {data.strapiArticle.image ?
                       <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
                       :
                       ""
-                    } */}
+                    }
                   </div>
                   <ReactMarkdown
                     source={data.strapiArticle.content}
@@ -217,6 +217,9 @@ export const query = graphql`
       published_at
       updatedAt
       content
+      image {
+        publicURL
+      }
       author {
         id
         name
@@ -236,6 +239,9 @@ export const query = graphql`
             name
           }
           content
+          image {
+            publicURL
+          }
           categories {
             id
             title

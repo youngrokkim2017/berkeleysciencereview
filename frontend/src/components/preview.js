@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-// import Img from 'gatsby-image';
 // import ReactMarkdown from "react-markdown"
 
 const Preview = ({ article, format }) => {
@@ -15,9 +14,7 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
-                    {/* <Link to={`/article/${article.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}> */}
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
                     <p className='text-sm'>
@@ -30,7 +27,7 @@ const Preview = ({ article, format }) => {
                         }
                     </p>
                 </div>
-                {/* {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""} */}
+                {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
             </div>
 
         )
@@ -38,7 +35,6 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
-                    {/* <Link to={`/article/${article.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}> */}
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
                     </Link>
@@ -61,13 +57,12 @@ const Preview = ({ article, format }) => {
                 {article.image
                     ?
                     <div className="mr-6">
-                        {/* <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" /> */}
+                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
                     </div>
                     :
                     ""
                 }
                 <div>
-                    {/* <Link to={`/article/${article.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}> */}
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                         <h2 className="font-medium mb-2 text-2xl leading-tight">{article.title}</h2>
                     </Link>
