@@ -36,52 +36,11 @@ const IndexPage = ({ data }) => {
     // document.node.categories[0].title === 'Noteworthy News'
   )).slice(0, 5);
 
-  // var slider = document.querySelector('.glide');
-
-  // if (slider) {
-  //   var glide = new Glide(slider, {
-  //     type: 'carousel',
-  //     startAt: 0,
-  //     perView: 1,
-  //   });
-  //   // }).mount({ Controls, Breakpoints });
-  //   // }).mount();
-
-  //   // glide.mount();
-  // }
-
-  // useEffect(() => {
-  //   return () => glide.mount({ Controls, Breakpoints })
-  // }, [glide])
-
   const gliderRef = useRef(null);
 
   return (
     <Layout>
       <div>
-        {/* <div className="glide">
-          <div className="glide__arrows" data-glide-el="controls">
-            <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
-              Prev
-            </button>
-          </div>
-          <div className="glide__track" data-glide-el="track">
-            <ul className="glide__slides">
-              {recentArticles.map(document => (
-                <li className="glide__slide" key={document.node.id}>
-                  {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                  <p>{document.node.title}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="glide__arrows" data-glide-el="controls">
-            <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
-              Next
-            </button>
-          </div>
-        </div> */}
-
         <div>
           <Glide
             ref={gliderRef}
