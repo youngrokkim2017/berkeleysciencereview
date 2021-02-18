@@ -1,16 +1,16 @@
-import React from "react";
+// import React from "react";
 import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
-// import { Carousel } from 'react-bootstrap'
 import Preview from "../components/preview"
 
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+// // new Glide('.glide').mount({ Controls, Breakpoints })
 
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import React, { useRef } from 'react';
+// import Glide, { Slide } from 'react-glidejs';
+import Glide from 'react-glidejs';
+import 'react-glidejs/dist/index.css';
 
 const IndexPage = ({ data }) => {
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
@@ -36,36 +36,74 @@ const IndexPage = ({ data }) => {
     // document.node.categories[0].title === 'Noteworthy News'
   )).slice(0, 5);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
+  // var slider = document.querySelector('.glide');
+
+  // if (slider) {
+  //   var glide = new Glide(slider, {
+  //     type: 'carousel',
+  //     startAt: 0,
+  //     perView: 1,
+  //   });
+  //   // }).mount({ Controls, Breakpoints });
+  //   // }).mount();
+
+  //   // glide.mount();
+  // }
+
+  // useEffect(() => {
+  //   return () => glide.mount({ Controls, Breakpoints })
+  // }, [glide])
+
+  const gliderRef = useRef(null);
 
   return (
     <Layout>
       <div>
-        <div id="carousel">
-          <Carousel>
-            {recentArticles.map(document => (
-              <div>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                <p className="legend">{document.node.title}</p>
-              </div>
-            ))}
-          </Carousel>
+        {/* <div className="glide">
+          <div className="glide__arrows" data-glide-el="controls">
+            <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
+              Prev
+            </button>
+          </div>
+          <div className="glide__track" data-glide-el="track">
+            <ul className="glide__slides">
+              {recentArticles.map(document => (
+                <li className="glide__slide" key={document.node.id}>
+                  {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                  <p>{document.node.title}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="glide__arrows" data-glide-el="controls">
+            <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
+              Next
+            </button>
+          </div>
+        </div> */}
 
-          <Slider {...settings}>
+        <div>
+          <Glide
+            ref={gliderRef}
+            throttle={0}
+            type="carousel"
+            customSlideAnimation={{
+              timeout: 500,
+              classNames: 'fade',
+            }}
+            perView={1}
+            startAt={0}
+            focusAt="center"
+          >          
             {recentArticles.map(document => (
-              <div>
+              <li key={document.node.id}>
                 {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                <p className="legend">{document.node.title}</p>
-              </div>
+                <p>{document.node.title}</p>
+              </li>
             ))}
-          </Slider>
+          </Glide>
         </div>
+
         <div>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
             Latest
