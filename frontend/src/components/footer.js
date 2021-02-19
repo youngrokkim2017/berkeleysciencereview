@@ -8,9 +8,9 @@ const Footer = () => {
             <div className="container mx-auto mt-12">
                 <div className="block flex-grow lg:flex lg:w-auto space-y-8 lg:space-y-0">
                     <div className="text-md lg:flex-grow">
-                        <h2 className="font-bold mb-2">About Us</h2>
+                        <h2 className="font-bold mb-2"><Link to="/about-us/">About Us</Link></h2>
                         <ul className="m-0 space-y-2">
-                            <li><Link to="/staff/">Our Staff</Link></li>
+                            <li><Link to="/staff-listing/">Our Staff</Link></li>
                             <li><Link to="/join-us/">Join Our Team</Link></li>
                             <li><Link to="/write-for-us/">Write For Us</Link></li>
                         </ul>
