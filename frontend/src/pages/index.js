@@ -3,14 +3,17 @@ import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
 import Preview from "../components/preview"
+import Header from "../components/header"
+import Footer from "../components/footer"
+import MailchimpComponentHome from '../components/mailchimpHome'
 
 // import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 // // new Glide('.glide').mount({ Controls, Breakpoints })
 
 import React, { useRef } from 'react';
 // import Glide, { Slide } from 'react-glidejs';
-import Glide from 'react-glidejs';
-import 'react-glidejs/dist/index.css';
+// import Glide from 'react-glidejs';
+// import 'react-glidejs/dist/index.css';
 
 const IndexPage = ({ data }) => {
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
@@ -22,27 +25,34 @@ const IndexPage = ({ data }) => {
 
   const recentArticles = sortedByDate.slice(0, 3);
 
-  const labscopeArticles = sortedByDate.filter(document => (
-    // document.node.categories.map(cat => cat.title === 'Labscope')
-    document.node.categories.map(cat => cat.title)[0] === 'Labscope'
-    // document.node.categories.map(cat => cat.title).includes(‘Labscope’)
-    // document.node.categories[0].title === 'Labscope'
-  )).slice(0, 5);
+  const labscopesArticles = sortedByDate.filter(document => (
+    document.node.categories.map(cat => cat.title).includes('Labscopes')
+  )).slice(0, 3);
 
   const noteworthyArticles = sortedByDate.filter(document => (
-    // document.node.categories.map(cat => cat.title === 'Noteworthy News')
-    document.node.categories.map(cat => cat.title)[0] === 'Noteworthy News'
-    // document.node.categories.map(cat => cat.title).includes('Noteworthy News')
-    // document.node.categories[0].title === 'Noteworthy News'
-  )).slice(0, 5);
+    document.node.categories.map(cat => cat.title).includes('Noteworthy News')
+  )).slice(0, 3);
+
+  const climateChangeArticles = sortedByDate.filter(document => (
+    document.node.categories.map(cat => cat.title).includes('Climate Change')
+  )).slice(0, 3);
+
+  const lifeScienceArticles = sortedByDate.filter(document => (
+    document.node.categories.map(cat => cat.title).includes('Life Science')
+  )).slice(0, 3);
+
+  const popularArticles = sortedByDate.filter(document => (
+    document.node.categories.map(cat => cat.title).includes('Life Science')
+  )).slice(0, 7);
 
   const gliderRef = useRef(null);
 
   return (
-    <Layout>
-      <div>
-        <div>
-          <Glide
+    <div className="flex flex-col min-h-screen justify-between">
+      <Header />
+      <main className='container mx-auto px-4 sm:px-0'>
+        <div className="pb-12">
+        {/* <Glide
             ref={gliderRef}
             throttle={0}
             type="carousel"
@@ -50,60 +60,117 @@ const IndexPage = ({ data }) => {
               timeout: 500,
               classNames: 'fade',
             }}
+            autoplay={7000}
             perView={1}
             startAt={0}
             focusAt="center"
           >          
             {recentArticles.map(document => (
               <li key={document.node.id}>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
                 <p>{document.node.title}</p>
               </li>
             ))}
-          </Glide>
+          </Glide> */}
         </div>
 
-        <div>
-          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-            Latest
-          </h2>
-          <ul>
-            {recentArticles.map(document => (
-              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                <Preview article={document.node} format="small" />
-              </li>
-            ))}
-          </ul>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
+          <div>
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Popular
+          </h1>
+            <ul>
+              {popularArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="small-no-img" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-span-1 lg:col-span-2">
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Latest
+          </h1>
+            <ul>
+              {recentArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="medium" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div>
+              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                Magazine
+              </h1>
+            </div>
+            <div>
+              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                Newsletter
+              </h1>
+              <MailchimpComponentHome />
+            </div>
+          </div>
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
         <div>
-          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-            Labscope
-          </h2>
-          <ul>
-            {labscopeArticles.map(document => (
-              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                <Preview article={document.node} format="small" />
-              </li>
-            ))}
-          </ul>
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Labscopes
+          </h1>
+            <ul>
+              {labscopesArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="small-no-img" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Noteworthy News
+          </h1>
+            <ul>
+              {noteworthyArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="small-no-img" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Climate Change
+          </h1>
+            <ul>
+              {climateChangeArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="small-no-img" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+              Life Science
+          </h1>
+            <ul>
+              {lifeScienceArticles.map(document => (
+                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                  <Preview article={document.node} format="small-no-img" />
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <div>
-          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-            Noteworthy
-          </h2>
-          <ul>
-            {noteworthyArticles.map(document => (
-              <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                <Preview article={document.node} format="small" />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </Layout>
+      </main>
+      <Footer />
+    </div>
+
+
   )
 }
-  
+
 export default IndexPage;
 
 // gql query

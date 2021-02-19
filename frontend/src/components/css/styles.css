@@ -154,3 +154,23 @@ body {
 .hamburger--slider.is-active .hamburger-inner::after {
     transform: translate3d(0, -12px, 0) rotate(-90deg); 
 }
+
+.glide__slides {
+    transform: translate3d(0, 0, 0) !important;
+}
+
+.glide__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    order: 2;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.glide__slide.glide__slide--active {
+    position: relative;
+    order: 1;
+    opacity: 1;
+    z-index: 1;
+}
