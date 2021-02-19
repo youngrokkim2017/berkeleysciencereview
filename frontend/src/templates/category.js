@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+// import ReactMarkdown from "react-markdown"
 
 const CategoryTemplate = ({ data }) => {
   const sortedByDate = data.strapiCategory.articles.sort((a, b) => {
@@ -10,7 +11,7 @@ const CategoryTemplate = ({ data }) => {
   })
 
   const [list, setList] = useState([...sortedByDate.slice(0, 10)])
-  // State to trigger load more
+  // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false)
   // State of whether there is more to load
   const [hasMore, setHasMore] = useState(sortedByDate.length > 10)
@@ -39,19 +40,21 @@ const CategoryTemplate = ({ data }) => {
   return (
     <Layout>
       <div className="">
-        <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2>
+        {/* <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2> */}
+        <h2 className='my-0 tracking-tight text-4xl mb-6'>{data.strapiCategory.title}</h2>
         <ul>
           {list.map(document => (
             <li key={document.id} className="mb-4">
               <div className="flex items-start">
                 {document.image ?
                   <div className="mr-6">
-                    <img src={document.image.publicURL}  alt=""/>
+                    <img src={document.image.publicURL} />
                   </div>
                   :
                   ""
                 }
                 <div>
+                  {/* <Link to={`/article/${document.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}> */}
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
                   </Link>
@@ -101,10 +104,10 @@ export const query = graphql`
         title
         author
         content
+        magazine
         image {
           publicURL
         }
-        magazine
         published_at
       }
     }
@@ -118,34 +121,6 @@ export const query = graphql`
     }
   }
 `
-
-// export const query = graphql`
-//   query CategoryTemplate($id: String!) {
-//     strapiCategory(id: { eq: $id }) {
-//       id
-//       title
-//       articles {
-//         id
-//         title
-//         author
-//         content
-//         magazine
-//         image {
-//           publicURL
-//         }
-//         published_at
-//       }
-//     }
-//     allStrapiAuthors {
-//       edges {
-//         node {
-//           id
-//           name
-//         }
-//       }
-//     }
-//   }
-// `
 
 // /////////////////////////////  INFINTE SCROLLING  ///////////////////////////
 

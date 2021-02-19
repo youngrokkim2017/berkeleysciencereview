@@ -40,13 +40,15 @@ module.exports = {
     //     900: '#18181b',
     //   },
     // },
-    typography: {
-      DEFAULT: {
-        css: {
-          color: 'rgb(51,51,51)',
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'rgb(51,51,51)',
+          },
         },
       },
-    },
+    }
   },
   important: true,
   plugins: [
