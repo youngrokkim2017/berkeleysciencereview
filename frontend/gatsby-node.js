@@ -49,6 +49,46 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        about: allStrapiAboutUs {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        join: allStrapiJoinUs {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        staff: allStrapiStaffListing {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        write: allStrapiWriteForUs {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
+        resources: allStrapiWritingResources {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
       }
     `
   );
@@ -62,9 +102,12 @@ exports.createPages = async ({ graphql, actions }) => {
   const categories = result.data.categories.edges;
   const authors = result.data.authors.edges;
   const issues = result.data.issues.edges;
-//   const about = result.data.about.edges;
-//   const staff = result.data.staff.edges;
-//   const subscribe = result.data.subscribe.edges;
+  // const subscribe = result.data.subscribe.edges;
+  const about = result.data.about.edges;
+  const join = result.data.join.edges;
+  const staff = result.data.staff.edges;
+  const write = result.data.write.edges;
+  const resources = result.data.resources.edges;
 
   // ARTICLE CONTENT TYPE
   // const ArticleTemplate = require.resolve("./src/templates/article.js");
@@ -112,39 +155,72 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-//   // SINGLE TYPES
-//   // ABOUT
-//   about.forEach(({ node }) => {
-//     createPage({
-//       path: `/about/`,
-//       component: path.resolve(`src/templates/about.js`),
-//       context: {
-//         id: node.id,
-//       },
-//     })
-//   })
+  // SINGLE TYPES
+  // ABOUT
+  about.forEach(({ node }) => {
+    createPage({
+      path: `/about-us/`,
+      component: path.resolve(`src/templates/about.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
 
-//   // STAFF
-//   staff.forEach(({ node }) => {
-//     createPage({
-//       path: `/staff/`,
-//       component: path.resolve(`src/templates/staff.js`),
-//       context: {
-//         id: node.id,
-//       },
-//     })
-//   })
+  // JOIN US
+  join.forEach(({ node }) => {
+    createPage({
+      path: `/join-us/`,
+      component: path.resolve(`src/templates/join.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
 
-//   // SUBSCRIBE
-//   subscribe.forEach(({ node }) => {
-//     createPage({
-//       path: `/subscribe/`,
-//       component: path.resolve(`src/templates/subscribe.js`),
-//       context: {
-//         id: node.id,
-//       },
-//     })
-//   })
+  // STAFF LISTING
+  staff.forEach(({ node }) => {
+    createPage({
+      path: `/staff-listing/`,
+      component: path.resolve(`src/templates/staff.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // ABOUT
+  write.forEach(({ node }) => {
+    createPage({
+      path: `/write-for-us/`,
+      component: path.resolve(`src/templates/write.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // ABOUT
+  resources.forEach(({ node }) => {
+    createPage({
+      path: `/writing-resources/`,
+      component: path.resolve(`src/templates/resources.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // // SUBSCRIBE
+  // subscribe.forEach(({ node }) => {
+  //   createPage({
+  //     path: `/subscribe/`,
+  //     component: path.resolve(`src/templates/subscribe.js`),
+  //     context: {
+  //       id: node.id,
+  //     },
+  //   })
+  // })
 };
 
 module.exports.onCreateNode = async ({ node, actions, createNodeId }) => {
