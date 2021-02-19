@@ -67,7 +67,7 @@ class ArticleTemplate extends React.Component {
       <Layout>
         <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0">
 
-          <div className='fixed top-0 mt-40 opacity-0 -ml-32 hidden xl:block w-32' id="sidebar">
+          <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-32' id="sidebar">
             <div className="leading-5">
               {data.strapiArticle.author ?
                 <p className='text-sm'>
