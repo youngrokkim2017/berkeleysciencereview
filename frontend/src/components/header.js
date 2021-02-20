@@ -6,8 +6,8 @@ import { Link, StaticQuery, navigate } from "gatsby"
 import logo from "../images/logo.png"
 
 class Header extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       query: "",
@@ -89,6 +89,8 @@ class Header extends React.Component {
     //   navigate("/search/", { state: { searchQuery: query } })
     // }
 
+    const { data } = this.props;
+
     return (
       <>
         <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0">
@@ -127,7 +129,7 @@ class Header extends React.Component {
                     </form>
                   </div>
                 </div>
-                
+
                 {/* <div className="w-1/4 flex justify-end items-center">
                   <div className={`mr-2 ${this.state.searchOpen ? 'block' : 'hidden'}`} id="search-input">
                     <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600" onSubmit={this.handleSubmit}>
@@ -158,88 +160,54 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
-          <div className="mx-auto">
-            <StaticQuery
-              query={graphql`
-              query HeadingQuery {
-                allStrapiCategory {
-                  edges {
-                    node {
-                      id
-                      title
-                    }
-                  }
-                }
-              }
-            `}
-              render={data => (
-                <div className="text-md mt-2 space-x-8 mx-auto text-center pb-2 border-b border-black">
-                 {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length - 1).map((document, idx) => (
 
-                    <Link
-                      // to={`/categories/${document.node.id}`} 
-                      to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}
-                      // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
-                      key={idx}
-                      className="block mt-4 lg:inline-block lg:mt-0">
+          <div className={`text-sm flex-inline space-x-6 mx-auto py-2 text-center hidden xl:block ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
+
+            {!this.state.menuOpen ?
+              <>
+                {
+                  data.slice(1, data.length).map(document => (
+                    <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={document.node.id} className="block mt-4 lg:inline-block lg:mt-0">
                       {document.node.title}
                     </Link>
-                  ))}
-
-                  <Link
-                    to="/archive/1"
-                    className="block mt-4 lg:inline-block lg:mt-0 mr-4">
-                    Archive
+                  ))
+                }
+                <Link to={`/`}>
+                  Latest Magazine
                 </Link>
-                </div>
-              )}
-            />
+                <Link to={`/category/${data[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={data[0].node.id} className="block mt-4 lg:inline-block lg:mt-0">
+                  {data[0].node.title}
+                </Link>
+              </>
+              :
+              <div className="h-6"></div>
+              }
           </div>
-          {/* {this.state.menuOpen ?
-            <div className="py-12 px-4 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+
+          {this.state.menuOpen ?
+            <div className="pb-12 px-4 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
                 <div className="md:flex md:space-x-12">
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
-                    <h2 className="font-semibold mb-4">Categories</h2>
-                    <ul className="grid gap-2 grid-cols-3">
-                      <StaticQuery
-                        query={graphql`
-                              query HamburgerQuery {
-                                allStrapiCategory {
-                                  edges {
-                                    node {
-                                      id
-                                      title
-                                    }
-                                  }
-                                }
-                              }
-                            `}
-                        render={data => (
-                          <>
-                            {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length - 1).map(document => (
-                              <li key={document.node.id}>
-                                <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                                  {document.node.title}
-                                </Link>
-                              </li>
-                            ))}
-                            <li key={data.allStrapiCategory.edges[0].node.id}>
-                                <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                                  {data.allStrapiCategory.edges[0].node.title}
-                                </Link>
-                              </li>
-                          </>
-                        )}
-                      />
-                      <li>
-                        <Link to="/archive/1">Archive</Link>
+                    <h2 className="font-semibold mb-2">Categories</h2>
+                    <ul className="grid gap-1 grid-cols-1 md:grid-cols-3">
+                      {data.slice(1, data.length).map(document => (
+                        <li key={document.node.id}>
+                          <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                            {document.node.title}
+                          </Link>
+                        </li>
+                      ))}
+                      <li key={data[0].node.id}>
+                        <Link to={`/category/${data[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                          {data[0].node.title}
+                        </Link>
                       </li>
                     </ul>
                   </div>
                   <div>
-                    <h2 className="font-semibold mb-4">Magazine</h2>
-                    <ul className="grid gap-2">
+                    <h2 className="font-semibold mb-2">Magazine</h2>
+                    <ul className="grid gap-1">
                       <li>Latest Issue</li>
                       <li>Past Issues</li>
                     </ul>
@@ -249,10 +217,10 @@ class Header extends React.Component {
             </div>
             :
             ""
-          } */}
+          }
         </nav>
         {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
-        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-50" id="extended-overlay"></div> : ""}
+        { this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-50" id="extended-overlay"></div> : ""}
       </>
     )
   }
