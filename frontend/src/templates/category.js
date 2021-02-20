@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 
 const CategoryTemplate = ({ data }) => {
   function handleDate(e) {
