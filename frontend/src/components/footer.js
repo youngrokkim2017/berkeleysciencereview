@@ -10,7 +10,7 @@ const Footer = () => {
                     <div className="lg:flex-grow">
                         <h2 className="font-bold mb-2">About Us</h2>
                         <ul className="m-0 space-y-2">
-                            <li><Link to="/staff/">Our Staff</Link></li>
+                            <li><Link to="/staff-listing/">Our Staff</Link></li>
                             <li><Link to="/join-us/">Join Our Team</Link></li>
                             <li><Link to="/write-for-us/">Write For Us</Link></li>
                         </ul>
