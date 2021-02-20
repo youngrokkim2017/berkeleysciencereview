@@ -91,8 +91,8 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0 shadow-sm">
-          <div className={this.state.menuOpen ? 'border-none' : 'border-b'} style={{ borderBottomColor: '#003262' }}>
+        <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0">
+          <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-0">
                 <div className="w-1/4">
@@ -106,7 +106,7 @@ class Header extends React.Component {
                 </div>
                 <div className="items-center text-center">
                   <Link to="/" className="font-semibold text-2xl tracking-tight">
-                    <img src={logo} alt="Logo" className="h-8 mx-auto" />
+                    <img src={logo} alt="Logo" className="h-10 mx-auto" />
                   </Link>
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
@@ -158,7 +158,7 @@ class Header extends React.Component {
               </div>
             </div>
           </div>
-          {/* <div className="">
+          <div className="mx-auto">
             <StaticQuery
               query={graphql`
               query HeadingQuery {
@@ -173,15 +173,15 @@ class Header extends React.Component {
               }
             `}
               render={data => (
-                <div className="text-sm space-x-4 mx-auto">
-                  {data.allStrapiCategory.edges.map((document, idx) => (
+                <div className="text-md mt-2 space-x-8 mx-auto text-center pb-2 border-b border-black">
+                 {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length - 1).map((document, idx) => (
 
                     <Link
                       // to={`/categories/${document.node.id}`} 
                       to={`/categories/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}
                       // to={`/categories/${document.node.title.split(" ").join("-")}/1`} 
                       key={idx}
-                      className="block mt-4 lg:inline-block lg:mt-0 mr-4">
+                      className="block mt-4 lg:inline-block lg:mt-0">
                       {document.node.title}
                     </Link>
                   ))}
@@ -194,8 +194,8 @@ class Header extends React.Component {
                 </div>
               )}
             />
-          </div> */}
-          {this.state.menuOpen ?
+          </div>
+          {/* {this.state.menuOpen ?
             <div className="py-12 px-4 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
                 <div className="md:flex md:space-x-12">
@@ -204,7 +204,7 @@ class Header extends React.Component {
                     <ul className="grid gap-2 grid-cols-3">
                       <StaticQuery
                         query={graphql`
-                              query HeadingQuery {
+                              query HamburgerQuery {
                                 allStrapiCategory {
                                   edges {
                                     node {
@@ -218,7 +218,6 @@ class Header extends React.Component {
                         render={data => (
                           <>
                             {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length - 1).map(document => (
-                              /* {data.allStrapiCategory.edges.splice(0, data.allStrapiCategory.edges.length - 1).map(document => ( */
                               <li key={document.node.id}>
                                 <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                                   {document.node.title}
@@ -233,9 +232,9 @@ class Header extends React.Component {
                           </>
                         )}
                       />
-                      {/* <li>
+                      <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li> */}
+                      </li>
                     </ul>
                   </div>
                   <div>
@@ -245,19 +244,12 @@ class Header extends React.Component {
                       <li>Past Issues</li>
                     </ul>
                   </div>
-                  {/* <div className="">
-                  <h2 className="uppercase font-semibold mb-4">Popular</h2>
-                  <ul className="grid gap-2">
-                    <li>Latest Issue</li>
-                    <li>Past Issues</li>
-                  </ul>
-                </div> */}
                 </div>
               </div>
             </div>
             :
             ""
-          }
+          } */}
         </nav>
         {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
         {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-50" id="extended-overlay"></div> : ""}
