@@ -29,8 +29,8 @@
       "required": false
     },
     "author": {
-      "via": "articles",
-      "model": "authors"
+      "model": "authors",
+      "via": "articles"
     },
     "categories": {
       "collection": "category",
@@ -38,8 +38,8 @@
       "dominant": true
     },
     "magazine": {
-      "via": "articles",
-      "model": "magazine-issue"
+      "model": "magazine-issue",
+      "via": "articles"
     }
   }
 }

@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "magazine_issues",
+  "collectionName": "magazine_issue",
   "info": {
-    "name": "Magazine Issue",
+    "name": "Magazine Issues",
     "description": ""
   },
   "options": {
@@ -27,8 +27,11 @@
       "required": false
     },
     "articles": {
-      "collection": "article",
-      "via": "magazine"
+      "via": "magazine",
+      "collection": "article"
+    },
+    "issue": {
+      "type": "integer"
     }
   }
 }
