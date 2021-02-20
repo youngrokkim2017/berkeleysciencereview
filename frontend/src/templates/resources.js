@@ -5,10 +5,10 @@ import ReactMarkdown from "react-markdown"
 
 const WritingResourcesTemplate = ({ data }) => (
   <Layout>
-    <div>{data.strapiWritingResources.title}</div>
-    <div className="prose tracking-normal text-black text-center text-lg max-w-full">
-      <ReactMarkdown source={data.strapiWritingResources.content} />
-    </div>
+      <h2 className="font-normal mb-8 text-4xl leading-tight">{data.strapiWritingResources.title}</h2>
+      <div className="flex-grow flex-shrink-0 prose tracking-normal text-black max-w-full">
+        <ReactMarkdown source={data.strapiWritingResources.content} />
+      </div>
   </Layout>
 )
 
