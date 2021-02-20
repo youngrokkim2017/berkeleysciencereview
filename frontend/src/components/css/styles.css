@@ -11,7 +11,7 @@
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme"; */
 
 img + em {
-    @apply block text-gray-700 text-sm not-italic leading-5;
+    @apply block text-gray-700 text-sm not-italic leading-5 bg-gray-200 p-4;
 }
 
 /* h1, h2, h3, h4, h5, h6 {
@@ -155,7 +155,7 @@ body {
     transform: translate3d(0, -12px, 0) rotate(-90deg); 
 }
 
-.glide__slides {
+/* .glide__slides {
     transform: translate3d(0, 0, 0) !important;
 }
 
@@ -173,4 +173,10 @@ body {
     order: 1;
     opacity: 1;
     z-index: 1;
+} */
+
+@media (min-width: 1380px) {
+    #sidebar {
+        display: block!important;
+    }
 }
