@@ -16,6 +16,13 @@ import MailchimpComponentHome from '../components/mailchimpHome'
 // import 'react-glidejs/dist/index.css';
 
 const IndexPage = ({ data }) => {
+
+  function handleDate(e) {
+    var d = new Date(e);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString(undefined, options)
+  }
+
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
   const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
     let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
@@ -45,14 +52,18 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Life Science')
   )).slice(0, 7);
 
+  const heroArticles = sortedByDate.filter(document => (
+    document.node.categories.map(cat => cat.title).includes('Climate Change')
+  )).slice(0, 1);
+
   // const gliderRef = useRef(null);
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header />
       <main className='container mx-auto px-4 sm:px-0'>
-        <div className="pb-12">
-        {/* <Glide
+        <div className="pb-12 mx-auto">
+          {/* <Glide
             ref={gliderRef}
             throttle={0}
             type="carousel"
@@ -72,6 +83,46 @@ const IndexPage = ({ data }) => {
               </li>
             ))}
           </Glide> */}
+
+          <ul>
+            {heroArticles.map(document => (
+              <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
+
+
+                <div className="text-center">
+
+
+                  {document.node.image
+                    ?
+                    <div className="mr-6 mb-6">
+                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
+                    </div>
+                    :
+                    ""
+                  }
+                  <h2 className="text-4xl">{document.node.title}</h2>
+
+                  <span className="inline-flex items-center space-x-3">
+                    <p>
+                      {document.node.author.name}
+                    </p>
+                    <p>
+                      {handleDate(document.node.published_at)}
+                    </p>
+                  </span>
+
+                </div>
+
+
+
+
+
+
+
+              </li>
+            ))}
+          </ul>
+
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
@@ -114,7 +165,7 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-        <div>
+          <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Labscopes
           </h1>
