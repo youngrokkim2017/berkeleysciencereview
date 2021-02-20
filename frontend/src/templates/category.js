@@ -36,6 +36,9 @@ const CategoryTemplate = ({ data }) => {
     const isMore = list.length < sortedByDate.length
     setHasMore(isMore)
   }, [list]) //eslint-disable-line
+
+  console.log(data.allStrapiAuthors.edges)
+  console.log(data.strapiCategory)
   
   return (
     <Layout>
@@ -65,7 +68,7 @@ const CategoryTemplate = ({ data }) => {
                   /> */}
                   {data.allStrapiAuthors.edges.map(author => (
                     <p className='mb-2 text-base' key={author.node.id}>
-                      {+author.node.id.split("_")[1] === document.author ?
+                      {author.node.id.split("_")[1] === document.author ?
                         <Link 
                           className="font-medium underline"
                           to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
