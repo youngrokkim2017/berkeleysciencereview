@@ -22,7 +22,7 @@ img + em {
 body {
     font-weight: 400!important;
     font-family: 'Lora';
-    @apply tracking-wide;
+    @apply tracking-normal;
     @apply antialiased;
 }
 /* 
