@@ -1,13 +1,14 @@
 // import React, { useState } from "react"
 import React from "react"
 // import { Link, navigate, StaticQuery, graphql } from "gatsby"
-import { Link, StaticQuery, navigate } from "gatsby"
+// import { Link, StaticQuery, navigate } from "gatsby"
+import { Link, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
 
 class Header extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       query: "",
@@ -88,6 +89,8 @@ class Header extends React.Component {
     //   e.preventDefault()
     //   navigate("/search/", { state: { searchQuery: query } })
     // }
+    
+    const { data } = this.props;
 
     return (
       <>
@@ -202,7 +205,7 @@ class Header extends React.Component {
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
                     <h2 className="font-semibold mb-4">Categories</h2>
                     <ul className="grid gap-2 grid-cols-3">
-                      <StaticQuery
+                      {/* <StaticQuery
                         query={graphql`
                               query HamburgerQuery {
                                 allStrapiCategory {
@@ -231,10 +234,26 @@ class Header extends React.Component {
                               </li>
                           </>
                         )}
-                      />
-                      <li>
+                      /> */}
+
+                      <>
+                        {data.slice(1, data.length - 1).map(document => (
+                          <li key={document.node.id}>
+                            <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                              {document.node.title}
+                            </Link>
+                          </li>
+                        ))}
+                          <li key={data[0].node.id}>
+                            <Link to={`/category/${data[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                              {data[0].node.title}
+                            </Link>
+                          </li>
+                      </>
+
+                      {/* <li>
                         <Link to="/archive/1">Archive</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                   <div>
