@@ -214,7 +214,7 @@ class Header extends React.Component {
                             `}
                         render={data => (
                           <>
-                            {data.allStrapiCategory.edges.map(document => (
+                            {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length - 1).map(document => (
                               /* {data.allStrapiCategory.edges.splice(0, data.allStrapiCategory.edges.length - 1).map(document => ( */
                               <li key={document.node.id}>
                                 <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
@@ -222,6 +222,11 @@ class Header extends React.Component {
                                 </Link>
                               </li>
                             ))}
+                            <li key={data.allStrapiCategory.edges[0].node.id}>
+                                <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                                  {data.allStrapiCategory.edges[0].node.title}
+                                </Link>
+                              </li>
                           </>
                         )}
                       />
