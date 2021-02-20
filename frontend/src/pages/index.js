@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 // import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
@@ -6,6 +6,8 @@ import Preview from "../components/preview"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
+import { Document, Page, pdfjs } from "react-pdf";
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 // import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 // // new Glide('.glide').mount({ Controls, Breakpoints })
@@ -30,7 +32,7 @@ const IndexPage = ({ data }) => {
     return (bDate - aDate)
   });
 
-  const recentArticles = sortedByDate.slice(0, 3);
+  const recentArticles = sortedByDate.slice(0, 5);
 
   const labscopesArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Labscopes')
@@ -55,6 +57,8 @@ const IndexPage = ({ data }) => {
   const heroArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Climate Change')
   )).slice(0, 1);
+
+  const recentMagPdf = data.allStrapiMagazineIssue.edges[21].node.pdf.publicURL;
 
   // const gliderRef = useRef(null);
 
@@ -145,17 +149,25 @@ const IndexPage = ({ data }) => {
             </ul>
           </div>
           <div>
-            <div>
-              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
-                Magazine
-              </h1>
-            </div>
-            <div>
+            <div className="mb-4">
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Newsletter
               </h1>
               <MailchimpComponentHome />
             </div>
+            <div className="">
+              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                Magazine
+              </h1>
+              <img src={recentMagPdf}></img>
+              {/* <Document
+                file={recentMagPdf}
+                width={5}
+              >
+                <Page pageNumber={1} />
+              </Document> */}
+            </div>
+
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -249,6 +261,17 @@ export const splashQuery = graphql`
         node {
           id
           title
+        }
+      }
+    }
+    allStrapiMagazineIssue {
+      edges {
+        node {
+          id
+          title
+          pdf {
+            publicURL
+          }
         }
       }
     }
