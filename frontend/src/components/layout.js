@@ -6,7 +6,6 @@ import "./css/styles.css"
 import { useStaticQuery } from "gatsby"
 
 const Layout = ({ children }) => {
-
   const data = useStaticQuery(graphql`
     query LayoutQuery {
       allStrapiCategory {

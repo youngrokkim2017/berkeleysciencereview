@@ -19,8 +19,8 @@
       "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     },
     "articles": {
-      "collection": "article",
-      "via": "author"
+      "via": "author",
+      "collection": "article"
     },
     "about": {
       "type": "richtext"
