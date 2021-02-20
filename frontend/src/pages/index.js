@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 // import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
@@ -10,7 +10,7 @@ import MailchimpComponentHome from '../components/mailchimpHome'
 // import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
 // // new Glide('.glide').mount({ Controls, Breakpoints })
 
-import React, { useRef } from 'react';
+// import React, { useRef } from 'react';
 // import Glide, { Slide } from 'react-glidejs';
 // import Glide from 'react-glidejs';
 // import 'react-glidejs/dist/index.css';
