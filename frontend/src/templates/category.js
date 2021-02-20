@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-// import ReactMarkdown from "react-markdown"
+import ReactMarkdown from "react-markdown"
 
 const CategoryTemplate = ({ data }) => {
+  function handleDate(e) {
+    var d = new Date(e);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return d.toLocaleDateString(undefined, options)
+  }
+
   const sortedByDate = data.strapiCategory.articles.sort((a, b) => {
     let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
     let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
@@ -11,7 +17,7 @@ const CategoryTemplate = ({ data }) => {
   })
 
   const [list, setList] = useState([...sortedByDate.slice(0, 10)])
-  // State to trigger oad more
+  // State to trigger load more
   const [loadMore, setLoadMore] = useState(false)
   // State of whether there is more to load
   const [hasMore, setHasMore] = useState(sortedByDate.length > 10)
@@ -36,37 +42,37 @@ const CategoryTemplate = ({ data }) => {
     const isMore = list.length < sortedByDate.length
     setHasMore(isMore)
   }, [list]) //eslint-disable-line
-  
+
   return (
     <Layout>
       <div className="">
-        {/* <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiCategory.title}</h2> */}
-        <h2 className='my-0 tracking-tight text-4xl mb-6'>{data.strapiCategory.title}</h2>
-        <ul>
+        <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
+        <ul className="mb-12">
           {list.map(document => (
-            <li key={document.id} className="mb-4">
+            <li key={document.id} className="mt-8 pb-8 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
                 {document.image ?
                   <div className="mr-6">
-                    <img src={document.image.publicURL} />
+                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
                   </div>
                   :
                   ""
                 }
                 <div>
-                  {/* <Link to={`/article/${document.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}> */}
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="font-normal mb-4 text-2xl leading-tight">{document.title}</h2>
+                    <h2 className="font-medium mb-2 text-3xl leading-none">{document.title}</h2>
                   </Link>
+                  <p className='my-0'>
+                    {handleDate(document.published_at)}
+                  </p>
                   {/* <ReactMarkdown
                     source={`${document.content.slice(0, 300)}...`}
-                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                     className="mb-4"
                   /> */}
                   {data.allStrapiAuthors.edges.map(author => (
-                    <p className='mb-2 text-base' key={author.node.id}>
+                    <p className='mb-1 text-base' key={author.node.id}>
                       {+author.node.id.split("_")[1] === document.author ?
-                        <Link 
+                        <Link
                           className="font-medium underline"
                           to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                         >
@@ -83,10 +89,10 @@ const CategoryTemplate = ({ data }) => {
           ))}
         </ul>
         {hasMore ? (
-          <button onClick={handleLoadMore}>Load More</button>
+          <button onClick={handleLoadMore} className="sans-serif inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
         ) : (
-          <p>No more results</p>
-        )}
+            <p>No more results</p>
+          )}
       </div>
     </Layout>
   )
@@ -104,10 +110,10 @@ export const query = graphql`
         title
         author
         content
-        magazine
         image {
           publicURL
         }
+        magazine
         published_at
       }
     }
@@ -121,6 +127,34 @@ export const query = graphql`
     }
   }
 `
+
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       id
+//       title
+//       articles {
+//         id
+//         title
+//         author
+//         content
+//         magazine
+//         image {
+//           publicURL
+//         }
+//         published_at
+//       }
+//     }
+//     allStrapiAuthors {
+//       edges {
+//         node {
+//           id
+//           name
+//         }
+//       }
+//     }
+//   }
+// `
 
 // /////////////////////////////  INFINTE SCROLLING  ///////////////////////////
 
@@ -148,7 +182,7 @@ export const query = graphql`
 // //   const [ currentList, addToList ] = useState([...edges.slice(0, 10)])
 //   // const [ currentList, addToList ] = useState([...data.strapiCategory.articles.slice(0, 10)])
 //   const [ currentList, addToList ] = useState([...sortedByDate.slice(0, 10)])
-  
+
 //   const loadEdges = () => {
 //     const currentLength = currentList.length
 //     // const more = currentLength < edges.length
@@ -276,7 +310,7 @@ export const query = graphql`
 //     let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
 //     return (bDate - aDate)
 //   }).slice(0, 10)
-  
+
 //   return (
 //   <Layout>
 //     <div className="">
