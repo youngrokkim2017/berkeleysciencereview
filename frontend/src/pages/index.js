@@ -51,7 +51,7 @@ const IndexPage = ({ data }) => {
   )).slice(0, 3);
 
   const popularArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Life Science')
+    document.node.categories.map(cat => cat.title).includes('Noteworthy News')
   )).slice(0, 7);
 
   const heroArticles = sortedByDate.filter(document => (
@@ -65,7 +65,7 @@ const IndexPage = ({ data }) => {
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data.allStrapiCategory.edges} />
-      <main className='container mx-auto px-4 sm:px-0'>
+      <main className='container mx-auto px-4 sm:px-8 xl:px-0'>
         <div className="pb-12 mx-auto">
           {/* <Glide
             ref={gliderRef}
@@ -98,7 +98,7 @@ const IndexPage = ({ data }) => {
 
                   {document.node.image
                     ?
-                    <div className="mr-6">
+                    <div className="">
                       <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
                     </div>
                     :
@@ -131,7 +131,7 @@ const IndexPage = ({ data }) => {
             <ul>
               {popularArticles.map(document => (
                 <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                  <Preview article={document.node} format="small-no-img" />
+                  <Preview article={document.node} format="small" />
                 </li>
               ))}
             </ul>
@@ -149,7 +149,7 @@ const IndexPage = ({ data }) => {
             </ul>
           </div>
           <div>
-            <div className="mb-4">
+            <div className="mb-6">
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Newsletter
               </h1>

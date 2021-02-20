@@ -45,24 +45,18 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="">
+      <div className="mx-auto">
         <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
         <ul className="mb-12">
           {list.map(document => (
             <li key={document.id} className="mt-8 pb-8 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
-                {document.image ?
-                  <div className="mr-6">
-                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
-                  </div>
-                  :
-                  ""
-                }
-                <div>
+
+                <div className="mr-6 flex-grow">
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="font-medium mb-2 text-3xl leading-none">{document.title}</h2>
+                    <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
                   </Link>
-                  <p className='my-0'>
+                  <p className='my-2'>
                     {handleDate(document.published_at)}
                   </p>
                   {/* <ReactMarkdown
@@ -72,7 +66,7 @@ const CategoryTemplate = ({ data }) => {
                   {data.allStrapiAuthors.edges.map(author => (
                     <p className='mb-2 text-base' key={author.node.id}>
                       {author.node.id.split("_")[1] === document.author ?
-                        <Link 
+                        <Link
                           className="font-medium underline"
                           to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                         >
@@ -84,6 +78,13 @@ const CategoryTemplate = ({ data }) => {
                     </p>
                   ))}
                 </div>
+                {document.image ?
+                  <div>
+                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                  </div>
+                  :
+                  ""
+                }
               </div>
             </li>
           ))}
