@@ -7,13 +7,8 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
 
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
-// // new Glide('.glide').mount({ Controls, Breakpoints })
-
-// import React, { useRef } from 'react';
-// import Glide, { Slide } from 'react-glidejs';
-// import Glide from 'react-glidejs';
-// import 'react-glidejs/dist/index.css';
+import { Glide } from "react-glide";
+import "react-glide/lib/reactGlide.css";
 
 const IndexPage = ({ data }) => {
   // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
@@ -45,33 +40,49 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Life Science')
   )).slice(0, 7);
 
-  // const gliderRef = useRef(null);
-
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header />
       <main className='container mx-auto px-4 sm:px-0'>
         <div className="pb-12">
-        {/* <Glide
-            ref={gliderRef}
-            throttle={0}
-            type="carousel"
-            customSlideAnimation={{
-              timeout: 500,
-              classNames: 'fade',
-            }}
-            autoplay={7000}
-            perView={1}
-            startAt={0}
-            focusAt="center"
-          >          
+          {/* <div className="glide">
+            <div className="glide__track" data-glide-el="track">
+              <ul className="glide__slides">
+                {recentArticles.map(document => (
+                  <li className="glide__slide">
+                    {document.node.image ? <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> : ""}
+                    <p>{document.node.title}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="glide__arrows" data-glide-el="controls">
+              <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
+                prev
+              </button>
+              <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
+                next
+              </button>
+            </div>
+          </div> */}
+
+          <Glide
+            height={400}
+            width={400}
+            autoPlay={true}
+            autoPlaySpeed={5000}
+            dots={true}
+            infinite={true}
+            onSlideChange={() => console.log("slide changed")}
+          >
             {recentArticles.map(document => (
-              <li key={document.node.id}>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
+              <div>
+                {document.node.image ? <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> : ""}
                 <p>{document.node.title}</p>
-              </li>
+              </div>
             ))}
-          </Glide> */}
+          </Glide>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
