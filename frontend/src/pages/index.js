@@ -7,8 +7,13 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
 
-import { Glide } from "react-glide";
-import "react-glide/lib/reactGlide.css";
+// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
+// // new Glide('.glide').mount({ Controls, Breakpoints })
+
+// import React, { useRef } from 'react';
+// import Glide, { Slide } from 'react-glidejs';
+// import Glide from 'react-glidejs';
+// import 'react-glidejs/dist/index.css';
 
 const IndexPage = ({ data }) => {
 
@@ -57,43 +62,25 @@ const IndexPage = ({ data }) => {
     <div className="flex flex-col min-h-screen justify-between">
       <Header />
       <main className='container mx-auto px-4 sm:px-0'>
-        <div className="pb-12">
-          {/* <div className="glide">
-            <div className="glide__track" data-glide-el="track">
-              <ul className="glide__slides">
-                {recentArticles.map(document => (
-                  <li className="glide__slide">
-                    {document.node.image ? <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> : ""}
-                    <p>{document.node.title}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="glide__arrows" data-glide-el="controls">
-              <button className="glide__arrow glide__arrow--left" data-glide-dir="<">
-                prev
-              </button>
-              <button className="glide__arrow glide__arrow--right" data-glide-dir=">">
-                next
-              </button>
-            </div>
-          </div> */}
-
-          <Glide
-            height={400}
-            width={400}
-            autoPlay={true}
-            autoPlaySpeed={5000}
-            dots={true}
-            infinite={true}
-            onSlideChange={() => console.log("slide changed")}
-          >
+        <div className="pb-12 mx-auto">
+          {/* <Glide
+            ref={gliderRef}
+            throttle={0}
+            type="carousel"
+            customSlideAnimation={{
+              timeout: 500,
+              classNames: 'fade',
+            }}
+            autoplay={7000}
+            perView={1}
+            startAt={0}
+            focusAt="center"
+          >          
             {recentArticles.map(document => (
-              <div>
-                {document.node.image ? <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" /> : ""}
+              <li key={document.node.id}>
+                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
                 <p>{document.node.title}</p>
-              </div>
+              </li>
             ))}
           </Glide> */}
 
@@ -107,7 +94,7 @@ const IndexPage = ({ data }) => {
 
                   {document.node.image
                     ?
-                    <div className="mr-6 mb-6">
+                    <div className="mr-6">
                       <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
                     </div>
                     :
@@ -115,7 +102,7 @@ const IndexPage = ({ data }) => {
                   }
                   <h2 className="text-4xl">{document.node.title}</h2>
 
-                  <span className="inline-flex items-center space-x-3">
+                  <span className="">
                     <p>
                       {document.node.author.name}
                     </p>
@@ -125,6 +112,7 @@ const IndexPage = ({ data }) => {
                   </span>
 
                 </div>
+
               </li>
             ))}
           </ul>
