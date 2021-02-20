@@ -94,6 +94,14 @@ const Preview = ({ article, format }) => {
             <>
                 <div>
                     <h4>{article.title}</h4>
+                    {article.image
+                    ?
+                    <div className="mr-6">
+                        <img src={article.image.publicURL} alt="" />
+                    </div>
+                    :
+                    ""
+                }
                 </div>
             </>
 
