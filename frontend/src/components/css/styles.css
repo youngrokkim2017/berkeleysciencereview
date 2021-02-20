@@ -180,3 +180,15 @@ body {
         display: block!important;
     }
 }
+
+
+.glide--container {
+    @apply w-full !important;
+}
+/* .glide--item
+.glide--item.current */
+/* buttons	.glide--next-btn
+.glide--prev-btn
+dots	.glide--dots
+.glide--dots-active
+.glide--dots-inactive */
