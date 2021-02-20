@@ -1,5 +1,5 @@
 // import React from "react";
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import { graphql } from "gatsby"
 // import { Link, graphql } from "gatsby"
 import Preview from "../components/preview"
@@ -45,7 +45,7 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Life Science')
   )).slice(0, 7);
 
-  const gliderRef = useRef(null);
+  // const gliderRef = useRef(null);
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
