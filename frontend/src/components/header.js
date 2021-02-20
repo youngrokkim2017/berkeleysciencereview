@@ -111,7 +111,7 @@ class Header extends React.Component {
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
                   <div className="" id="search-input">
-                    <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-sm" onSubmit={this.handleSubmit}>
+                    <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
                       {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -127,6 +127,7 @@ class Header extends React.Component {
                     </form>
                   </div>
                 </div>
+                
                 {/* <div className="w-1/4 flex justify-end items-center">
                   <div className={`mr-2 ${this.state.searchOpen ? 'block' : 'hidden'}`} id="search-input">
                     <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600" onSubmit={this.handleSubmit}>
@@ -152,6 +153,8 @@ class Header extends React.Component {
                     </svg>
                   </button>
                 </div> */}
+
+
               </div>
             </div>
           </div>
@@ -193,12 +196,12 @@ class Header extends React.Component {
             />
           </div> */}
           {this.state.menuOpen ?
-            <div className="py-12 px-4 text-sm absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+            <div className="py-12 px-4 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
-                <div className="md:flex md:justify-center">
+                <div className="md:flex md:space-x-12">
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
-                    <h2 className="uppercase font-semibold mb-6">Categories</h2>
-                    <ul className="grid gap-4 grid-cols-3">
+                    <h2 className="font-semibold mb-4">Categories</h2>
+                    <ul className="grid gap-2 grid-cols-3">
                       <StaticQuery
                         query={graphql`
                               query HeadingQuery {
@@ -214,8 +217,8 @@ class Header extends React.Component {
                             `}
                         render={data => (
                           <>
+                          {/* {data.allStrapiCategory.edges.splice(1, data.allStrapiCategory.edges.length).map(document => ( */}
                             {data.allStrapiCategory.edges.map(document => (
-                              /* {data.allStrapiCategory.edges.splice(0, data.allStrapiCategory.edges.length - 1).map(document => ( */
                               <li key={document.node.id}>
                                 <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                                   {document.node.title}
@@ -231,8 +234,8 @@ class Header extends React.Component {
                     </ul>
                   </div>
                   <div>
-                    <h2 className="uppercase font-semibold mb-6">Magazine</h2>
-                    <ul className="grid gap-4">
+                    <h2 className="font-semibold mb-4">Magazine</h2>
+                    <ul className="grid gap-2">
                       <li>Latest Issue</li>
                       <li>Past Issues</li>
                     </ul>
@@ -252,7 +255,7 @@ class Header extends React.Component {
           }
         </nav>
         {/* {this.state.menuOpen || this.state.searchOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""} */}
-        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-25" id="extended-overlay"></div> : ""}
+        {this.state.menuOpen ? <div className="bg-black fixed top-0 left-0 z-40 w-full h-full opacity-50" id="extended-overlay"></div> : ""}
       </>
     )
   }

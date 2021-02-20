@@ -4,10 +4,10 @@ import MailchimpComponent from './mailchimp'
 
 const Footer = () => {
     return (
-        <nav className="mt-16 sans-serif text-white px-4 sm:px-0 pb-24" style={{backgroundColor : '#003262'}}>
+        <nav className="mt-16 sans-serif text-white px-4 sm:px-0 pb-24 text-md" style={{backgroundColor : '#003262'}}>
             <div className="container mx-auto mt-12">
                 <div className="block flex-grow lg:flex lg:w-auto space-y-8 lg:space-y-0">
-                    <div className="text-md lg:flex-grow">
+                    <div className="lg:flex-grow">
                         <h2 className="font-bold mb-2">About Us</h2>
                         <ul className="m-0 space-y-2">
                             <li><Link to="/staff/">Our Staff</Link></li>
@@ -15,18 +15,18 @@ const Footer = () => {
                             <li><Link to="/write-for-us/">Write For Us</Link></li>
                         </ul>
                     </div>
-                    <div className="text-md lg:flex-grow">
-                        <h2 className="font-bold mb-2">Contact Us</h2>
+                    <div className="lg:flex-grow">
+                        <h2 className="font-bold mb-2"><Link to="/contact/">Contact Us</Link></h2>
                         <ul className="m-0 space-y-2">
                             <li><Link to="/subscribe/">Donate and Subscribe</Link></li>
                         </ul>
                     </div>
-                    <div className="text-md lg:flex-grow">
+                    <div className="lg:flex-grow">
                         <h2 className="font-bold mb-2"><Link to="/writing-resources/">Writing Resources</Link></h2>
                     </div>
                     
-                    <div className="text-md lg:flex-shrink max-w-sm">
-                    <div className="text-md lg:flex-grow mb-8 lg:mb-12">
+                    <div className="lg:flex-shrink max-w-sm">
+                    <div className="lg:flex-grow mb-8 lg:mb-12">
                         <h2 className="font-bold mb-2">Follow</h2>
                         <div className="flex flex-row space-x-4 align-items-center">
                             <a href="https://www.facebook.com/berkeleyscirev" className="flex items-center space-x-2 no-underline">
