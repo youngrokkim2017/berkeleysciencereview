@@ -147,7 +147,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // MAGAZINE ISSUE CONTENT TYPE
   issues.forEach(({ node }) => {
     createPage({
-      path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}}`,
+      path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/issue.js`),
       context: {
         id: node.id,
