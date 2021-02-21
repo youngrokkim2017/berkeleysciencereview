@@ -23,7 +23,9 @@
     "react-helmet": "^6.1.0",
     "react-highlighter": "^0.4.3",
     "react-markdown": "^5.0.3",
-    "react-pdf": "^5.2.0"
+    "react-pdf": "^5.2.0",
+    "react-slick": "^0.28.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.4",

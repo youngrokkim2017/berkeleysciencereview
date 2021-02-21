@@ -6,9 +6,22 @@ import Preview from "../components/preview"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // import { Document, Page, pdfjs } from "react-pdf";
 import { pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // arrows: true,
+    fade: true,
+  };
 
 const IndexPage = ({ data }) => {
 
@@ -60,7 +73,25 @@ const IndexPage = ({ data }) => {
       <Header data={data} />
       <main className='container mx-auto px-4 sm:px-8 xl:px-0'>
         <div className="pb-12 mx-auto">
-          <ul>
+          <div>
+            <Slider {...settings}>
+              {recentArticles.map(document => (
+                <div>
+                  {document.node.image
+                    ?
+                    <div className="">
+                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
+                    </div>
+                    :
+                    ""
+                  }
+                  
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          {/* <ul>
             {heroArticles.map(document => (
               <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
                 <div className="text-center">
@@ -84,7 +115,7 @@ const IndexPage = ({ data }) => {
                 </div>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
@@ -241,31 +272,3 @@ export const splashQuery = graphql`
     }
   }
 `
-
-// export const splashQuery = graphql`
-//   query SplashQuery {
-//     allStrapiArticle(
-//       sort: { order: DESC, fields: published_at }
-//     ) {
-//       edges {
-//         node {
-//           id
-//           image {
-//             publicURL
-//           }
-//           title
-//           author {
-//             name
-//           }
-//           content
-//           categories {
-//             id
-//             title
-//           }
-//           published_at
-//           updatedAt
-//         }
-//       }
-//     }
-//   }
-// `
