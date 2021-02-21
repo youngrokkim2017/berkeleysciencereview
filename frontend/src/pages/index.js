@@ -67,7 +67,7 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Climate Change')
   )).slice(0, 5);
 
-  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue_number - a.node.issue_number)[0].node.pdf.publicURL;
+  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0].node.pdf.publicURL;
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
