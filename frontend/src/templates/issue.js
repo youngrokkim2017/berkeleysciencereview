@@ -1,15 +1,19 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-// import Preview from "../components/preview"
+import Preview from "../components/preview"
 
 const MagazineIssueTemplate = ({ data }) => (
   <Layout>
     <div className="mx-auto">
       <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiMagazineIssue.title}</h2>
-      <ul className="mb-12">
-          
-        </ul>
+      <ul>
+{/*       {data.strapiMagazineIssue.articles.map(document => (
+        <li key={document.id}>
+          <Preview article={document} format="small" />
+        </li>
+      ))} */}
+    </ul>
     </div>
   </Layout>
 )
