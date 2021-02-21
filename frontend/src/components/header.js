@@ -289,7 +289,12 @@ class Header extends React.Component {
                         </Link>
                       </li>
                       {/* <li>Latest Issue</li> */}
-                      <li>Past Issues</li>
+                      {/* <li>Past Issues</li> */}
+                      <li>
+                        <Link to={`/magazine-issues`}>
+                          Past Issues
+                        </Link>
+                      </li>
                     </ul>
                   </div>
                 </div>
