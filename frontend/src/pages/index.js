@@ -9,14 +9,6 @@ import MailchimpComponentHome from '../components/mailchimpHome'
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
-// // new Glide('.glide').mount({ Controls, Breakpoints })
-
-// import React, { useRef } from 'react';
-// import Glide, { Slide } from 'react-glidejs';
-// import Glide from 'react-glidejs';
-// import 'react-glidejs/dist/index.css';
-
 const IndexPage = ({ data }) => {
 
   function handleDate(e) {
@@ -67,26 +59,6 @@ const IndexPage = ({ data }) => {
       <Header data={data.allStrapiCategory.edges} />
       <main className='container mx-auto px-4 sm:px-8 xl:px-0'>
         <div className="pb-12 mx-auto">
-          {/* <Glide
-            ref={gliderRef}
-            throttle={0}
-            type="carousel"
-            customSlideAnimation={{
-              timeout: 500,
-              classNames: 'fade',
-            }}
-            autoplay={7000}
-            perView={1}
-            startAt={0}
-            focusAt="center"
-          >          
-            {recentArticles.map(document => (
-              <li key={document.node.id}>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
-                <p>{document.node.title}</p>
-              </li>
-            ))}
-          </Glide> */}
 
           <ul>
             {heroArticles.map(document => (

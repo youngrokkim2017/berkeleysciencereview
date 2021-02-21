@@ -1,6 +1,7 @@
 // import React, { useState } from "react"
 import React from "react"
 // import { Link, navigate, StaticQuery, graphql } from "gatsby"
+// import { Link, StaticQuery, navigate } from "gatsby"
 import { Link, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
