@@ -165,6 +165,10 @@ body {
 
 @media (min-width: 1380px) {
     #sidebar {
-        display: block!important;
+        display: block !important;
     }
 }
+
+/* .react-pdf__Page__canvas {
+    @apply container h-auto !important;
+} */

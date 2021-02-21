@@ -14,9 +14,6 @@
     "title": {
       "type": "string"
     },
-    "content": {
-      "type": "richtext"
-    },
     "pdf": {
       "model": "file",
       "via": "related",
@@ -27,8 +24,8 @@
       "required": false
     },
     "articles": {
-      "via": "magazine",
-      "collection": "article"
+      "collection": "article",
+      "via": "magazine"
     },
     "issue": {
       "type": "integer"
