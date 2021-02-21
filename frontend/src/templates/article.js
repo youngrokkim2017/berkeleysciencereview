@@ -65,7 +65,7 @@ class ArticleTemplate extends React.Component {
 
     return (
       <Layout>
-        <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0">
+        <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{maxWidth: '1036px'}}>
 
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">

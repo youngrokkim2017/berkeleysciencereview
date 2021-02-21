@@ -94,7 +94,7 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-12 sans-serif bg-white z-50 sticky top-0">
+        <nav className="text-black mb-12 sans-serif bg-white z-50 top-0">
           <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-8 xl:px-0">
@@ -162,7 +162,7 @@ class Header extends React.Component {
             </div>
           </div>
 
-          <div className={`text-sm flex-inline space-x-6 mx-auto py-2 text-center hidden xl:block ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
+          <div className={`text-sm flex-inline space-x-6 mx-auto py-2 text-center ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
 
             {!this.state.menuOpen ?
               <>
@@ -213,7 +213,7 @@ class Header extends React.Component {
           </div>
 
           {this.state.menuOpen ?
-            <div className="pb-12 px-4 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+            <div className="pb-12 px-4 sm:px-8 xl:px-0 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
                 <div className="md:flex md:space-x-12">
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">

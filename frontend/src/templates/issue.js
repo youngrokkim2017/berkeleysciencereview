@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-// import Preview from "../components/preview"
+import Preview from "../components/preview"
 
 const MagazineIssueTemplate = ({ data }) => {
   function handleDate(e) {

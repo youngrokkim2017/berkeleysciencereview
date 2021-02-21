@@ -45,13 +45,13 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="mx-auto">
-        <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
+      <div className="px-4 sm:px-8 xl:px-0 mx-auto">
+        <h2 className="font-normal mb-8 pb-2 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
         <ul className="mb-12">
-          {list.map(document => (
-            <li key={document.id} className="mt-8 pb-8 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-              <div className="flex items-start">
 
+          {list.map(document => (
+            <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+              <div className="flex items-start">
                 <div className="mr-6 flex-grow">
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
@@ -88,6 +88,7 @@ const CategoryTemplate = ({ data }) => {
               </div>
             </li>
           ))}
+
         </ul>
         {hasMore ? (
           <button onClick={handleLoadMore} className="sans-serif inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
