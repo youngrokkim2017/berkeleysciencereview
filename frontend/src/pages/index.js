@@ -7,14 +7,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
 
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
-// // new Glide('.glide').mount({ Controls, Breakpoints })
-
-// import React, { useRef } from 'react';
-// import Glide, { Slide } from 'react-glidejs';
-// import Glide from 'react-glidejs';
-// import 'react-glidejs/dist/index.css';
-
 const IndexPage = ({ data }) => {
 
   function handleDate(e) {
@@ -56,33 +48,12 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Climate Change')
   )).slice(0, 1);
 
-  // const gliderRef = useRef(null);
-
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data.allStrapiCategory.edges} />
       <main className='container mx-auto px-4 sm:px-0'>
+
         <div className="pb-12 mx-auto">
-          {/* <Glide
-            ref={gliderRef}
-            throttle={0}
-            type="carousel"
-            customSlideAnimation={{
-              timeout: 500,
-              classNames: 'fade',
-            }}
-            autoplay={7000}
-            perView={1}
-            startAt={0}
-            focusAt="center"
-          >          
-            {recentArticles.map(document => (
-              <li key={document.node.id}>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
-                <p>{document.node.title}</p>
-              </li>
-            ))}
-          </Glide> */}
 
           <ul>
             {heroArticles.map(document => (
