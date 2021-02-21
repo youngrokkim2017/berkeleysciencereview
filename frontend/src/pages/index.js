@@ -1,7 +1,5 @@
 import React from 'react';
-// import Layout from "../components/layout"
-import { graphql } from "gatsby"
-// import { Link, graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Preview from "../components/preview"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -60,7 +58,7 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Noteworthy News')
   )).slice(0, 7);
 
-  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0].node.pdf.publicURL;
+  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -154,7 +152,10 @@ const IndexPage = ({ data }) => {
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Magazine
               </h1>
-              <img src={latestIssue} alt=""></img>
+              <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                <img src={latestIssue.node.pdf.publicURL} alt="" />
+              </Link>
+
             </div>
 
           </div>
