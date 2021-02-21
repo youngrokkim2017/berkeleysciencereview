@@ -5,8 +5,11 @@ import Layout from "../components/layout"
 
 const MagazineIssueTemplate = ({ data }) => (
   <Layout>
-    <div className="">
-      <h2 className="font-normal mb-12 text-4xl leading-tight">{data.strapiMagazineIssue.title}</h2>
+    <div className="mx-auto">
+      <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiMagazineIssue.title}</h2>
+      <ul className="mb-12">
+          
+        </ul>
     </div>
   </Layout>
 )
@@ -18,6 +21,17 @@ export const query = graphql`
     strapiMagazineIssue(id: { eq: $id }) {
       id
       title
+      issue
+      articles {
+        id
+        title
+        author
+        content
+        image {
+          publicURL
+        }
+        published_at
+      }
     }
   }
 `
