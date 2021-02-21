@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 // import Preview from "../components/preview"
 import { SizeMe } from 'react-sizeme'
+
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -117,7 +118,8 @@ class MagazineIssueTemplate extends React.Component {
   }
 }
 
-export default MagazineIssueTemplate;
+
+export default MagazineIssueTemplate
 
 export const query = graphql`
   query MagazineIssueTemplate($id: String!) {
