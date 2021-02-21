@@ -14,14 +14,17 @@ import { pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    // arrows: true,
-    fade: true,
-  };
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  autoplaySpeed: 5000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  autoplay: true,
+  fade: true,
+  // adaptiveHeight: true,
+};
 
 const IndexPage = ({ data }) => {
 
@@ -62,11 +65,9 @@ const IndexPage = ({ data }) => {
 
   const heroArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Climate Change')
-  )).slice(0, 1);
+  )).slice(0, 5);
 
-  const recentMagPdf = data.allStrapiMagazineIssue.edges[21].node.pdf.publicURL;
-
-  // const gliderRef = useRef(null);
+  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue_number - a.node.issue_number)[0].node.pdf.publicURL;
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -76,16 +77,22 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                <div>
+                <div className="text-center">
                   {document.node.image
                     ?
                     <div className="">
-                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
+                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover w-3xl h-96" />
                     </div>
                     :
                     ""
                   }
-                  
+                  <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                  <p>
+                    {document.node.author.name}
+                  </p>
+                  <p>
+                    {handleDate(document.node.published_at)}
+                  </p>
                 </div>
               ))}
             </Slider>
@@ -154,7 +161,7 @@ const IndexPage = ({ data }) => {
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Magazine
               </h1>
-              <img src={recentMagPdf} alt=""></img>
+              <img src={latestIssue} alt=""></img>
               {/* <Document
                 file={recentMagPdf}
                 width={5}
