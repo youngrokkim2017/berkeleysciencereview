@@ -6,7 +6,8 @@ import Preview from "../components/preview"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
-import { Document, Page, pdfjs } from "react-pdf";
+// import { Document, Page, pdfjs } from "react-pdf";
+import { pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const IndexPage = ({ data }) => {
@@ -56,18 +57,13 @@ const IndexPage = ({ data }) => {
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
-      <Header data={data.allStrapiCategory.edges} />
+      <Header data={data} />
       <main className='container mx-auto px-4 sm:px-8 xl:px-0'>
         <div className="pb-12 mx-auto">
-
           <ul>
             {heroArticles.map(document => (
               <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
-
-
                 <div className="text-center">
-
-
                   {document.node.image
                     ?
                     <div className="">
@@ -77,7 +73,6 @@ const IndexPage = ({ data }) => {
                     ""
                   }
                   <h2 className="text-4xl">{document.node.title}</h2>
-
                   <span className="">
                     <p>
                       {document.node.author.name}
@@ -86,13 +81,10 @@ const IndexPage = ({ data }) => {
                       {handleDate(document.node.published_at)}
                     </p>
                   </span>
-
                 </div>
-
               </li>
             ))}
           </ul>
-
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
@@ -131,7 +123,7 @@ const IndexPage = ({ data }) => {
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Magazine
               </h1>
-              <img src={recentMagPdf}></img>
+              <img src={recentMagPdf} alt=""></img>
               {/* <Document
                 file={recentMagPdf}
                 width={5}
