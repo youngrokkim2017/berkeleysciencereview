@@ -4,7 +4,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 const MagazineIssuePage = ({ data }) => {
-  const magazinesSortedByIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue);
+  const magazinesSortedByIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue).slice(1, data.allStrapiMagazineIssue.edges.length);
+
   return (
     <Layout>
       <SEO title="Magazine issues" />
