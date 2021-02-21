@@ -16,13 +16,24 @@ const Layout = ({ children }) => {
           }
         }
       }
+      allStrapiMagazineIssue {
+        edges {
+          node {
+            id
+            title
+            pdf {
+              publicURL
+            }
+          }
+        }
+      }
     }
   `);
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
-      <Header data={data.allStrapiCategory.edges} />
-      <main className='container mx-auto'>{children}</main>
+      <Header data={data} />
+      <main className='container mx-auto' style={{maxWidth: '1036px'}}>{children}</main>
       <Footer />
     </div>
   )

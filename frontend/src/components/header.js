@@ -1,6 +1,7 @@
 // import React, { useState } from "react"
 import React from "react"
 // import { Link, navigate, StaticQuery, graphql } from "gatsby"
+// import { Link, StaticQuery, navigate } from "gatsby"
 import { Link, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
@@ -165,19 +166,46 @@ class Header extends React.Component {
 
             {!this.state.menuOpen ?
               <>
-                {
-                  data.slice(1, data.length).map(document => (
+                {/* {
+                  data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length).map(document => (
                     <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={document.node.id} className="block mt-4 lg:inline-block lg:mt-0">
                       {document.node.title}
                     </Link>
                   ))
-                }
-                <Link to={`/`}>
-                  Latest Magazine
+                } */}
+                <Link to={`/category/climate-change`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Climate Change
                 </Link>
-                <Link to={`/category/${data[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={data[0].node.id} className="block mt-4 lg:inline-block lg:mt-0">
-                  {data[0].node.title}
+                <Link to={`/category/life-science`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Life Science
                 </Link>
+                <Link to={`/category/tech-&-ai`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Technology & Artificial Intelligence
+                </Link>
+                <Link to={`/category/the-universe`} className="block mt-4 lg:inline-block lg:mt-0">
+                  The Universe
+                </Link>
+                <Link to={`/category/labscopes`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Labscopes
+                </Link>
+                <Link to={`/category/people`} className="block mt-4 lg:inline-block lg:mt-0">
+                  People
+                </Link>
+                <Link to={`/category/noteworthy-news`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Noteworthy News
+                </Link>
+                <Link to={`/category/the-scientist-life`} className="block mt-4 lg:inline-block lg:mt-0">
+                  The Scientist Life
+                </Link>
+                <Link to={`/magazine/${data.allStrapiMagazineIssue.edges[data.allStrapiMagazineIssue.edges.length - 1].node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                  Current Magazine
+                </Link>
+                <Link to={`/category/archive`} className="block mt-4 lg:inline-block lg:mt-0">
+                  Archive
+                </Link>
+                {/* <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={data.allStrapiCategory.edges[0].node.id} className="block mt-4 lg:inline-block lg:mt-0">
+                  {data.allStrapiCategory.edges[0].node.title}
+                </Link> */}
               </>
               :
               <div className="h-6"></div>
@@ -191,25 +219,76 @@ class Header extends React.Component {
                   <div className="flex-grow md:max-w-xl mb-12 md:mb-0">
                     <h2 className="font-semibold mb-2">Categories</h2>
                     <ul className="grid gap-1 grid-cols-1 md:grid-cols-3">
-                      {data.slice(1, data.length).map(document => (
+                      {/* {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length).map(document => (
                         <li key={document.node.id}>
                           <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
                             {document.node.title}
                           </Link>
                         </li>
-                      ))}
-                      <li key={data[0].node.id}>
-                        <Link to={`/category/${data[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                          {data[0].node.title}
+                      ))} */}
+                      {/* <li key={data.allStrapiCategory.edges[0].node.id}>
+                        <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
+                          {data.allStrapiCategory.edges[0].node.title}
+                        </Link>
+                      </li> */}
+
+                      <li>
+                        <Link to={`/category/climate-change`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Climate Change
                         </Link>
                       </li>
+                      <li>
+                        <Link to={`/category/life-science`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Life Science
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/tech-&-ai`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Technology & Artificial Intelligence
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/the-universe`} className="block mt-4 lg:inline-block lg:mt-0">
+                          The Universe
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/labscopes`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Labscopes
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/people`} className="block mt-4 lg:inline-block lg:mt-0">
+                          People
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/noteworthy-news`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Noteworthy News
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/the-scientist-life`} className="block mt-4 lg:inline-block lg:mt-0">
+                          The Scientist Life
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/category/archive`} className="block mt-4 lg:inline-block lg:mt-0">
+                          Archive
+                        </Link>
+                      </li>          
                     </ul>
                   </div>
                   <div>
                     <h2 className="font-semibold mb-2">Magazine</h2>
                     <ul className="grid gap-1">
-                      <li>Latest Issue</li>
-                      <li>Past Issues</li>
+                      <li>
+                        <Link to={`/magazine/${data.allStrapiMagazineIssue.edges[data.allStrapiMagazineIssue.edges.length - 1].node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                          Current Magazine
+                        </Link>
+                      </li>
+                      {/* <li>Latest Issue</li> */}
+                      {/* <li>Past Issues</li> */}
                     </ul>
                   </div>
                 </div>
