@@ -38,8 +38,8 @@
       "dominant": true
     },
     "magazine": {
-      "model": "magazine-issue",
-      "via": "articles"
+      "via": "articles",
+      "model": "magazine-issue"
     }
   }
 }

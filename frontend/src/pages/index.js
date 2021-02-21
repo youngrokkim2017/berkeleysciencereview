@@ -9,9 +9,6 @@ import MailchimpComponentHome from '../components/mailchimpHome'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import { Document, Page, pdfjs } from "react-pdf";
-import { pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const settings = {
   dots: true,
@@ -63,11 +60,7 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Noteworthy News')
   )).slice(0, 7);
 
-  const heroArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Climate Change')
-  )).slice(0, 5);
-
-  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue_number - a.node.issue_number)[0].node.pdf.publicURL;
+  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0].node.pdf.publicURL;
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
@@ -162,12 +155,6 @@ const IndexPage = ({ data }) => {
                 Magazine
               </h1>
               <img src={latestIssue} alt=""></img>
-              {/* <Document
-                file={recentMagPdf}
-                width={5}
-              >
-                <Page pageNumber={1} />
-              </Document> */}
             </div>
 
           </div>
@@ -270,6 +257,7 @@ export const splashQuery = graphql`
       edges {
         node {
           id
+          issue
           title
           pdf {
             publicURL
