@@ -66,12 +66,14 @@ const CategoryTemplate = ({ data }) => {
                   {data.allStrapiAuthors.edges.map(author => (
                     <p className='mb-2 text-base' key={author.node.id}>
                       {author.node.id.split("_")[1] === document.author ?
-                        <Link
-                          className="font-medium underline"
-                          to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                        >
-                          By {author.node.name}
-                        </Link>
+                        <>
+                          By <Link
+                            className="font-medium underline"
+                            to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          >
+                            {author.node.name}
+                          </Link>
+                        </>
                         :
                         ""
                       }
