@@ -63,7 +63,7 @@ const IndexPage = ({ data }) => {
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data} />
-      <main className='container mx-auto px-4 sm:px-8 xl:px-0'>
+      <main className='container mx-auto px-4 sm:px-8 xl:px-2'>
         <div className="pb-12 mx-auto">
           <div>
             <Slider {...settings}>
