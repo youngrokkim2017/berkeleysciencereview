@@ -10,7 +10,7 @@ const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query SearchResultsQuery {
       allStrapiArticle(
-        sort: { fields: [createdAt], order: DESC }
+        sort: { fields: [published_at], order: DESC }
       ) {
         edges {
           node {
@@ -79,15 +79,18 @@ const SearchPage = ({ location }) => {
     ],
     includeScore: true,
     shouldSort: true,
-    threshold: 0.3,  // default 0.6
+    threshold: 0.2,  // default 0.6
   };
+  // search results coming from header route to search route
   const fuse = new Fuse(data.allStrapiArticle.edges, options);
   const results = fuse.search(index, { limit: 10 });
-  const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const searchResults = results.length > 0 ? results.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   // search query results while on route '/search'
   const currentResults = fuse.search(query, { limit: 10 });
   const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -121,7 +124,8 @@ const SearchPage = ({ location }) => {
             />
           </form>
         </div>
-        {query.length > 2 && results.length > 0 ?
+        {/* {query.length > 2 && results.length > 0 ? */}
+        {query.length > 2 && currentResults.length > 0 ?
           <div className="container mx-auto">
             <ul>
               {currentSearchResults.map(document => (
@@ -160,11 +164,13 @@ const SearchPage = ({ location }) => {
               ))}
             </ul>
           </div>
-        : query.length > 0 && results.length === 0 ?
+        // : query.length > 0 && results.length === 0 ?
+        // : (query.length > 0 && currentResults.length === 0) || (location.state.searchQuery.length > 0 && results.length === 0) ?
+        : (query.length > 0 && currentResults.length === 0) || (results.length === 0) ?
           <div className="container mx-auto sans-serif">
             No results match your search input
           </div>
-        :
+        : 
           <div className="container mx-auto">
             <ul>
               {searchResults.map(document => (
