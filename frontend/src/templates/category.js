@@ -45,7 +45,7 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="px-4 sm:px-8 xl:px-0 mx-auto">
+      <div className="px-4 sm:px-8 xl:px-2 mx-auto">
         <h2 className="font-normal mb-8 pb-2 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
         <ul className="mb-12">
 
