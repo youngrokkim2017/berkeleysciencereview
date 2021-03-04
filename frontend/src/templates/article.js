@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
@@ -34,11 +34,11 @@ class ArticleTemplate extends React.Component {
       return d.toLocaleDateString(undefined, options)
     }
 
-    function clipboard() {
-      const clip = document.querySelector('.clipboard');
-      navigator.clipboard.writeText(window.location.href);
-      clip.classList.add('text-green-400');
-    }
+    // function clipboard() {
+    //   const clip = document.querySelector('.clipboard');
+    //   navigator.clipboard.writeText(window.location.href);
+    //   clip.classList.add('text-green-400');
+    // }
 
     const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
       let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
