@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
-import { SizeMe } from 'react-sizeme'
+// import { SizeMe } from 'react-sizeme'
 
 // import { Document, Page, pdfjs } from "react-pdf"
 import { pdfjs } from "react-pdf"
