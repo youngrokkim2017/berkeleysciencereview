@@ -5,6 +5,9 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@react-pdf-viewer/core": "^2.4.0",
+    "@react-pdf-viewer/default-layout": "^2.4.0",
+    "@react-pdf-viewer/full-screen": "^2.4.0",
     "@tailwindcss/typography": "^0.4.0",
     "dotenv": "^8.2.0",
     "fuse.js": "^6.4.6",
