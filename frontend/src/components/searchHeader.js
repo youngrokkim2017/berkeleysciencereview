@@ -74,7 +74,7 @@ class SearchHeader extends React.Component {
         <nav className="text-black mb-12 sans-serif bg-white z-50 top-0">
           <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}>
             <div className="container mx-auto py-4">
-              <div className="flex mx-auto items-center justify-between px-4 sm:px-8 xl:px-0">
+              <div className="flex mx-auto items-center justify-between px-4 sm:px-8 xl:px-2">
                 <div className="w-1/4">
                   <span className="">
                     <button className="hamburger hamburger--slider" type="button" id="hamburger" onClick={!this.state.menuOpen ? this.openMenu : this.closeMenu}>
@@ -136,7 +136,7 @@ class SearchHeader extends React.Component {
             }
           </div>
           {this.state.menuOpen ?
-            <div className="pb-12 px-4 sm:px-8 xl:px-0 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+            <div className="pb-12 px-4 sm:px-8 xl:px-2 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
               <div className="container mx-auto">
                 <div className="md:flex md:space-x-24">
                   <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">

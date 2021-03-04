@@ -32,7 +32,7 @@ class MagazineIssueTemplate extends React.Component {
 
     return (
       <Layout>
-        <div className="px-4 sm:px-8 xl:px-0 mx-auto">
+        <div className="px-4 sm:px-8 xl:px-2 mx-auto">
           <div className="mb-8 pb-4 border-b border-black">
             <h2 className="font-normal text-4xl leading-tight mb-2">{data.strapiMagazineIssue.title}</h2>
             <Link to={'/'} className="font-medium underline">View the PDF</Link>
