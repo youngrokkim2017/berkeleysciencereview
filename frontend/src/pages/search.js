@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter'
 import SearchHeader from '../components/searchHeader'
@@ -78,19 +78,23 @@ const SearchPage = ({ location }) => {
       },
     ],
     includeScore: true,
+    isCaseSensitive: false,
     shouldSort: true,
-    threshold: 0.2,  // default 0.6
+    // location: 0,
+    // distance: 1000,
+    ignoreLocation: true,
+    threshold: 0.3,  // default 0.6
   };
   // search results coming from header route to search route
   const fuse = new Fuse(data.allStrapiArticle.edges, options);
   const results = fuse.search(index, { limit: 10 });
-  const searchResults = results.length > 0 ? results.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
-  // const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // const searchResults = results.length > 0 ? results.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const searchResults = results.length > 0 ? results.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   // search query results while on route '/search'
   const currentResults = fuse.search(query, { limit: 10 });
-  const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
-  // const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  // const currentSearchResults = query.length > 2 ? currentResults.reverse().map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
+  const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   function handleOnSearch({ currentTarget = {} }) {
     const { value } = currentTarget;
@@ -137,12 +141,12 @@ const SearchPage = ({ location }) => {
                           <Highlight search={query}>{document.node.title}</Highlight>
                         </h2>
                       </Link>
-                      <Highlight search={query}>
+                      {/* <Highlight search={query}>
                         <ReactMarkdown
                           source={`${document.node.content.slice(0, 200)}...`}
                           transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                         />
-                      </Highlight>
+                      </Highlight> */}
                       <p className='mb-2 text-base'>
                         By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                           <Highlight search={query}>{document.node.author.name}</Highlight>
@@ -182,12 +186,12 @@ const SearchPage = ({ location }) => {
                         <Highlight search={query}>{document.node.title}</Highlight>
                       </h2>
                     </Link>
-                    <Highlight search={query}>
+                    {/* <Highlight search={query}>
                       <ReactMarkdown
                         source={`${document.node.content.slice(0, 200)}...`}
                         transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                       />
-                    </Highlight>
+                    </Highlight> */}
                     <p className='mb-2 text-base'>
                       By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                         <Highlight search={query}>{document.node.author.name}</Highlight>
