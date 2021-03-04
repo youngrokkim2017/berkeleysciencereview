@@ -5,25 +5,25 @@ import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
-  // componentDidMount() {
-  //   var sidebar = document.getElementById("sidebar");
-  //   var element = document.getElementById('metadata');
-  //   var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
+  componentDidMount() {
+    var sidebar = document.getElementById("sidebar");
+    var element = document.getElementById('metadata');
+    var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
 
-  //   function myScrollFunc() {
-  //     var y = window.scrollY;
-  //     if (y >= bottomPos) {
-  //       sidebar.classList.remove("opacity-0");
-  //       sidebar.classList.add("opacity-1");
-  //       sidebar.classList.add("transition", "duration-500", "ease-in-out");
-  //     } else {
-  //       sidebar.classList.add("opacity-0");
-  //       sidebar.classList.remove("opacity-1");
-  //       sidebar.classList.remove("transition", "duration-500", "ease-in-out");
-  //     }
-  //   }
-  //   window.addEventListener("scroll", myScrollFunc);
-  // }
+    function myScrollFunc() {
+      var y = window.scrollY;
+      if (y >= bottomPos) {
+        sidebar.classList.remove("opacity-0");
+        sidebar.classList.add("opacity-1");
+        sidebar.classList.add("transition", "duration-500", "ease-in-out");
+      } else {
+        sidebar.classList.add("opacity-0");
+        sidebar.classList.remove("opacity-1");
+        sidebar.classList.remove("transition", "duration-500", "ease-in-out");
+      }
+    }
+    window.addEventListener("scroll", myScrollFunc);
+  }
 
   render() {
     const { data } = this.props;
@@ -34,11 +34,11 @@ class ArticleTemplate extends React.Component {
       return d.toLocaleDateString(undefined, options)
     }
 
-    // function clipboard() {
-    //   const clip = document.querySelector('.clipboard');
-    //   navigator.clipboard.writeText(window.location.href);
-    //   clip.classList.add('text-green-400');
-    // }
+    function clipboard() {
+      const clip = document.querySelector('.clipboard');
+      navigator.clipboard.writeText(window.location.href);
+      clip.classList.add('text-green-400');
+    }
 
     const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
       let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
