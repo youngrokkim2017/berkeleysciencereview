@@ -175,34 +175,34 @@ class Header extends React.Component {
                     </Link>
                   ))
                 } */}
-                <Link to={`/category/climate-change`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/climate-change`} className="mt-4 lg:inline-block lg:mt-0">
                   Climate Change
                 </Link>
-                <Link to={`/category/life-science`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/life-science`} className="mt-4 lg:inline-block lg:mt-0">
                   Life Science
                 </Link>
-                <Link to={`/category/tech-&-ai`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/tech-&-ai`} className="mt-4 lg:inline-block lg:mt-0">
                   Technology & Artificial Intelligence
                 </Link>
-                <Link to={`/category/the-universe`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/the-universe`} className="mt-4 lg:inline-block lg:mt-0">
                   The Universe
                 </Link>
-                <Link to={`/category/labscopes`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/labscopes`} className="mt-4 lg:inline-block lg:mt-0">
                   Labscopes
                 </Link>
-                <Link to={`/category/people`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/people`} className="mt-4 lg:inline-block lg:mt-0">
                   People
                 </Link>
-                <Link to={`/category/noteworthy-news`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/noteworthy-news`} className="mt-4 lg:inline-block lg:mt-0">
                   Noteworthy News
                 </Link>
-                <Link to={`/category/the-scientist-life`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/the-scientist-life`} className="mt-4 lg:inline-block lg:mt-0">
                   The Scientist Life
                 </Link>
-                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="mt-4 hidden xl:inline-block lg:mt-0">
                   Current Magazine
                 </Link>
-                <Link to={`/category/archive`} className="block mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/archive`} className="mt-4 hidden xl:inline-block lg:mt-0">
                   Archive
                 </Link>
                 {/* <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={data.allStrapiCategory.edges[0].node.id} className="block mt-4 lg:inline-block lg:mt-0">
