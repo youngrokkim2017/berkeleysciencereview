@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react"
+import React, { useState } from "react"
+// import React, { useState, useEffect, useMemo, useCallback } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 // import ReactMarkdown from "react-markdown"
 import Fuse from "fuse.js"  // fuzzy search
@@ -57,7 +58,7 @@ const SearchPage = ({ location }) => {
   `)
 
   const [query, setQuery] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  // const [searchTerm, setSearchTerm] = useState('');
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
