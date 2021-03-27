@@ -5,13 +5,13 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "@react-pdf-viewer/core": "^2.4.0",
-    "@react-pdf-viewer/default-layout": "^2.4.0",
-    "@react-pdf-viewer/full-screen": "^2.4.0",
+    "@react-pdf-viewer/core": "^2.4.1",
+    "@react-pdf-viewer/default-layout": "^2.4.1",
+    "@react-pdf-viewer/full-screen": "^2.4.1",
     "@tailwindcss/typography": "^0.4.0",
     "dotenv": "^8.2.0",
     "fuse.js": "^6.4.6",
-    "gatsby": "^2.32.9",
+    "gatsby": "^2.32.11",
     "gatsby-image": "^2.11.0",
     "gatsby-plugin-mailchimp": "^5.2.2",
     "gatsby-plugin-manifest": "^2.12.1",
@@ -20,7 +20,7 @@
     "gatsby-plugin-sharp": "^2.14.3",
     "gatsby-source-filesystem": "^2.11.1",
     "gatsby-source-strapi": "^0.0.12",
-    "gatsby-transformer-sharp": "^2.12.0",
+    "gatsby-transformer-sharp": "^2.12.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -29,15 +29,15 @@
     "react-markdown": "^5.0.3",
     "react-pdf": "^5.2.0",
     "react-sizeme": "^2.6.12",
-    "react-slick": "^0.28.0",
+    "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.4",
+    "autoprefixer": "^10.2.5",
     "gatsby-plugin-postcss": "^3.7.0",
-    "postcss": "^8.2.7",
+    "postcss": "^8.2.8",
     "prettier": "2.2.1",
-    "tailwindcss": "^2.0.3"
+    "tailwindcss": "^2.0.4"
   },
   "keywords": [
     "gatsby"
