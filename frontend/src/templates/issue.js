@@ -1,18 +1,19 @@
-import React, { useState } from "react"
+import React from "react"
+// import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 
 // import { SizeMe } from 'react-sizeme'
 
 // import { Document, Page, pdfjs } from "react-pdf"
-import { pdfjs } from "react-pdf"
-import { SpecialZoomLevel, Viewer } from '@react-pdf-viewer/core';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+// import { pdfjs } from "react-pdf"
+// import { SpecialZoomLevel, Viewer } from '@react-pdf-viewer/core';
+// import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+// import '@react-pdf-viewer/core/lib/styles/index.css';
+// import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const MagazineIssueTemplate = ({ data }) => {
 
@@ -22,23 +23,23 @@ const MagazineIssueTemplate = ({ data }) => {
     return d.toLocaleDateString(undefined, options)
   }
 
-  const defaultLayoutPluginInstance = defaultLayoutPlugin();
+  // const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
-  const [pdfOpen, setpdfOpen] = useState(false);
+  // const [pdfOpen, setpdfOpen] = useState(false);
 
   return (
     <Layout>
       <div className="px-4 sm:px-6 xl:px-6 mx-auto">
         <div className="mb-8 pb-4 border-b border-black">
           <h2 className="font-normal text-4xl leading-tight mb-2">{data.strapiMagazineIssue.title}</h2>
-          {pdfOpen && data.strapiMagazineIssue.pdf ?
+          {/* {pdfOpen && data.strapiMagazineIssue.pdf ?
             <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
             :
             <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
-          }
+          } */}
         </div>
 
-        {pdfOpen && data.strapiMagazineIssue.pdf ?
+        {/* {pdfOpen && data.strapiMagazineIssue.pdf ?
           <div className="mx-auto text-center mt-6 sans-serif">
             <div className="max-w-full">
               <div
@@ -57,7 +58,7 @@ const MagazineIssueTemplate = ({ data }) => {
               </div>
             </div>
           </div>
-          :
+          : */}
           <ul className="mb-12">
             {data.strapiMagazineIssue.articles.map(document => (
               <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
@@ -96,7 +97,7 @@ const MagazineIssueTemplate = ({ data }) => {
               </li>
             ))}
           </ul>
-        }
+        {/* } */}
       </div>
     </Layout >
   )
