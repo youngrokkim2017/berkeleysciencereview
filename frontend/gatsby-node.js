@@ -73,6 +73,14 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        subscribe: allStrapiSubscribe {
+          edges {
+            node {
+              id
+              title
+            }
+          }
+        }
         write: allStrapiWriteForUs {
           edges {
             node {
@@ -98,14 +106,17 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Create blog articles pages.
+  // collection types
   const articles = result.data.articles.edges;
   const categories = result.data.categories.edges;
   const authors = result.data.authors.edges;
   const issues = result.data.issues.edges;
-  // const subscribe = result.data.subscribe.edges;
+
+  // single types
   const about = result.data.about.edges;
   const join = result.data.join.edges;
   const staff = result.data.staff.edges;
+  const subscribe = result.data.subscribe.edges;
   const write = result.data.write.edges;
   const resources = result.data.resources.edges;
 
@@ -147,7 +158,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // MAGAZINE ISSUE CONTENT TYPE
   issues.forEach(({ node }) => {
     createPage({
-      path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}}`,
+      path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/issue.js`),
       context: {
         id: node.id,
@@ -189,7 +200,18 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // ABOUT
+  // SUBSCRIBE
+  subscribe.forEach(({ node }) => {
+    createPage({
+      path: `/donate-and-subscribe/`,
+      component: path.resolve(`src/templates/subscribe.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // WRITE FOR US
   write.forEach(({ node }) => {
     createPage({
       path: `/write-for-us/`,
@@ -200,7 +222,7 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  // ABOUT
+  // WRITING RESOURCES
   resources.forEach(({ node }) => {
     createPage({
       path: `/writing-resources/`,
@@ -210,17 +232,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-  // // SUBSCRIBE
-  // subscribe.forEach(({ node }) => {
-  //   createPage({
-  //     path: `/subscribe/`,
-  //     component: path.resolve(`src/templates/subscribe.js`),
-  //     context: {
-  //       id: node.id,
-  //     },
-  //   })
-  // })
 };
 
 module.exports.onCreateNode = async ({ node, actions, createNodeId }) => {

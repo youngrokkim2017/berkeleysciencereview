@@ -112,6 +112,8 @@ exports
 *.cache
 build
 .strapi-updater.json
+config/database.js
+config/server.js
 
 *.jpg
 *.jpeg
@@ -120,3 +122,9 @@ build
 *.tiff
 *.gif
 *.mp3
+
+############################
+# Sqreen
+############################
+
+sqreen.json

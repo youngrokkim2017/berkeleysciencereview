@@ -5,8 +5,8 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Berkeley Science Review`,
-    description: `Gatsby blog with Strapi as headless CMS`,
-    author: `@gatsbyjs and @strapi`,
+    description: `A student-run publication on all things science.`,
+    author: `Berkeley Science Review`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

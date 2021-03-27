@@ -15,15 +15,15 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
+                        <h2 className="font-normal mb-2 text-base">{article.title}</h2>
                     </Link>
                     <p className='text-sm'>
                         {article.author ?
-                        <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                            {article.author.name}
-                        </Link>
-                        :
-                        ""
+                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                                {article.author.name}
+                            </Link></>
+                            :
+                            ""
                         }
                     </p>
                 </div>
@@ -36,15 +36,15 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal mb-2 text-base leading-tight">{article.title}</h2>
+                        <h2 className="font-normal mb-2 text-base">{article.title}</h2>
                     </Link>
                     <p className='text-sm'>
                         {article.author ?
-                        <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                            {article.author.name}
-                        </Link>
-                        :
-                        ""
+                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                                {article.author.name}
+                            </Link></>
+                            :
+                            ""
                         }
                     </p>
                 </div>
@@ -54,17 +54,10 @@ const Preview = ({ article, format }) => {
     } else if (format === "medium") {
         return (
             <div className="flex items-start py-2">
-                {article.image
-                    ?
-                    <div className="mr-6">
-                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
-                    </div>
-                    :
-                    ""
-                }
-                <div>
+
+                <div className="mr-6 flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                        <h2 className="font-medium mb-2 text-2xl leading-tight">{article.title}</h2>
+                        <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
                     </Link>
                     {/* <ReactMarkdown
                         source={`${article.content.slice(0, 300)}...`}
@@ -72,20 +65,27 @@ const Preview = ({ article, format }) => {
                         className="mb-4 break-words"
                     /> */}
                     <p className='mb-1 text-base'>
-                    {article.author ?
-                        <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                            {article.author.name}
-                        </Link></>
-                        :
-                        ""
-                    }
+                        {article.author ?
+                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                                {article.author.name}
+                            </Link></>
+                            :
+                            ""
+                        }
 
                     </p>
                     <p>
                         {handleDate(article.published_at)}
                     </p>
                 </div>
-
+                {article.image
+                    ?
+                    <div className="ml-6">
+                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                    </div>
+                    :
+                    ""
+                }
             </div>
 
         )
@@ -95,13 +95,13 @@ const Preview = ({ article, format }) => {
                 <div>
                     <h4>{article.title}</h4>
                     {article.image
-                    ?
-                    <div className="mr-6">
-                        <img src={article.image.publicURL} alt="" />
-                    </div>
-                    :
-                    ""
-                }
+                        ?
+                        <div className="">
+                            <img src={article.image.publicURL} alt="" />
+                        </div>
+                        :
+                        ""
+                    }
                 </div>
             </>
 
