@@ -1,19 +1,25 @@
-import React from "react";
-// import Layout from "../components/layout"
-import { graphql } from "gatsby"
-// import { Link, graphql } from "gatsby"
+import React from 'react';
+import { Link, graphql } from "gatsby"
 import Preview from "../components/preview"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import MailchimpComponentHome from '../components/mailchimpHome'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-// import Glide, { Controls, Breakpoints } from '@glidejs/glide/dist/glide.modular.esm'
-// // new Glide('.glide').mount({ Controls, Breakpoints })
-
-// import React, { useRef } from 'react';
-// import Glide, { Slide } from 'react-glidejs';
-// import Glide from 'react-glidejs';
-// import 'react-glidejs/dist/index.css';
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 1000,
+  autoplaySpeed: 5000,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  autoplay: true,
+  fade: true,
+  // adaptiveHeight: true,
+};
 
 const IndexPage = ({ data }) => {
 
@@ -30,7 +36,7 @@ const IndexPage = ({ data }) => {
     return (bDate - aDate)
   });
 
-  const recentArticles = sortedByDate.slice(0, 3);
+  const recentArticles = sortedByDate.slice(0, 5);
 
   const labscopesArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Labscopes')
@@ -49,59 +55,53 @@ const IndexPage = ({ data }) => {
   )).slice(0, 3);
 
   const popularArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Life Science')
+    document.node.categories.map(cat => cat.title).includes('Noteworthy News')
   )).slice(0, 7);
 
-  const heroArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Climate Change')
-  )).slice(0, 1);
-
-  // const gliderRef = useRef(null);
+  const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
-      <Header data={data.allStrapiCategory.edges} />
-      <main className='container mx-auto px-4 sm:px-0'>
+      <Header data={data} />
+      <main className='container mx-auto px-4 sm:px-6 xl:px-6'>
         <div className="pb-12 mx-auto">
-          {/* <Glide
-            ref={gliderRef}
-            throttle={0}
-            type="carousel"
-            customSlideAnimation={{
-              timeout: 500,
-              classNames: 'fade',
-            }}
-            autoplay={7000}
-            perView={1}
-            startAt={0}
-            focusAt="center"
-          >          
-            {recentArticles.map(document => (
-              <li key={document.node.id}>
-                {document.node.image ? <img src={document.node.image.publicURL} className="object-cover w-36 h-36" alt="" /> : ""}
-                <p>{document.node.title}</p>
-              </li>
-            ))}
-          </Glide> */}
-
-          <ul>
-            {heroArticles.map(document => (
-              <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
-
-
+          <div>
+            <Slider {...settings}>
+              {recentArticles.map(document => (
                 <div className="text-center">
-
-
                   {document.node.image
                     ?
-                    <div className="mr-6">
+                    <div className="">
+                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover w-3xl h-96" />
+                    </div>
+                    :
+                    ""
+                  }
+                  <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                  <p>
+                    {document.node.author.name}
+                  </p>
+                  <p>
+                    {handleDate(document.node.published_at)}
+                  </p>
+                </div>
+              ))}
+            </Slider>
+          </div>
+
+          {/* <ul>
+            {heroArticles.map(document => (
+              <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
+                <div className="text-center">
+                  {document.node.image
+                    ?
+                    <div className="">
                       <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
                     </div>
                     :
                     ""
                   }
                   <h2 className="text-4xl">{document.node.title}</h2>
-
                   <span className="">
                     <p>
                       {document.node.author.name}
@@ -110,13 +110,10 @@ const IndexPage = ({ data }) => {
                       {handleDate(document.node.published_at)}
                     </p>
                   </span>
-
                 </div>
-
               </li>
             ))}
-          </ul>
-
+          </ul> */}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
@@ -127,7 +124,7 @@ const IndexPage = ({ data }) => {
             <ul>
               {popularArticles.map(document => (
                 <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                  <Preview article={document.node} format="small-no-img" />
+                  <Preview article={document.node} format="small" />
                 </li>
               ))}
             </ul>
@@ -145,17 +142,22 @@ const IndexPage = ({ data }) => {
             </ul>
           </div>
           <div>
-            <div>
-              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
-                Magazine
-              </h1>
-            </div>
-            <div>
+            <div className="mb-6">
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Newsletter
               </h1>
               <MailchimpComponentHome />
             </div>
+            <div className="">
+              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                Magazine
+              </h1>
+              <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                <img src={latestIssue.node.pdf.publicURL} alt="" />
+              </Link>
+
+            </div>
+
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
@@ -252,33 +254,17 @@ export const splashQuery = graphql`
         }
       }
     }
+    allStrapiMagazineIssue {
+      edges {
+        node {
+          id
+          issue
+          title
+          pdf {
+            publicURL
+          }
+        }
+      }
+    }
   }
 `
-
-// export const splashQuery = graphql`
-//   query SplashQuery {
-//     allStrapiArticle(
-//       sort: { order: DESC, fields: published_at }
-//     ) {
-//       edges {
-//         node {
-//           id
-//           image {
-//             publicURL
-//           }
-//           title
-//           author {
-//             name
-//           }
-//           content
-//           categories {
-//             id
-//             title
-//           }
-//           published_at
-//           updatedAt
-//         }
-//       }
-//     }
-//   }
-// `

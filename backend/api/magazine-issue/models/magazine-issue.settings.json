@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "magazine_issues",
+  "collectionName": "magazine_issue",
   "info": {
-    "name": "Magazine Issue",
+    "name": "Magazine Issues",
     "description": ""
   },
   "options": {
@@ -13,9 +13,6 @@
   "attributes": {
     "title": {
       "type": "string"
-    },
-    "content": {
-      "type": "richtext"
     },
     "pdf": {
       "model": "file",
@@ -29,6 +26,9 @@
     "articles": {
       "collection": "article",
       "via": "magazine"
+    },
+    "issue": {
+      "type": "integer"
     }
   }
 }

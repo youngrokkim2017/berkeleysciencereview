@@ -29,8 +29,8 @@
       "required": false
     },
     "author": {
-      "via": "articles",
-      "model": "authors"
+      "model": "authors",
+      "via": "articles"
     },
     "categories": {
       "collection": "category",
