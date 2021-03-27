@@ -39,7 +39,7 @@ class MyForm extends React.Component {
       <div className="w-1/2 mx-auto">
         <form
           onSubmit={this.submitForm}
-          action="#"
+          action="https://formspree.io/f/mnqokooe"
           method="POST"
           className="sans-serif"
         >
