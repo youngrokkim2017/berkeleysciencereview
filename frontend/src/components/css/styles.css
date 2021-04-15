@@ -66,6 +66,10 @@ body {
     overflow: visible; 
 }
 
+#hamburger {
+    @apply h-full;
+}
+
 .hamburger:hover {
     opacity: 0.7; 
 }
