@@ -127,7 +127,7 @@ const SearchPage = ({ location }) => {
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <SearchHeader data={data} />
-      <div className='container mx-auto' style={{ maxWidth: '1036px' }}>
+      <div className="container mx-auto px-4 sm:px-6 xl:px-6">
 
         <div className="pt-2 relative text-gray-600 mb-6 pb-6 border-b" id="search-input">
           <div className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md max-w-sm">
