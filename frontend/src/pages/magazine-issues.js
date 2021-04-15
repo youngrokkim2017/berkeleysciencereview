@@ -9,15 +9,18 @@ const MagazineIssuePage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Magazine issues" />
-      <div>
-        {magazinesSortedByIssue.map(document => (
-          <div>
-            <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-              {document.node.title}
-            </Link>
-          </div>
-        ))}
-      </div>
+      <main className="container mx-auto px-4 sm:px-6 xl:px-6">
+        <h2 className="font-normal mb-4 text-4xl leading-tight">Magazine Issues</h2>
+        <div className="space-y-1">
+          {magazinesSortedByIssue.map(document => (
+            <div>
+              <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                {document.node.title}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </main>
     </Layout>
   )
 }
