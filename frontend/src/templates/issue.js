@@ -1,3 +1,4 @@
+// import React from "react"
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
@@ -48,7 +49,7 @@ const MagazineIssueTemplate = ({ data }) => {
               >
                 <Viewer
                   fileUrl={data.strapiMagazineIssue.pdf.publicURL}
-                  defaultScale={SpecialZoomLevel.PageFit}
+                  // defaultScale={SpecialZoomLevel.PageFit}
                   plugins={[
                     defaultLayoutPluginInstance,
                   ]}

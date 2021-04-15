@@ -112,6 +112,8 @@ exports
 *.cache
 build
 .strapi-updater.json
+config/database.js
+config/server.js
 
 *.jpg
 *.jpeg
