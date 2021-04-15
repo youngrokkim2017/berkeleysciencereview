@@ -17,7 +17,7 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: true,
-  fade: true,
+  // fade: true,
   // adaptiveHeight: true,
 };
 
@@ -68,54 +68,29 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                <div className="text-center">
-                  {document.node.image
-                    ?
-                    <div className="">
-                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover w-3xl h-96" />
-                    </div>
-                    :
-                    ""
-                  }
-                  <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                  <p>
-                    {document.node.author.name}
-                  </p>
-                  <p>
-                    {handleDate(document.node.published_at)}
-                  </p>
-                </div>
-              ))}
-            </Slider>
-          </div>
-
-          {/* <ul>
-            {heroArticles.map(document => (
-              <li key={document.node.id} style={{ borderBottomColor: '#e2e2e2' }}>
-                <div className="text-center">
-                  {document.node.image
-                    ?
-                    <div className="">
-                      <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 w-3/5" />
-                    </div>
-                    :
-                    ""
-                  }
-                  <h2 className="text-4xl">{document.node.title}</h2>
-                  <span className="">
+                <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                  <div className="text-center">
+                    {document.node.image
+                      ?
+                      <div className="">
+                        <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover w-3xl h-96" />
+                      </div>
+                      :
+                      ""
+                    }
+                    <h2 className="text-4xl mb-2">{document.node.title}</h2>
                     <p>
                       {document.node.author.name}
                     </p>
                     <p>
                       {handleDate(document.node.published_at)}
                     </p>
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul> */}
+                  </div>
+                </Link>
+              ))}
+            </Slider>
+          </div>
         </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
