@@ -92,7 +92,7 @@ class Header extends React.Component {
 
     const { data } = this.props;
 
-    const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue- a.node.issue)[0];
+    const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
     return (
       <>
@@ -111,11 +111,11 @@ class Header extends React.Component {
                 </div>
                 <div className="items-center text-center">
                   <Link to="/" className="font-semibold text-2xl tracking-tight">
-                    <img src={logo} alt="Logo" className="h-10 mx-auto" />
+                    <img src={logo} alt="Logo" className="max-h-10 w-auto mx-auto" />
                   </Link>
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
-                  <div className="" id="search-input">
+                  <div className="hidden sm:block" id="search-input">
                     <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
                       {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
@@ -132,34 +132,6 @@ class Header extends React.Component {
                     </form>
                   </div>
                 </div>
-
-                {/* <div className="w-1/4 flex justify-end items-center">
-                  <div className={`mr-2 ${this.state.searchOpen ? 'block' : 'hidden'}`} id="search-input">
-                    <form className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600" onSubmit={this.handleSubmit}>
-                       <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600">
-                      <input
-                        type="text"
-                        placeholder="Search"
-                        value={this.state.query}
-                        // onChange={(e) => setQuery(e.target.value)}
-                        onChange={this.handleChange('query')}
-                        className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none mr-2"
-                      />
-                      <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                      </button>
-                    </form>
-                  </div>
-                  <button onClick={this.toggleSearchBar} className="inline-block leading-none text-black flex-shrink-0 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </button>
-                </div> */}
-
-
               </div>
             </div>
           </div>
@@ -168,13 +140,6 @@ class Header extends React.Component {
 
             {!this.state.menuOpen ?
               <div className="hidden lg:inline-block text-sm flex-inline space-x-6 py-2">
-                {/* {
-                  data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length).map(document => (
-                    <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={document.node.id} className="block mt-4 lg:inline-block lg:mt-0">
-                      {document.node.title}
-                    </Link>
-                  ))
-                } */}
                 <Link to={`/category/climate-change`} className="mt-4 lg:inline-block lg:mt-0">
                   Climate Change
                 </Link>
@@ -210,7 +175,7 @@ class Header extends React.Component {
                 </Link> */}
               </div>
               :
-              <div className="h-10"></div>
+              ""
             }
           </div>
           {this.state.menuOpen ?
@@ -218,20 +183,24 @@ class Header extends React.Component {
               <div className="container mx-auto">
                 <div className="md:flex md:space-x-24">
                   <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">
+                    <div className="block sm:hidden mt-2 mb-4">
+                      <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input
+                          type="text"
+                          placeholder="Search"
+                          value={this.state.query}
+                          // onChange={(e) => setQuery(e.target.value)}
+                          onChange={this.handleChange('query')}
+                          className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
+                        />
+                      </form>
+                    </div>
+
                     <h2 className="font-semibold mb-2">Categories</h2>
                     <ul className="grid gap-1 grid-cols-1 md:grid-cols-3 space-y-0">
-                      {/* {data.allStrapiCategory.edges.slice(1, data.allStrapiCategory.edges.length).map(document => (
-                        <li key={document.node.id}>
-                          <Link to={`/category/${document.node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                            {document.node.title}
-                          </Link>
-                        </li>
-                      ))} */}
-                      {/* <li key={data.allStrapiCategory.edges[0].node.id}>
-                        <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`}>
-                          {data.allStrapiCategory.edges[0].node.title}
-                        </Link>
-                      </li> */}
 
                       <li>
                         <Link to={`/category/climate-change`} className="block lg:inline-block md:mt-0">
