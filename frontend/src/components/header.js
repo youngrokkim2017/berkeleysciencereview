@@ -96,7 +96,7 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-12 sans-serif bg-white z-50 top-0">
+        <nav className="text-black mb-8 sans-serif bg-white z-50 top-0">
           <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}>
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between px-4 sm:px-6 xl:px-6">

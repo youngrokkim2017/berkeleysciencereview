@@ -64,7 +64,7 @@ const IndexPage = ({ data }) => {
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data} />
       <main className='container mx-auto px-4 sm:px-6 xl:px-6'>
-        <div className="pb-12 mx-auto">
+        <div className="mb-16 mx-auto">
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
@@ -73,7 +73,7 @@ const IndexPage = ({ data }) => {
                     {document.node.image
                       ?
                       <div className="">
-                        <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover w-3xl h-96" />
+                        <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
                       </div>
                       :
                       ""
@@ -91,7 +91,7 @@ const IndexPage = ({ data }) => {
             </Slider>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-12 gap-y-6 mb-6 sm:mb-12">
           <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Popular
@@ -123,19 +123,18 @@ const IndexPage = ({ data }) => {
               </h1>
               <MailchimpComponentHome />
             </div>
-            <div className="">
+            <div>
               <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
                 Magazine
               </h1>
               <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
                 <img src={latestIssue.node.pdf.publicURL} alt="" />
               </Link>
-
             </div>
 
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-12 gap-y-6 -mb-6 sm:mb-0">
           <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Labscopes
