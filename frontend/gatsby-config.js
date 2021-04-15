@@ -62,6 +62,15 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    'gatsby-plugin-postcss'
+    'gatsby-plugin-postcss',
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `#003262`,
+        // Disable the loading spinner.
+        showSpinner: true,
+      },
+    },
   ],
 };
