@@ -5,13 +5,11 @@ import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
-    
-    // console.log(href, pathname);
     var sidebar = document.getElementById("sidebar");
     var element = document.getElementById('metadata');
     var bottomPos = element.getBoundingClientRect().bottom + window.scrollY;
