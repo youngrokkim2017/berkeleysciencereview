@@ -2,29 +2,16 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-/* @import url("https://use.typekit.net/ryk8rph.css"); */
-
-/* @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
-@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme"; */
 
 img + em {
     @apply block text-gray-700 text-sm not-italic leading-5 bg-gray-200 p-4;
 }
-
-/* h1, h2, h3, h4, h5, h6 {
-    font-weight: 600!important;
-    @apply font-display;
-} */ 
 
 body {
     font-weight: 400!important;
     font-family: 'Lora';
     @apply tracking-normal antialiased;
 }
-
 
 .prose img, .prose-lg img{
     @apply w-full;
@@ -56,10 +43,6 @@ body {
     width: 100vw;
 }
 
-/* .slick-arrow{
-    @apply bg-red-400 text-red-500 !important;
-} */
-
 .required > label::after {
     content: "*";
     color: #f00;
@@ -67,7 +50,6 @@ body {
 }
 
  .hamburger {
-    /* padding: 15px 15px; */
     width:24px;
     height:12px;
     display: inline-block;
@@ -82,6 +64,10 @@ body {
     border: 0;
     margin: 0;
     overflow: visible; 
+}
+
+#hamburger {
+    @apply h-full;
 }
 
 .hamburger:hover {
@@ -163,12 +149,16 @@ body {
     transform: translate3d(0, -12px, 0) rotate(-90deg); 
 }
 
+.slick-initialized .slick-track {
+   @apply flex items-center;
+}
+
+.slick-initialized .slick-dots{
+   bottom: -35px;
+}
+
 @media (min-width: 1380px) {
     #sidebar {
         display: block !important;
     }
 }
-
-/* .react-pdf__Page__canvas {
-    @apply container h-auto !important;
-} */
