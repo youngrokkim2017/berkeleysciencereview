@@ -53,17 +53,11 @@ const Preview = ({ article, format }) => {
         )
     } else if (format === "medium") {
         return (
-            <div className="flex items-start py-2">
-
+            <div className="flex items-start py-2 flex-wrap sm:flex-nowrap">
                 <div className="mr-6 flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                         <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
                     </Link>
-                    {/* <ReactMarkdown
-                        source={`${article.content.slice(0, 300)}...`}
-                        transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                        className="mb-4 break-words"
-                    /> */}
                     <p className='mb-1 text-base'>
                         {article.author ?
                             <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
@@ -72,7 +66,6 @@ const Preview = ({ article, format }) => {
                             :
                             ""
                         }
-
                     </p>
                     <p>
                         {handleDate(article.published_at)}
@@ -80,7 +73,7 @@ const Preview = ({ article, format }) => {
                 </div>
                 {article.image
                     ?
-                    <div className="ml-6">
+                    <div className="ml-0 mt-4 sm:mt-0 sm:ml-6">
                         <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
                     </div>
                     :

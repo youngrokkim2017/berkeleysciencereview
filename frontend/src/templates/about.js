@@ -5,10 +5,12 @@ import ReactMarkdown from "react-markdown"
 
 const AboutUsTemplate = ({ data }) => (
   <Layout>
-    <h2 className="font-normal mb-8 text-4xl leading-tight">{data.strapiAboutUs.title}</h2>
+    <main className="container mx-auto px-4 sm:px-6 xl:px-6">
+      <h2 className="font-normal mb-8 text-4xl leading-tight">{data.strapiAboutUs.title}</h2>
       <div className="flex-grow flex-shrink-0 prose tracking-normal text-black max-w-full">
-      <ReactMarkdown source={data.strapiAboutUs.content} />
-    </div>
+        <ReactMarkdown source={data.strapiAboutUs.content} />
+      </div>
+    </main>
   </Layout>
 )
 

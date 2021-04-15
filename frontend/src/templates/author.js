@@ -13,7 +13,7 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="">
+      <main className="container mx-auto px-4 sm:px-6 xl:px-6">
         <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiAuthors.name}</h2>
         <ul className="mb-12">
           {data.strapiAuthors.articles.map(article => (
@@ -42,7 +42,7 @@ const AuthorTemplate = ({ data }) => {
             </li>
           ))}
         </ul>
-      </div>
+      </main>
     </Layout>
 
   )
