@@ -146,8 +146,11 @@ body {
 }
 
 .slick-initialized .slick-track {
-    display: flex;
-    align-items: center;
+   @apply flex items-center;
+}
+
+.slick-initialized .slick-dots{
+   bottom: -35px;
 }
 
 @media (min-width: 1380px) {

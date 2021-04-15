@@ -35,8 +35,8 @@ class MyForm extends React.Component {
     return (
     <Layout>
       <SEO title="Contact Us" />
-      <h2 className="font-normal text-4xl leading-tight mb-8 text-center">Contact us</h2>
-      <div className="w-1/2 mx-auto">
+      <h2 className="font-normal text-4xl leading-tight mb-4 text-center">Contact us</h2>
+      <div className="w-4/5 sm:w-1/2 mx-auto">
         <form
           onSubmit={this.submitForm}
           action="#"
@@ -55,13 +55,13 @@ class MyForm extends React.Component {
               <label htmlFor="subject" className="block text-sm font-medium">Subject</label>
               <input type="text" name="subject" className="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" />
           </div>
-          <div className="required mb-12">
+          <div className="required mb-8">
               <label htmlFor="message" className="block text-sm font-medium">Message</label>
               <div class="mt-1">
                   <textarea id="message" name="message" rows="4" class="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" required></textarea>
               </div>
           </div>
-          {status === "SUCCESS" ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded">Submit</button>}
+          {status === "SUCCESS" ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded w-full sm:w-auto">Submit</button>}
           {status === "ERROR" && <p>Ooops! There was an error.</p>}
         </form>
       </div>
