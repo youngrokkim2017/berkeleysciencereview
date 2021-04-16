@@ -62,7 +62,18 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    'gatsby-plugin-postcss',
+    // 'gatsby-plugin-postcss',
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        cssLoaderOptions: {
+          camelCase: false,
+          exportLocalsConvention: false,
+          namedExport: false,
+        },
+        // postCssPlugins: [require(`postcss-preset-env`)({ stage: 0 })],
+      },
+    },
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
