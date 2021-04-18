@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react"
 import { Link, graphql } from "gatsby"
+
 import Preview from "../components/preview"
+
 import Header from "../components/header"
 import Footer from "../components/footer"
+
 import MailchimpComponentHome from '../components/mailchimpHome'
+
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -128,7 +132,12 @@ const IndexPage = ({ data }) => {
                 Magazine
               </h1>
               <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                <img src={latestIssue.node.pdf.publicURL} alt="" />
+                {/* <Document
+                  file={latestIssue.node.pdf.publicURL}
+                >
+                  <Page pageNumber={1} />
+                </Document> */}
+                <img src={latestIssue.node.thumbnail.publicURL} alt="" />
               </Link>
             </div>
 
@@ -187,8 +196,6 @@ const IndexPage = ({ data }) => {
       </main>
       <Footer />
     </div>
-
-
   )
 }
 
@@ -207,7 +214,6 @@ export const splashQuery = graphql`
           author {
             name
           }
-          content
           image {
             publicURL
           }
@@ -234,7 +240,7 @@ export const splashQuery = graphql`
           id
           issue
           title
-          pdf {
+          thumbnail {
             publicURL
           }
         }

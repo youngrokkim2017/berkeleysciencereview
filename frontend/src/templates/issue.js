@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 
 // import { Document, Page, pdfjs } from "react-pdf"
 import { pdfjs } from "react-pdf"
-import { SpecialZoomLevel, Viewer } from '@react-pdf-viewer/core';
+import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -99,7 +99,7 @@ const MagazineIssueTemplate = ({ data }) => {
           </ul>
         }
       </div>
-    </Layout >
+    </Layout>
   )
 }
 
