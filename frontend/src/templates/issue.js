@@ -99,7 +99,7 @@ const MagazineIssueTemplate = ({ data }) => {
           </ul>
         }
       </div>
-    </Layout >
+    </Layout>
   )
 }
 

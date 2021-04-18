@@ -113,7 +113,6 @@ export const query = graphql`
         id
         title
         author
-        content
         image {
           publicURL
         }

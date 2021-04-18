@@ -128,7 +128,8 @@ const IndexPage = ({ data }) => {
                 Magazine
               </h1>
               <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                <img src={latestIssue.node.pdf.publicURL} alt="" />
+                test
+                {/* <img src={latestIssue.node.pdf.publicURL} alt="" /> */}
               </Link>
             </div>
 
@@ -187,8 +188,6 @@ const IndexPage = ({ data }) => {
       </main>
       <Footer />
     </div>
-
-
   )
 }
 
@@ -207,7 +206,6 @@ export const splashQuery = graphql`
           author {
             name
           }
-          content
           image {
             publicURL
           }

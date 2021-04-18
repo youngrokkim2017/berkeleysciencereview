@@ -245,10 +245,6 @@ export const query = graphql`
             id
             name
           }
-          content
-          image {
-            publicURL
-          }
           categories {
             id
             title
