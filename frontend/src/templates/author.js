@@ -33,10 +33,6 @@ const AuthorTemplate = ({ data }) => {
                   <p className='my-0'>
                     {handleDate(article.published_at)}
                   </p>
-                  {/* <ReactMarkdown
-                    source={`${article.content.slice(0, 300)}...`}
-                    className="mb-4"
-                  /> */}
                 </div>
               </div>
             </li>
@@ -59,7 +55,6 @@ export const query = graphql`
         id
         title
         published_at
-        content
         image {
           publicURL
         }
