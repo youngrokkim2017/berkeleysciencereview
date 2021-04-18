@@ -37,34 +37,67 @@ class ArticleTemplate extends React.Component {
 
   render() {
     const { data } = this.props;
+
     function handleDate(e) {
       var d = new Date(e);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return d.toLocaleDateString(undefined, options)
     }
 
-    const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
-      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
-      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+    // // OLD RELATED ARTICLES: INTIAL SORT BY DATE -> ARTICLES -> CATEGORY
+
+    // const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
+    //   let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+    //   let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
+    //   return (bDate - aDate)
+    // })
+
+    // const recentArticlesSidebar = sortedByDate.filter(document => (
+    //   document.node.id !== this.props.data.strapiArticle.id
+    // )).slice(0, 3)
+
+    // let relatedArticles = sortedByDate.filter(document => (
+    //   document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.categories[0].id
+    // )).slice(0, 10);
+
+    // const temp = [];
+    // while (relatedArticles.length !== 0) {
+    //   let randomIndex = Math.floor(Math.random() * relatedArticles.length);
+    //   temp.push(relatedArticles[randomIndex]);
+    //   relatedArticles.splice(randomIndex, 1);
+    // }
+
+    // relatedArticles = temp.slice(0, 3);
+
+    // NEW RELATED ARTICLES: INITIAL FILTER BY CATEGORY -> ARTICLE -> DATE
+
+    const getRelatedCategory = data.allStrapiCategory.edges.filter(category => (
+      // category.node.title === data.strapiArticle.categories[0].title && !category.node.articles.map(article => article.id).includes(this.props.data.strapiArticle.id.split('_')[1])
+      category.node.title === data.strapiArticle.categories[0].title
+    ))
+
+    const getAllArticlesExceptCurrent = getRelatedCategory[0].node.articles.filter(document => (
+      document.id !== this.props.data.strapiArticle.id.split("_")[1]
+    ))
+
+    // const relatedArticlesByDate = getRelatedCategory[0].node.articles.sort((a, b) => {
+    const relatedArticlesByDate = getAllArticlesExceptCurrent.sort((a, b) => {
+      let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
+      let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
       return (bDate - aDate)
     })
 
-    const recentArticlesSidebar = sortedByDate.filter(document => (
-      document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 3)
-
-    let relatedArticles = sortedByDate.filter(document => (
-      document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 10);
-
-    const temp = [];
-    while (relatedArticles.length !== 0) {
-      let randomIndex = Math.floor(Math.random() * relatedArticles.length);
-      temp.push(relatedArticles[randomIndex]);
-      relatedArticles.splice(randomIndex, 1);
+    let recentRelatedArticles = relatedArticlesByDate.slice(0, 3);
+    const temp2 = []
+    while (recentRelatedArticles.length !== 0) {
+      let randomIndex = Math.floor(Math.random() * recentRelatedArticles.length);
+      temp2.push(recentRelatedArticles[randomIndex]);
+      recentRelatedArticles.splice(randomIndex, 1);
     }
 
-    relatedArticles = temp.slice(0, 3);
+    recentRelatedArticles = temp2.slice(0, 3);
+
+    console.log(data, getRelatedCategory, getAllArticlesExceptCurrent);
 
     return (
       <Layout>
@@ -167,18 +200,19 @@ class ArticleTemplate extends React.Component {
                 </div>
                 <div className="flex-grow">
                   {data.strapiArticle.categories.length === 0 ?
-                    <div className="mt-12 lg:mt-0">
-                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-                        Recent Articles
-                      </h2>
-                      <ul>
-                        {recentArticlesSidebar.map(document => (
-                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                            <Preview article={document.node} format="small" />
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    // <div className="mt-12 lg:mt-0">
+                    //   <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                    //     Recent Articles
+                    //   </h2>
+                    //   <ul>
+                    //     {recentArticlesSidebar.map(document => (
+                    //       <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                    //         <Preview article={document.node} format="small" />
+                    //       </li>
+                    //     ))}
+                    //   </ul>
+                    // </div>
+                    ""
                   :
                     <div className="mt-12 lg:mt-0">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
@@ -186,9 +220,37 @@ class ArticleTemplate extends React.Component {
                       </h2>
                       <ul>
                         {/* {this.state.relatedArticles.map(document => ( */}
-                        {relatedArticles.map(document => (
+                        {/* {relatedArticles.map(document => (
                           <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                             <Preview article={document.node} format="small" />
+                          </li>
+                        ))} */}
+                        {recentRelatedArticles.map(document => (
+                          <li key={document.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                            <div className="flex items-start space-x-4 py-1">
+                              <div className="flex-grow">
+                                <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
+                                  <h2 className="font-normal mb-2 text-base">{document.title}</h2>
+                                </Link>
+                                {data.allStrapiAuthors.edges.map(author => (
+                                  <p className='test-sm' key={author.node.id}>
+                                    {author.node.id.split("_")[1] === document.author ?
+                                    <>
+                                      By <Link
+                                        className="font-medium underline"
+                                        to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                      >
+                                        {author.node.name}
+                                      </Link>
+                                    </>
+                                    :
+                                    ""
+                                    } 
+                                  </p>
+                                ))}
+                                {document.image ? <img src={document.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                              </div>
+                            </div>
                           </li>
                         ))}
                       </ul>
@@ -236,20 +298,28 @@ export const query = graphql`
         title
       }
     }
-    allStrapiArticle {
+    allStrapiCategory {
       edges {
         node {
           id
           title
-          author {
-            id
-            name
-          }
-          categories {
+          articles {
             id
             title
+            author
+            image {
+              publicURL
+            }
+            published_at
           }
-          published_at
+        }
+      }
+    }
+    allStrapiAuthors {
+      edges {
+        node {
+          id
+          name
         }
       }
     }
@@ -264,15 +334,15 @@ export const query = graphql`
 //       published_at
 //       updatedAt
 //       content
-//       author {
-//             id
-//         name
-//       }
 //       image {
 //         publicURL
 //       }
+//       author {
+//         id
+//         name
+//       }
 //       categories {
-//             id
+//         id
 //         title
 //       }
 //     }
@@ -280,15 +350,11 @@ export const query = graphql`
 //       edges {
 //         node {
 //           id
-//           image {
-//             publicURL
-//           }
 //           title
 //           author {
 //             id
 //             name
 //           }
-//           content
 //           categories {
 //             id
 //             title
