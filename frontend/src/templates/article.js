@@ -37,70 +37,42 @@ class ArticleTemplate extends React.Component {
 
   render() {
     const { data } = this.props;
-
     function handleDate(e) {
       var d = new Date(e);
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return d.toLocaleDateString(undefined, options)
     }
 
-    // OLD RELATED ARTICLES: INTIAL SORT BY DATE -> ARTICLES -> CATEGORY
-
-    const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
-      let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
-      let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
-      return (bDate - aDate)
-    })
-
-    const recentArticlesSidebar = sortedByDate.filter(document => (
-      document.node.id !== this.props.data.strapiArticle.id
-    )).slice(0, 3)
-
-    let relatedArticles = sortedByDate.filter(document => (
-      document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.categories[0].id
-    )).slice(0, 10);
-
-    const temp = [];
-    while (relatedArticles.length !== 0) {
-      let randomIndex = Math.floor(Math.random() * relatedArticles.length);
-      temp.push(relatedArticles[randomIndex]);
-      relatedArticles.splice(randomIndex, 1);
-    }
-
-    relatedArticles = temp.slice(0, 3);
-
-    // // NEW RELATED ARTICLES: INITIAL FILTER BY CATEGORY -> ARTICLE -> DATE
-
-    // const getRelatedCategory = data.allStrapiCategory.edges.filter(category => (
-    //   // category.node.title === data.strapiArticle.categories[0].title && !category.node.articles.map(article => article.id).includes(this.props.data.strapiArticle.id.split('_')[1])
-    //   category.node.title === data.strapiArticle.categories[0].title
-    // ))
-
-    // const getAllArticlesExceptCurrent = getRelatedCategory[0].node.articles.filter(document => (
-    //   document.id !== this.props.data.strapiArticle.id.split("_")[1]
-    // ))
-
-    // // const relatedArticlesByDate = getRelatedCategory[0].node.articles.sort((a, b) => {
-    // const relatedArticlesByDate = getAllArticlesExceptCurrent.sort((a, b) => {
-    //   let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
-    //   let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
+    // const sortedByDate = data.recent.edges.sort((a, b) => {
+    //   let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
+    //   let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
     //   return (bDate - aDate)
     // })
 
-    // let recentRelatedArticles = relatedArticlesByDate.slice(0, 3);
-    // const temp2 = []
-    // while (recentRelatedArticles.length !== 0) {
-    //   let randomIndex = Math.floor(Math.random() * recentRelatedArticles.length);
-    //   temp2.push(recentRelatedArticles[randomIndex]);
-    //   recentRelatedArticles.splice(randomIndex, 1);
+    const recentArticlesSidebar = data.recent.edges.filter(document => (
+      document.node.id !== this.props.data.strapiArticle.id
+    )).slice(0, 3)
+
+    let relatedArticles = data.related.edges.filter(document => (
+      document.node.id !== this.props.data.strapiArticle.id
+    )).slice(0, 3);
+
+    // let relatedArticles = sortedByDate.filter(document => (
+    //   document.node.categories.length !== 0 && this.props.data.strapiArticle.categories.map(a => a.title)[0] === document.node.categories.map(b => b.title)[0] && document.node.id !== this.props.data.strapiArticle.id
+    // )).slice(0, 10);
+
+    // const temp = [];
+    // while (relatedArticles.length !== 0) {
+    //   let randomIndex = Math.floor(Math.random() * relatedArticles.length);
+    //   temp.push(relatedArticles[randomIndex]);
+    //   relatedArticles.splice(randomIndex, 1);
     // }
 
-    // recentRelatedArticles = temp2.slice(0, 3);
+    // relatedArticles = temp.slice(0, 3);
 
     return (
       <Layout>
-        <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{maxWidth: '1036px'}}>
-
+        <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
               {data.strapiArticle.author ?
@@ -170,19 +142,19 @@ class ArticleTemplate extends React.Component {
                   <div className='mt-12'>
                     <div className="inline-flex items-center space-x-8">
                       <a href={`https://www.facebook.com/sharer/sharer.php?u=${this.props.location.href}&t=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
-                      {/* <a href={`https://www.facebook.com/sharer/sharer.php`} className="flex items-center space-x-2 no-underline"> */}
+                        {/* <a href={`https://www.facebook.com/sharer/sharer.php`} className="flex items-center space-x-2 no-underline"> */}
                         <svg width="20" height="20" viewBox="0 0 16 16">
                           <path d="M15.117 0H.883A.883.883 0 0 0 0 .883v14.234c0 .488.395.883.883.883h7.663V9.804H6.461V7.389h2.085V5.61c0-2.067 1.262-3.192 3.106-3.192.883 0 1.642.065 1.863.095v2.16h-1.279c-1.002 0-1.196.476-1.196 1.176v1.541h2.39l-.31 2.415h-2.08V16h4.077a.883.883 0 0 0 .883-.883V.883A.883.883 0 0 0 15.117 0"></path>
                         </svg>
                       </a>
                       <a href={`https://twitter.com/intent/tweet?url=${this.props.location.href}&text=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline">
-                      {/* <a href={`https://twitter.com/intent/tweet`} className="flex items-center space-x-2 no-underline"> */}
+                        {/* <a href={`https://twitter.com/intent/tweet`} className="flex items-center space-x-2 no-underline"> */}
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84"></path>
                         </svg>
                       </a>
                       <a href={`mailto:?subject=${data.strapiArticle.title}&body=${this.props.location.href}`} className="flex items-center space-x-2 no-underline">
-                      {/* <a href={`mailto:?subject=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline"> */}
+                        {/* <a href={`mailto:?subject=${data.strapiArticle.title}`} className="flex items-center space-x-2 no-underline"> */}
                         <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                           <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
@@ -210,8 +182,7 @@ class ArticleTemplate extends React.Component {
                         ))}
                       </ul>
                     </div>
-                    // ""
-                  :
+                    :
                     <div className="mt-12 lg:mt-0">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
                         Related Articles
@@ -223,34 +194,6 @@ class ArticleTemplate extends React.Component {
                             <Preview article={document.node} format="small" />
                           </li>
                         ))}
-                        {/* {recentRelatedArticles.map(document => (
-                          <li key={document.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                            <div className="flex items-start space-x-4 py-1">
-                              <div className="flex-grow">
-                                <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                                  <h2 className="font-normal mb-2 text-base">{document.title}</h2>
-                                </Link>
-                                {data.allStrapiAuthors.edges.map(author => (
-                                  <p className='test-sm' key={author.node.id}>
-                                    {author.node.id.split("_")[1] === document.author ?
-                                    <>
-                                      By <Link
-                                        className="font-medium underline"
-                                        to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                      >
-                                        {author.node.name}
-                                      </Link>
-                                    </>
-                                    :
-                                    ""
-                                    } 
-                                  </p>
-                                ))}
-                                {document.image ? <img src={document.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
-                              </div>
-                            </div>
-                          </li>
-                        ))} */}
                       </ul>
                     </div>
                   }
@@ -276,56 +219,8 @@ class ArticleTemplate extends React.Component {
 
 export default ArticleTemplate
 
-// export const query = graphql`
-//   query ArticleTemplate($id: String!) {
-//     strapiArticle(id: {eq: $id }) {
-//       id
-//       title
-//       published_at
-//       updatedAt
-//       content
-//       image {
-//         publicURL
-//       }
-//       author {
-//         id
-//         name
-//       }
-//       categories {
-//         id
-//         title
-//       }
-//     }
-//     allStrapiCategory {
-//       edges {
-//         node {
-//           id
-//           title
-//           articles {
-//             id
-//             title
-//             author
-//             image {
-//               publicURL
-//             }
-//             published_at
-//           }
-//         }
-//       }
-//     }
-//     allStrapiAuthors {
-//       edges {
-//         node {
-//           id
-//           name
-//         }
-//       }
-//     }
-//   }
-// `
-
 export const query = graphql`
-  query ArticleTemplate($id: String!) {
+  query ArticleTemplate($id: String!, $categoryList: [String!]) {
     strapiArticle(id: {eq: $id }) {
       id
       title
@@ -343,26 +238,61 @@ export const query = graphql`
         id
         title
       }
-    }
-    allStrapiArticle {
-      edges {
-        node {
+  }
+  recent: allStrapiArticle(
+    sort: {order: DESC, fields: published_at}
+    limit: 6
+  ) {
+    edges {
+      node {
+        id
+        title
+        author {
+          id
+          name
+        }
+        categories {
           id
           title
-          image {
-            publicURL
-          }
-          author {
-            id
-            name
-          }
-          categories {
-            id
-            title
-          }
-          published_at
         }
+        image {
+          publicURL
+        }
+        published_at
       }
     }
   }
+  related: allStrapiArticle(
+    sort: {order: DESC, fields: published_at}
+    limit: 6
+    filter: {
+      categories: {
+        elemMatch: {
+          id: {
+            in: $categoryList
+          }
+        }
+      }
+    }
+  ) {
+    edges {
+      node {
+        id
+        title
+        author {
+          id
+          name
+        }
+        categories {
+          id
+          title
+        }
+        image {
+          publicURL
+        }
+        published_at
+      }
+    }
+  }
+}
 `
