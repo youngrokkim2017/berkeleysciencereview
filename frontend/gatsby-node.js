@@ -18,6 +18,9 @@ exports.createPages = async ({ graphql, actions }) => {
             node {
               id
               title
+              categories {
+                id
+              }
             }
           }
         }
@@ -128,6 +131,7 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`src/templates/article.js`),
       context: {
         id: node.id,
+        categoryList: node.categories.map(category => category.id)
       },
     });
   });
