@@ -6,6 +6,7 @@ import Fuse from "fuse.js"  // fuzzy search
 import Highlight from 'react-highlighter'
 import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer';
+import SearchIndexItems from '../components/searchIndexItems';
 
 const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -149,44 +150,39 @@ const SearchPage = ({ location }) => {
         </div>
         {/* {query.length > 2 && results.length > 0 ? */}
         {query.length > 2 && currentResults.length > 0 ?
-          <div className="container mx-auto">
-            <ul>
-              {currentSearchResults.map(document => (
-                <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                  <div className="flex items-start">
-                    <div className="mr-6 flex-grow">
-                      <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
-                        <h2 className="font-medium mb-2 text-2xl leading-none">
-                          <Highlight search={query}>{document.node.title}</Highlight>
-                        </h2>
-                      </Link>
-                      {/* <Highlight search={query}>
-                        <ReactMarkdown
-                          source={`${document.node.content.slice(0, 200)}...`}
-                          transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                        />
-                      </Highlight> */}
-                      <p className='mb-2 text-base'>
-                        By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                          <Highlight search={query}>{document.node.author.name}</Highlight>
-                        </Link>
-                      </p>
-                      <p className='my-2'>
-                        {handleDate(document.node.published_at)}
-                      </p>
-                    </div>
-                    {document.node.image ?
-                      <div>
-                        <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
-                      </div>
-                      :
-                      ""
-                    }
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <SearchIndexItems searchData={currentSearchResults} searchQuery={query} />
+          // <div className="container mx-auto">
+          //   <ul>
+          //     {currentSearchResults.map(document => (
+          //       <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+          //         <div className="flex items-start">
+          //           <div className="mr-6 flex-grow">
+          //             <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+          //               <h2 className="font-medium mb-2 text-2xl leading-none">
+          //                 <Highlight search={query}>{document.node.title}</Highlight>
+          //               </h2>
+          //             </Link>
+          //             <p className='mb-2 text-base'>
+          //               By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+          //                 <Highlight search={query}>{document.node.author.name}</Highlight>
+          //               </Link>
+          //             </p>
+          //             <p className='my-2'>
+          //               {handleDate(document.node.published_at)}
+          //             </p>
+          //           </div>
+          //           {document.node.image ?
+          //             <div>
+          //               <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+          //             </div>
+          //             :
+          //             ""
+          //           }
+          //         </div>
+          //       </li>
+          //     ))}
+          //   </ul>
+          // </div>
         // : query.length > 0 && results.length === 0 ?
         // : (query.length > 0 && currentResults.length === 0) || (location.state.searchQuery.length > 0 && results.length === 0) ?
         : (query.length > 0 && currentResults.length === 0) || (results.length === 0) ?
@@ -194,44 +190,39 @@ const SearchPage = ({ location }) => {
             No results match your search input
           </div>
         : 
-          <div className="container mx-auto">
-            <ul>
-              {searchResults.map(document => (
-                <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
-                <div className="flex items-start">
-                  <div className="mr-6 flex-grow">
-                    <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
-                      <h2 className="font-medium mb-2 text-2xl leading-none">
-                        <Highlight search={query}>{document.node.title}</Highlight>
-                      </h2>
-                    </Link>
-                    {/* <Highlight search={query}>
-                      <ReactMarkdown
-                        source={`${document.node.content.slice(0, 200)}...`}
-                        transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-                      />
-                    </Highlight> */}
-                    <p className='mb-2 text-base'>
-                      By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                        <Highlight search={query}>{document.node.author.name}</Highlight>
-                      </Link>
-                    </p>
-                    <p className='my-2'>
-                      {handleDate(document.node.published_at)}
-                    </p>
-                  </div>
-                  {document.node.image ?
-                    <div>
-                      <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
-                    </div>
-                    :
-                    ""
-                  }
-                </div>
-              </li>
-              ))}
-            </ul>
-          </div>
+          <SearchIndexItems searchData={searchResults} searchQuery={query} />
+          // <div className="container mx-auto">
+          //   <ul>
+          //     {searchResults.map(document => (
+          //       <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+          //       <div className="flex items-start">
+          //         <div className="mr-6 flex-grow">
+          //           <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+          //             <h2 className="font-medium mb-2 text-2xl leading-none">
+          //               <Highlight search={query}>{document.node.title}</Highlight>
+          //             </h2>
+          //           </Link>
+          //           <p className='mb-2 text-base'>
+          //             By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+          //               <Highlight search={query}>{document.node.author.name}</Highlight>
+          //             </Link>
+          //           </p>
+          //           <p className='my-2'>
+          //             {handleDate(document.node.published_at)}
+          //           </p>
+          //         </div>
+          //         {document.node.image ?
+          //           <div>
+          //             <img src={document.node.image.publicURL} style={{ maxWidth: '210px' }} alt="" />
+          //           </div>
+          //           :
+          //           ""
+          //         }
+          //       </div>
+          //     </li>
+          //     ))}
+          //   </ul>
+          // </div>
         }
       </div>
       <Footer />
