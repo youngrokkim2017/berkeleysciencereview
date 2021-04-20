@@ -29,7 +29,6 @@ const MagazineIssueTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="px-4 sm:px-6 xl:px-6 mx-auto">
         <div className="mb-8 pb-4 border-b border-black">
           <h2 className="font-normal text-4xl leading-tight mb-2">{data.strapiMagazineIssue.title}</h2>
           {pdfOpen && data.strapiMagazineIssue.pdf ?
@@ -98,7 +97,6 @@ const MagazineIssueTemplate = ({ data }) => {
             ))}
           </ul>
         }
-      </div>
     </Layout>
   )
 }

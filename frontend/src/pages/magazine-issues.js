@@ -1,15 +1,14 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const MagazineIssuePage = ({ data }) => {
   const magazinesSortedByIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue).slice(1, data.allStrapiMagazineIssue.edges.length);
 
   return (
     <Layout>
-      <SEO title="Magazine issues" />
-      <main className="container mx-auto px-4 sm:px-6 xl:px-6">
+      <Seo title="Magazine issues" />
         <h2 className="font-normal mb-4 text-4xl leading-tight">Magazine Issues</h2>
         <div className="space-y-1">
           {magazinesSortedByIssue.map(document => (
@@ -20,7 +19,6 @@ const MagazineIssuePage = ({ data }) => {
             </div>
           ))}
         </div>
-      </main>
     </Layout>
   )
 }

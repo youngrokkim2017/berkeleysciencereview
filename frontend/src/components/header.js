@@ -96,10 +96,11 @@ class Header extends React.Component {
 
     return (
       <>
-        <nav className="text-black mb-8 sans-serif bg-white z-50 top-0">
-          <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}>
+        <nav className={`text-black mb-8 sans-serif bg-white z-50 top-0 ${this.state.menuOpen ? '' : 'container mx-auto'}`}>
+          {/* <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}> */}
+          <div className="border-b border-gray-300 px-4 md:px-8 xl:px-0">
             <div className="container mx-auto py-4">
-              <div className="flex mx-auto items-center justify-between px-4 sm:px-6 xl:px-6">
+              <div className="flex mx-auto items-center justify-between">
                 <div className="w-1/4">
                   <span className="">
                     <button className="hamburger hamburger--slider" type="button" id="hamburger" onClick={!this.state.menuOpen ? this.openMenu : this.closeMenu}>
@@ -115,7 +116,7 @@ class Header extends React.Component {
                   </Link>
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
-                  <div className="hidden sm:block" id="search-input">
+                  <div className="hidden md:block" id="search-input">
                     <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
                       {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
                       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
@@ -136,10 +137,10 @@ class Header extends React.Component {
             </div>
           </div>
 
-          <div className={`text-center mx-auto ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
+          <div className={`text-center ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
 
             {!this.state.menuOpen ?
-              <div className="hidden lg:inline-block text-sm flex-inline space-x-6 py-2">
+              <div className="hidden lg:inline-block text-sm tracking-tight flex-inline space-x-6 py-2 z-0" id="horizontal-header">
                 <Link to={`/category/climate-change`} className="mt-4 lg:inline-block lg:mt-0">
                   Climate Change
                 </Link>
@@ -179,96 +180,99 @@ class Header extends React.Component {
             }
           </div>
           {this.state.menuOpen ?
-            <div className="pb-12 px-4 sm:px-8 xl:px-0 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
-              <div className="container mx-auto">
-                <div className="md:flex md:space-x-24">
-                  <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">
-                    <div className="block sm:hidden mt-2 mb-4">
-                      <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <input
-                          type="text"
-                          placeholder="Search"
-                          value={this.state.query}
-                          // onChange={(e) => setQuery(e.target.value)}
-                          onChange={this.handleChange('query')}
-                          className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
-                        />
-                      </form>
+            <>
+              <span className="hidden lg:block h-9 border-b border-white"></span>
+              <div className="pt-8 lg:pt-0 pb-10 px-4 md:px-8 xl:px-0 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+                <div className="container mx-auto">
+                  <div className="md:flex md:space-x-24">
+                    <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">
+                      <div className="block md:hidden mb-8">
+                        <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                          <input
+                            type="text"
+                            placeholder="Search"
+                            value={this.state.query}
+                            // onChange={(e) => setQuery(e.target.value)}
+                            onChange={this.handleChange('query')}
+                            className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
+                          />
+                        </form>
+                      </div>
+
+                      <h2 className="font-semibold mb-2">Categories</h2>
+                      <ul className="grid gap-1 grid-cols-1 md:grid-cols-3 space-y-0">
+
+                        <li>
+                          <Link to={`/category/climate-change`} className="block lg:inline-block md:mt-0">
+                            Climate Change
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/life-science`} className="block lg:inline-block md:mt-0">
+                            Life Science
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/tech-&-ai`} className="block lg:inline-block md:mt-0">
+                            Technology & Artificial Intelligence
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/the-universe`} className="block lg:inline-block md:mt-0">
+                            The Universe
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/labscopes`} className="block lg:inline-block md:mt-0">
+                            Labscopes
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/people`} className="block lg:inline-block md:mt-0">
+                            People
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/noteworthy-news`} className="block lg:inline-block md:mt-0">
+                            Noteworthy News
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/the-scientist-life`} className="block lg:inline-block md:mt-0">
+                            The Scientist Life
+                        </Link>
+                        </li>
+                        <li>
+                          <Link to={`/category/archive`} className="block lg:inline-block md:mt-0">
+                            Archive
+                        </Link>
+                        </li>
+                      </ul>
                     </div>
-
-                    <h2 className="font-semibold mb-2">Categories</h2>
-                    <ul className="grid gap-1 grid-cols-1 md:grid-cols-3 space-y-0">
-
-                      <li>
-                        <Link to={`/category/climate-change`} className="block lg:inline-block md:mt-0">
-                          Climate Change
+                    <div>
+                      <h2 className="font-semibold mb-2">Magazine</h2>
+                      <ul className="grid gap-1">
+                        <li>
+                          <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                            Current Magazine
                         </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/life-science`} className="block lg:inline-block md:mt-0">
-                          Life Science
+                        </li>
+                        {/* <li>Latest Issue</li> */}
+                        {/* <li>Past Issues</li> */}
+                        <li>
+                          <Link to={`/magazine-issues`}>
+                            Past Issues
                         </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/tech-&-ai`} className="block lg:inline-block md:mt-0">
-                          Technology & Artificial Intelligence
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/the-universe`} className="block lg:inline-block md:mt-0">
-                          The Universe
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/labscopes`} className="block lg:inline-block md:mt-0">
-                          Labscopes
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/people`} className="block lg:inline-block md:mt-0">
-                          People
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/noteworthy-news`} className="block lg:inline-block md:mt-0">
-                          Noteworthy News
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/the-scientist-life`} className="block lg:inline-block md:mt-0">
-                          The Scientist Life
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/category/archive`} className="block lg:inline-block md:mt-0">
-                          Archive
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h2 className="font-semibold mb-2">Magazine</h2>
-                    <ul className="grid gap-1">
-                      <li>
-                        <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                          Current Magazine
-                        </Link>
-                      </li>
-                      {/* <li>Latest Issue</li> */}
-                      {/* <li>Past Issues</li> */}
-                      <li>
-                        <Link to={`/magazine-issues`}>
-                          Past Issues
-                        </Link>
-                      </li>
-                    </ul>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </>
             :
             ""
           }

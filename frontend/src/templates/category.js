@@ -45,7 +45,6 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="px-4 sm:px-6 xl:px-6 mx-auto">
         <h2 className="font-normal mb-8 pb-2 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
         <ul className="mb-12">
 
@@ -56,13 +55,6 @@ const CategoryTemplate = ({ data }) => {
                   <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
                   </Link>
-                  <p className='my-2'>
-                    {handleDate(document.published_at)}
-                  </p>
-                  {/* <ReactMarkdown
-                    source={`${document.content.slice(0, 300)}...`}
-                    className="mb-4"
-                  /> */}
                   {data.allStrapiAuthors.edges.map(author => (
                     <p className='mb-2 text-base' key={author.node.id}>
                       {author.node.id.split("_")[1] === document.author ?
@@ -79,10 +71,13 @@ const CategoryTemplate = ({ data }) => {
                       }
                     </p>
                   ))}
+                  <p>
+                    {handleDate(document.published_at)}
+                  </p>
                 </div>
                 {document.image ?
-                  <div>
-                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                  <div className="flex-shrink-0">
+                    <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
                   </div>
                   :
                   ""
@@ -97,7 +92,6 @@ const CategoryTemplate = ({ data }) => {
         ) : (
             <p>No more results</p>
           )}
-      </div>
     </Layout>
   )
 }

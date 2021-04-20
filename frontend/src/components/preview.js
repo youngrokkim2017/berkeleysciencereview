@@ -15,9 +15,9 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal mb-2 text-base">{article.title}</h2>
+                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl lg:font-normal lg:text-base">{article.title}</h2>
                     </Link>
-                    <p className='text-sm'>
+                    <p className='mb-1 text-sm md:text-base lg:text-sm'>
                         {article.author ?
                             <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                                 {article.author.name}
@@ -26,8 +26,11 @@ const Preview = ({ article, format }) => {
                             ""
                         }
                     </p>
+                    {/* <p className="text-sm">
+                        {handleDate(article.published_at)}
+                    </p> */}
                 </div>
-                {article.image ? <img src={article.image.publicURL} className="object-cover w-20 h-20" alt="" /> : ""}
+                {article.image ? <img src={article.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48 lg:w-20 lg:h-20 lg:object-cover" alt="" /> : ""}
             </div>
 
         )
@@ -36,9 +39,9 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4 py-1">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal mb-2 text-base">{article.title}</h2>
+                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl lg:font-normal lg:text-base">{article.title}</h2>
                     </Link>
-                    <p className='text-sm'>
+                    <p className='text-sm md:text-base lg:text-sm'>
                         {article.author ?
                             <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                                 {article.author.name}
@@ -53,12 +56,12 @@ const Preview = ({ article, format }) => {
         )
     } else if (format === "medium") {
         return (
-            <div className="flex items-start py-2 flex-wrap sm:flex-nowrap">
+            <div className="flex items-start py-2">
                 <div className="mr-6 flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                        <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
+                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl">{article.title}</h2>
                     </Link>
-                    <p className='mb-1 text-base'>
+                    <p className='mb-1 text-sm md:text-base'>
                         {article.author ?
                             <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                                 {article.author.name}
@@ -67,14 +70,14 @@ const Preview = ({ article, format }) => {
                             ""
                         }
                     </p>
-                    <p>
+                    <p className="text-sm md:text-base">
                         {handleDate(article.published_at)}
                     </p>
                 </div>
                 {article.image
                     ?
-                    <div className="ml-0 mt-4 sm:mt-0 sm:ml-6">
-                        <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                    <div className="flex-shrink-0">
+                        <img src={article.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
                     </div>
                     :
                     ""
