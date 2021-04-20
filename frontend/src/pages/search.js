@@ -70,7 +70,6 @@ const SearchPage = ({ location }) => {
 
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const valueRef = useRef()
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
@@ -121,9 +120,7 @@ const SearchPage = ({ location }) => {
 
   function handleOnChange({ currentTarget = {} }) {
     const { value } = currentTarget;
-    // setSearchTerm(value);
-
-    setSearchTerm(valueRef.current.value);
+    setSearchTerm(value);
   }
 
   // // function handleOnChange(e) {
@@ -155,9 +152,7 @@ const SearchPage = ({ location }) => {
               placeholder="Search"
               // value={query}
               // onChange={handleOnSearch}
-              // value={searchTerm}
-              // onChange={handleOnChange}
-              ref={valueRef}
+              value={searchTerm}
               onChange={handleOnChange}
             />
           </form>
