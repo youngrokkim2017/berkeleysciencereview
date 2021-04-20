@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 // import React, { useState, useEffect, useMemo, useCallback } from "react"
 // import { Link, graphql, useStaticQuery } from "gatsby"
 import { graphql, useStaticQuery } from "gatsby"
@@ -8,6 +8,16 @@ import Fuse from "fuse.js"  // fuzzy search
 import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer';
 import SearchIndexItems from '../components/searchIndexItems';
+
+// class SearchPage extends React.Component {
+//   render() {
+//     console.log(this.props);
+
+//     return (
+//       <div>hi</div>
+//     )
+//   }
+// }
 
 const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
