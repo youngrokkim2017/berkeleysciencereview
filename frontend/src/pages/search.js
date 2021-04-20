@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 // import React, { useState, useEffect, useMemo, useCallback } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+// import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 // import ReactMarkdown from "react-markdown"
 import Fuse from "fuse.js"  // fuzzy search
-import Highlight from 'react-highlighter'
+// import Highlight from 'react-highlighter'
 import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer';
 import SearchIndexItems from '../components/searchIndexItems';
@@ -119,11 +120,11 @@ const SearchPage = ({ location }) => {
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 
-  function handleDate(e) {
-    var d = new Date(e);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return d.toLocaleDateString(undefined, options)
-  }
+  // function handleDate(e) {
+  //   var d = new Date(e);
+  //   const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  //   return d.toLocaleDateString(undefined, options)
+  // }
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
