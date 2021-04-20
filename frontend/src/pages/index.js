@@ -60,14 +60,14 @@ const IndexPage = ({ data }) => {
 
   const popularArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Noteworthy News')
-  )).slice(0, 7);
+  )).slice(0, 6);
 
   const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data} />
-      <main className='container mx-auto px-4 sm:px-6 xl:px-6'>
+      <main className='container mx-auto px-4 md:px-8 xl:px-0'>
         <div className="mb-16 mx-auto">
           <div>
             <Slider {...settings}>
@@ -95,8 +95,8 @@ const IndexPage = ({ data }) => {
             </Slider>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-12 gap-y-6 mb-6 sm:mb-12">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-6 xl:gap-x-12 gap-y-12 mb-6 sm:mb-12">
+          <div className="order-1 lg:order-0">
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Popular
           </h1>
@@ -108,7 +108,7 @@ const IndexPage = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div className="col-span-1 lg:col-span-2">
+          <div className="order-0 lg:order-1 col-span-1 lg:col-span-2">
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Latest
           </h1>
@@ -120,30 +120,31 @@ const IndexPage = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div>
-            <div className="mb-6">
-              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
-                Newsletter
+          <div className="order-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+              <div>
+                <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                  Newsletter
               </h1>
-              <MailchimpComponentHome />
-            </div>
-            <div>
-              <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
-                Magazine
+                <MailchimpComponentHome />
+              </div>
+              <div>
+                <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                  Magazine
               </h1>
-              <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                {/* <Document
+                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                  {/* <Document
                   file={latestIssue.node.pdf.publicURL}
                 >
                   <Page pageNumber={1} />
                 </Document> */}
-                <img src={latestIssue.node.thumbnail.publicURL} alt="" />
-              </Link>
+                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
+                </Link>
+              </div>
             </div>
-
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-12 gap-y-6 -mb-6 sm:mb-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-6 -mb-6 sm:mb-0">
           <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Labscopes

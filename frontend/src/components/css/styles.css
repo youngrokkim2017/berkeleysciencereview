@@ -7,9 +7,19 @@ img + em {
     @apply block text-gray-700 text-sm not-italic leading-5 bg-gray-200 p-4;
 }
 
+a > *{
+    -webkit-transition: color 0.6s ease-in-out;
+    transition: color 0.6s ease-in-out;
+}
+
+a:hover > * {
+    color: #666;
+}
+
 body {
     font-weight: 400!important;
     font-family: 'Lora';
+    /* font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
     @apply tracking-normal antialiased;
 }
 
@@ -47,6 +57,17 @@ body {
     content: "*";
     color: #f00;
     margin-left: 1px;
+}
+
+#horizontal-header > a {
+    -webkit-transition: background-color 0.6s ease-in-out;
+    transition: background-color 0.6s ease-in-out;
+    padding: 6px;
+    border-radius: 3px
+}
+
+#horizontal-header > a:hover {
+    background-color: #f7f7f7;
 }
 
  .hamburger {

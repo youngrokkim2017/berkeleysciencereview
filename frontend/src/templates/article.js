@@ -72,7 +72,8 @@ class ArticleTemplate extends React.Component {
 
     return (
       <Layout>
-        <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}>
+        {/* <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}> */}
+        <div className="justify-between overflow-visible relative items-start mx-auto" style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
               {data.strapiArticle.author ?
@@ -204,7 +205,7 @@ class ArticleTemplate extends React.Component {
           </div>
         </div>
 
-        <div className='mt-12 px-4 lg:px-2 xl:px-0'>
+        <div className='mt-12 mx-auto' style={{ maxWidth: '1036px' }}>
           <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
             Most Popular
           </h2>
@@ -225,7 +226,6 @@ export const query = graphql`
       id
       title
       published_at
-      updatedAt
       content
       image {
         publicURL
@@ -241,7 +241,7 @@ export const query = graphql`
   }
   recent: allStrapiArticle(
     sort: {order: DESC, fields: published_at}
-    limit: 6
+    limit: 4
   ) {
     edges {
       node {
@@ -264,7 +264,7 @@ export const query = graphql`
   }
   related: allStrapiArticle(
     sort: {order: DESC, fields: published_at}
-    limit: 6
+    limit: 4
     filter: {
       categories: {
         elemMatch: {
