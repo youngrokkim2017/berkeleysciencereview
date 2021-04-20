@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 // import React, { useState, useEffect, useMemo, useCallback } from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 // import ReactMarkdown from "react-markdown"
@@ -7,6 +7,16 @@ import Highlight from 'react-highlighter'
 import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer';
 import SearchIndexItems from '../components/searchIndexItems';
+
+// class SearchPage extends React.Component {
+//   render() {
+//     console.log(this.props);
+
+//     return (
+//       <div>hi</div>
+//     )
+//   }
+// }
 
 const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`
@@ -60,6 +70,7 @@ const SearchPage = ({ location }) => {
 
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
+  const valueRef = useRef()
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
   let index = (location.state === null || !location.state) ? "" : location.state.searchQuery;
@@ -110,7 +121,9 @@ const SearchPage = ({ location }) => {
 
   function handleOnChange({ currentTarget = {} }) {
     const { value } = currentTarget;
-    setSearchTerm(value);
+    // setSearchTerm(value);
+
+    setSearchTerm(valueRef.current.value);
   }
 
   // // function handleOnChange(e) {
@@ -142,7 +155,9 @@ const SearchPage = ({ location }) => {
               placeholder="Search"
               // value={query}
               // onChange={handleOnSearch}
-              value={searchTerm}
+              // value={searchTerm}
+              // onChange={handleOnChange}
+              ref={valueRef}
               onChange={handleOnChange}
             />
           </form>
