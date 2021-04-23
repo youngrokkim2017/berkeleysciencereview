@@ -2,20 +2,76 @@ import algoliasearch from 'algoliasearch/lite';
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
 import React from 'react';
 import SearchPreview from '../components/searchPreview';
+import SearchHeader from '../components/searchHeader';
+import Footer from '../components/footer';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const appId = process.env.GATSBY_ALGOLIA_APP_ID;
 const searchKey = process.env.GATSBY_ALGOLIA_SEARCH_KEY;
 const searchClient = algoliasearch(appId, searchKey);
 
-const SearchPage = () => (
+const SearchPage = () => {
+    const data = useStaticQuery(graphql`
+    query SearchResultsQuery {
+      allStrapiArticle(
+        sort: { fields: [published_at], order: DESC }
+      ) {
+        edges {
+          node {
+            id
+            title
+            author {
+              id
+              name
+            }
+            content
+            image {
+              publicURL
+            }
+            categories {
+              id
+              title
+            }
+            published_at
+            updatedAt
+          }
+        }
+      }
+      allStrapiCategory {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+      allStrapiMagazineIssue {
+        edges {
+          node {
+            id
+            issue
+            title
+            pdf {
+              publicURL
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  return (
   <InstantSearch
     searchClient={searchClient}
     indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
   >
+    <SearchHeader data={data} />
     <SearchBox />
     <Hits hitComponent={SearchPreview} />
+    <Footer />
   </InstantSearch>
-);
+  )
+};
 export default SearchPage;
 
 // import React, { useState, useRef } from "react"
