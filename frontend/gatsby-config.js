@@ -4,6 +4,47 @@ require("dotenv").config({
 
 require("dotenv").config();
 
+const blogQuery = `
+  {
+   articles: allStrapiArticle {
+    edges {
+      node {
+        objectID: id
+        title
+        author {
+          id
+          name
+        }
+        categories {
+          id
+          title
+        }
+        image {
+          publicURL
+        }
+        published_at
+      }
+    }
+  }
+  }
+`;
+
+const settings = { attributesToSnippet: [`excerpt:20`] };
+const queries = [
+  {
+    query: blogQuery,
+    transformer: ({ data }) =>
+      data.articles.edges.map(({ node: { id, ...rest } }) => {
+        return {
+          ...rest,
+        };
+      }),
+    indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+    settings,
+  },
+];
+
+
 module.exports = {
   siteMetadata: {
     title: `Berkeley Science Review`,
@@ -85,12 +126,22 @@ module.exports = {
         showSpinner: true,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-algolia`,
+    //   options: {
+    //     appId: process.env.GATSBY_ALGOLIA_APP_ID,
+    //     apiKey: process.env.ALGOLIA_ADMIN_KEY,
+    //     queries: require("./src/utils/algolia-queries")
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
         appId: process.env.GATSBY_ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_ADMIN_KEY,
-        queries: require("./src/utils/algolia-queries")
+        apiKey: process.env.ALGOLIA_API_KEY,
+        indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME, // for all queries
+        queries,
+        chunkSize: 10000, // default: 1000
       },
     },
   ],
