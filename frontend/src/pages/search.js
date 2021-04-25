@@ -307,6 +307,16 @@ const SearchPage = ({ location }) => {
               value={searchTerm}
               onChange={handleOnChange}
             />
+            {searchTerm.length > 0 ?
+              <inuput 
+                type="submit"
+                onClick={handleOnSearch}
+              >
+                Submit
+              </inuput>
+            :
+              ""
+            }
           </form>
           {/* </div> */}
         </div>
