@@ -227,14 +227,6 @@ export const splashQuery = graphql`
         }
       }
     }
-    allStrapiCategory {
-      edges {
-        node {
-          id
-          title
-        }
-      }
-    }
     allStrapiMagazineIssue {
       edges {
         node {
