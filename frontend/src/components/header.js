@@ -171,9 +171,6 @@ class Header extends React.Component {
                 <Link to={`/category/archive`} className="mt-4 hidden xl:inline-block lg:mt-0">
                   Archive
                 </Link>
-                {/* <Link to={`/category/${data.allStrapiCategory.edges[0].node.title.split(" ").map((category) => category.toLowerCase()).join("-")}`} key={data.allStrapiCategory.edges[0].node.id} className="block mt-4 lg:inline-block lg:mt-0">
-                  {data.allStrapiCategory.edges[0].node.title}
-                </Link> */}
               </div>
               :
               ""
