@@ -130,6 +130,15 @@ class Header extends React.Component {
                         onChange={this.handleChange('query')}
                         className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
                       />
+                      {this.state.query.length > 0 ?
+                        <button 
+                          onClick={this.handleSubmit}
+                        >
+                          Submit
+                        </button>
+                      :
+                        ""
+                      }
                     </form>
                   </div>
                 </div>
