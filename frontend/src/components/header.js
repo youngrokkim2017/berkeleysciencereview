@@ -117,29 +117,35 @@ class Header extends React.Component {
                 </div>
                 <div className="w-1/4 flex justify-end items-center">
                   <div className="hidden md:block" id="search-input">
-                    <form className="border-gray-500 text-black flex items-center py-1 pl-2 border rounded focus-within:border-blue-600 text-md" onSubmit={this.handleSubmit}>
-                      {/* <form onSubmit={handleNavigate} className="border-black text-gray-600 flex items-center py-1 px-2 pr-1 pl-0 border-b focus-within:border-blue-600"> */}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
+
+
+                    <form className="bg-gray-100 text-gray-600 flex items-center px-4 py-1 pl-2 border focus-within:border-blue-600 rounded sans-serif" onSubmit={this.handleSubmit}>
+                      {this.state.query.length > 0 ?
+                        <button onClick={this.handleSubmit}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                        </button>
+                        :
+                        <button className="cursor-default" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-gray-600">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        </button>
+                      }
                       <input
+                        className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2 sans-serif"
                         type="text"
                         placeholder="Search"
                         value={this.state.query}
-                        // onChange={(e) => setQuery(e.target.value)}
                         onChange={this.handleChange('query')}
-                        className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
                       />
-                      {this.state.query.length > 0 ?
-                        <button 
-                          onClick={this.handleSubmit}
-                        >
-                          Submit
-                        </button>
-                      :
-                        ""
-                      }
                     </form>
+
+
+
+
+
                   </div>
                 </div>
               </div>
