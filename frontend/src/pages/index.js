@@ -33,7 +33,6 @@ const IndexPage = ({ data }) => {
     return d.toLocaleDateString(undefined, options)
   }
 
-  // const sortedByDate = this.props.data.allStrapiArticle.edges.sort((a, b) => {
   const sortedByDate = data.allStrapiArticle.edges.sort((a, b) => {
     let aDate = parseInt(a.node.published_at.split("T")[0].split("-").join(""))
     let bDate = parseInt(b.node.published_at.split("T")[0].split("-").join(""))
