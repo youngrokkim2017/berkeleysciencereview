@@ -5,10 +5,6 @@ import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
 
 class ArticleTemplate extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount() {
     var sidebar = document.getElementById("sidebar");
     var element = document.getElementById('metadata');
@@ -189,7 +185,6 @@ class ArticleTemplate extends React.Component {
                         Related Articles
                       </h2>
                       <ul>
-                        {/* {this.state.relatedArticles.map(document => ( */}
                         {relatedArticles.map(document => (
                           <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                             <Preview article={document.node} format="small" />

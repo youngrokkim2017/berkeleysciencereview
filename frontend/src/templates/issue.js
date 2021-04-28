@@ -1,11 +1,6 @@
-// import React from "react"
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-
-// import { SizeMe } from 'react-sizeme'
-
-// import { Document, Page, pdfjs } from "react-pdf"
 import { pdfjs } from "react-pdf"
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
