@@ -13,44 +13,42 @@ const MyForm = () => {
     <Layout>
       <Seo title="Contact Us" />
       <h2 className="font-normal text-4xl leading-tight mb-4">Contact us</h2>
-      <form 
+      <form
         onSubmit={handleSubmit}
         className="sans-serif"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-6">
+        <div className="space-y-4 w-full lg:w-2/5">
           <div className="required">
             <label htmlFor="name" className="block text-sm font-medium">Name</label>
-            <input type="text" name="name" className="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" required />
-            <ValidationError 
-              prefix="Name" 
+            <input type="text" name="name" className="border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" required />
+            <ValidationError
+              prefix="Name"
               field="name"
               errors={state.errors}
             />
           </div>
           <div className="required">
             <label htmlFor="email" className="block text-sm font-medium">Email</label>
-            <input type="email" name="_replyto" className="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" placeholder="you@example.com" required />
-            <ValidationError 
-              prefix="Email" 
+            <input type="email" name="_replyto" className="border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" placeholder="you@example.com" required />
+            <ValidationError
+              prefix="Email"
               field="email"
               errors={state.errors}
             />
           </div>
           <div>
-            <div className="mb-6">
-              <label htmlFor="subject" className="block text-sm font-medium">Subject</label>
-              <input type="text" name="subject" className="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" />
-            </div>
-            <div className="required">
-              <label htmlFor="message" className="block text-sm font-medium">Message</label>
-              <div className="mt-1">
-                <textarea id="message" name="message" rows="4" className="mt-1 border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" required></textarea>
-                <ValidationError 
-                  prefix="Message" 
-                  field="message"
-                  errors={state.errors}
-                />
-              </div>
+            <label htmlFor="subject" className="block text-sm font-medium">Subject</label>
+            <input type="text" name="subject" className="border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" />
+          </div>
+          <div className="required">
+            <label htmlFor="message" className="block text-sm font-medium">Message</label>
+            <div className="mt-1">
+              <textarea id="message" name="message" rows="4" className="border-black text-black placeholder-gray-600 block w-full border py-2 px-3 focus-within:border-blue-600 focus:outline-none rounded" required></textarea>
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+              />
             </div>
           </div>
         </div>

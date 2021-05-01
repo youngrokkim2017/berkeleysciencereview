@@ -96,7 +96,7 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-6 xl:gap-x-12 gap-y-12 mb-6 sm:mb-12">
-          <div className="order-1 lg:order-0">
+          <div>
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Popular
           </h1>
@@ -108,7 +108,7 @@ const IndexPage = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div className="order-0 lg:order-1 col-span-1 lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2">
             <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
               Latest
           </h1>
@@ -120,7 +120,7 @@ const IndexPage = ({ data }) => {
               ))}
             </ul>
           </div>
-          <div className="order-2">
+          <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
               <div>
                 <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
