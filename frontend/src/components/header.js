@@ -155,37 +155,39 @@ class Header extends React.Component {
           <div className={`text-center ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
 
             {!this.state.menuOpen ?
-              <div className="hidden lg:inline-block text-sm tracking-tight flex-inline space-x-6 py-2 z-0" id="horizontal-header">
-                <Link to={`/category/climate-change`} className="mt-4 lg:inline-block lg:mt-0">
+              <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16">
+                <div className="flex justify-between content-center" id="horizontal-header">
+                <Link to={`/category/climate-change`}>
                   Climate Change
                 </Link>
-                <Link to={`/category/life-science`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/life-science`}>
                   Life Science
                 </Link>
-                <Link to={`/category/tech-&-ai`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/tech-&-ai`}>
                   Technology & Artificial Intelligence
                 </Link>
-                <Link to={`/category/the-universe`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/the-universe`}>
                   The Universe
                 </Link>
-                <Link to={`/category/labscopes`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/labscopes`}>
                   Labscopes
                 </Link>
-                <Link to={`/category/people`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/people`}>
                   People
                 </Link>
-                <Link to={`/category/noteworthy-news`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/noteworthy-news`}>
                   Noteworthy News
                 </Link>
-                <Link to={`/category/the-scientist-life`} className="mt-4 lg:inline-block lg:mt-0">
+                <Link to={`/category/the-scientist-life`}>
                   The Scientist Life
                 </Link>
-                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="mt-4 hidden xl:inline-block lg:mt-0">
+                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
                   Current Magazine
                 </Link>
-                <Link to={`/category/archive`} className="mt-4 hidden xl:inline-block lg:mt-0">
+                <Link to={`/category/archive`} className="hidden xl:inline-block">
                   Archive
                 </Link>
+                </div>
               </div>
               :
               ""
@@ -193,7 +195,7 @@ class Header extends React.Component {
           </div>
           {this.state.menuOpen ?
             <>
-              <span className="hidden lg:block h-12 border-b border-2 border-white"></span>
+              <span className="hidden lg:block h-9 border-b border-red-500"></span>
               <div className="pt-8 lg:pt-0 pb-10 px-4 md:px-8 xl:px-0 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
                 <div className="container mx-auto">
                   <div className="md:flex md:space-x-24">
