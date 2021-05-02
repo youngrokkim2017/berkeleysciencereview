@@ -92,7 +92,8 @@ class Header extends React.Component {
 
     const { data } = this.props;
 
-    const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
+    // const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
+    const currentIssue = data.allStrapiMagazineIssue.edges[0];
 
     return (
       <>
@@ -172,7 +173,7 @@ class Header extends React.Component {
                     <Link to={`/category/the-scientist-life`}>
                       The Scientist Life
                 </Link>
-                    <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
+                    <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
                       Current Magazine
                 </Link>
                     <Link to={`/category/archive`} className="hidden xl:inline-block">
@@ -262,7 +263,7 @@ class Header extends React.Component {
                       <h2 className="font-semibold mb-2">Magazine</h2>
                       <ul className="grid gap-1">
                         <li>
-                          <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                          <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
                             Current Magazine
                         </Link>
                         </li>
