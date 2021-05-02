@@ -17,6 +17,7 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                     <div className="mr-6 flex-grow">
                       <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                         <h2 className="font-medium mb-2 text-2xl leading-none">
+                          {document.node.title}
                         </h2>
                       </Link>
                       <p className='mb-2 text-base'>
