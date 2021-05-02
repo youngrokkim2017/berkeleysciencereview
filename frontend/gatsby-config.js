@@ -40,6 +40,7 @@ module.exports = {
         queryLimit: 1000000,
       },
     },
+    `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "gatsby"
-// import Highlight from 'react-highlighter'
 
 const SearchIndexItems = ({ searchData, searchQuery }) => {
     function handleDate(e) {
@@ -18,13 +17,11 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                     <div className="mr-6 flex-grow">
                       <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                         <h2 className="font-medium mb-2 text-2xl leading-none">
-                          {/* <Highlight search={searchQuery}>{document.node.title}</Highlight> */}
                           {document.node.title}
                         </h2>
                       </Link>
                       <p className='mb-2 text-base'>
                         By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                          {/* <Highlight search={searchQuery}>{document.node.author.name}</Highlight> */}
                           {document.node.author.name}
                         </Link>
                       </p>

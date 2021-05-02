@@ -147,9 +147,6 @@ class Header extends React.Component {
                 </div>
               </div>
             </div>
-
-            <div className={`text-center ${this.state.menuOpen ? 'border-none' : 'border-b border-black'}`}>
-
               {!this.state.menuOpen ?
                 <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16">
                   <div className="flex justify-between content-center" id="horizontal-header">
