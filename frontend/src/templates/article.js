@@ -69,7 +69,7 @@ class ArticleTemplate extends React.Component {
     // relatedArticles = temp.slice(0, 3);
 
     return (
-      <div>
+      <div className="flex flex-col min-h-screen justify-between">
         <Header data={data} />
         {/* <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}> */}
         <div className="justify-between overflow-visible relative items-start mx-auto" style={{ maxWidth: '1036px' }}>
