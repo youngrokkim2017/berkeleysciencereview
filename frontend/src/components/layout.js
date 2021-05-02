@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex flex-col min-h-screen justify-between">
       <Header data={data}/>
-      <main className='container mx-auto px-4 md:px-8 xl:px-0'>{children}</main>
+      <main className='container mx-auto px-4 md:px-8 lg:px-4'>{children}</main>
       <Footer />
     </div>
   )
