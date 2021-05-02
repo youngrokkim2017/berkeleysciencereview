@@ -99,7 +99,7 @@ class SearchHeader extends React.Component {
       <>
         <nav className={`text-black mb-8 sans-serif bg-white z-50 top-0 ${this.state.menuOpen ? '' : 'container mx-auto'}`}>
           {/* <div className={this.state.menuOpen ? 'border-none' : 'border-b border-gray-300'}> */}
-          <div className="border-b border-gray-300 px-4 md:px-8 xl:px-0">
+          <div className="border-b border-gray-300 px-4 md:px-8 lg:px-4">
             <div className="container mx-auto py-4">
               <div className="flex mx-auto items-center justify-between">
                 <div className="w-1/4">
