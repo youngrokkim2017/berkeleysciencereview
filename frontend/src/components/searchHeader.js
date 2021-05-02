@@ -17,7 +17,7 @@ class SearchHeader extends React.Component {
       searchOpen: false,
     };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidUpdate() {
