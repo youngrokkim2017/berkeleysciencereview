@@ -187,7 +187,8 @@ class Header extends React.Component {
           {this.state.menuOpen ?
             <>
               <span className="hidden lg:block h-10"></span>
-              <div className="pt-8 lg:pt-0 pb-10 text-md absolute w-full focus:outline-none bg-white z-50 border-b" style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
+              <div className="pt-8 lg:pt-0 pb-10 text-md absolute w-full focus:outline-none bg-white z-50 
+              " style={{ borderBottomColor: '#e2e2e2' }} id="extended-menubar">
                 <div className="container mx-auto px-4 md:px-8 lg:px-4">
                   <div className="md:flex md:space-x-24">
                     <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">

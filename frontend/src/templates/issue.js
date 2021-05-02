@@ -29,7 +29,13 @@ const MagazineIssueTemplate = ({ data }) => {
           {pdfOpen && data.strapiMagazineIssue.pdf ?
             <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
             :
-            <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
+            <>
+              {data.strapiMagazineIssue.pdf ?
+                <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
+                :
+                ""
+              }
+            </>
           }
         </div>
 

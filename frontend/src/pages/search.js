@@ -103,7 +103,7 @@ const SearchPage = ({ location }) => {
       <SearchHeader data={data} />
       <div className="container mx-auto px-4 md:px-8 lg:px-4">
 
-        <div className="pt-2 relative text-gray-600 mb-6 pb-6 border-b" id="search-input">
+        <div className="relative text-gray-600 mb-6 pb-6 border-b" id="search-input">
           <form className="bg-gray-100 text-gray-600 flex items-center px-4 py-2 pr-2 border focus-within:border-blue-600 rounded sans-serif max-w-md" onSubmit={handleOnSearch}>
             {searchTerm.length > 0 ?
               <button onClick={handleOnSearch}>
