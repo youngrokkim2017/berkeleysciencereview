@@ -3,6 +3,8 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
+import Header from "../components/header"
+import Footer from "../components/footer"
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
@@ -67,7 +69,8 @@ class ArticleTemplate extends React.Component {
     // relatedArticles = temp.slice(0, 3);
 
     return (
-      <Layout>
+      <div>
+        <Header data={data} />
         {/* <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}> */}
         <div className="justify-between overflow-visible relative items-start mx-auto" style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
@@ -207,7 +210,8 @@ class ArticleTemplate extends React.Component {
           {/* GOOGLE ANALYTICS gatsby-plugin-google-analytics */}
           {/* https://hippocampus-garden.com/trend/ */}
         </div>
-      </Layout >
+        <Footer />
+      </div>
     )
   }
 }
@@ -289,5 +293,16 @@ export const query = graphql`
       }
     }
   }
+  allStrapiMagazineIssue {
+        edges {
+          node {
+            id
+            title
+            pdf {
+              publicURL
+            }
+          }
+        }
+      }
 }
 `
