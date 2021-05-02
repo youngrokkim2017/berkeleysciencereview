@@ -96,24 +96,24 @@ const IndexPage = ({ data }) => {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-6 xl:gap-x-12 gap-y-12 mb-6 sm:mb-12">
           <div>
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Popular
           </h1>
             <ul>
               {popularArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="small" />
                 </li>
               ))}
             </ul>
           </div>
           <div className="col-span-1 lg:col-span-2">
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Latest
           </h1>
             <ul>
               {recentArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="medium" />
                 </li>
               ))}
@@ -122,13 +122,13 @@ const IndexPage = ({ data }) => {
           <div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
               <div>
-                <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black leading-none'>
                   Newsletter
               </h1>
                 <MailchimpComponentHome />
               </div>
               <div>
-                <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+                <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black leading-none'>
                   Magazine
               </h1>
                 <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
@@ -145,48 +145,48 @@ const IndexPage = ({ data }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-6 -mb-6 sm:mb-0">
           <div>
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Labscopes
           </h1>
             <ul>
               {labscopesArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Noteworthy News
           </h1>
             <ul>
               {noteworthyArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Climate Change
           </h1>
             <ul>
               {climateChangeArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h1 className='text-3xl font-medium pb-4 mb-4 border-b border-black leading-none'>
+            <h1 className='text-2xl font-medium pb-3 border-b border-black leading-none'>
               Life Science
           </h1>
             <ul>
               {lifeScienceArticles.map(document => (
-                <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}

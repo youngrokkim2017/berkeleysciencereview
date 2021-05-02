@@ -12,14 +12,14 @@ const Preview = ({ article, format }) => {
 
     if (format === "small") {
         return (
-            <div className="flex items-start space-x-4 py-1">
+            <div className="flex items-start space-x-4">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl lg:font-normal lg:text-base">{article.title}</h2>
+                        <h2 className="font-normal text-base mb-2 md:text-2xl lg:text-base">{article.title}</h2>
                     </Link>
-                    <p className='mb-1 text-sm md:text-base lg:text-sm'>
+                    <p className='mb-1 text-sm md:text-base lg:text-sm leading-none lg:leading-none'>
                         {article.author ?
-                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
                                 {article.author.name}
                             </Link></>
                             :
@@ -36,14 +36,14 @@ const Preview = ({ article, format }) => {
         )
     } else if (format === "small-no-img") {
         return (
-            <div className="flex items-start space-x-4 py-1">
+            <div className="flex items-start space-x-4">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl lg:font-normal lg:text-base">{article.title}</h2>
+                        <h2 className="font-normal text-base mb-2 md:text-2xl lg:text-base">{article.title}</h2>
                     </Link>
-                    <p className='text-sm md:text-base lg:text-sm'>
+                    <p className='text-sm md:text-base lg:text-sm leading-none lg:leading-none'>
                         {article.author ?
-                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
                                 {article.author.name}
                             </Link></>
                             :
@@ -56,23 +56,26 @@ const Preview = ({ article, format }) => {
         )
     } else if (format === "medium") {
         return (
-            <div className="flex items-start py-2">
+            <div className="flex items-start">
                 <div className="mr-6 flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base md:font-medium mb-2 md:text-2xl">{article.title}</h2>
+                        <h2 className="font-normal text-base mb-2 md:text-xl">{article.title}</h2>
                     </Link>
-                    <p className='mb-1 text-sm md:text-base'>
-                        {article.author ?
-                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                                {article.author.name}
-                            </Link></>
-                            :
-                            ""
-                        }
-                    </p>
-                    <p className="text-sm md:text-base">
-                        {handleDate(article.published_at)}
-                    </p>
+                    <div className="text-sm md:text-base lg:text-sm leading-none lg:leading-none">
+                        <p className='mb-2'>
+                            {article.author ?
+                                <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
+                                    {article.author.name}
+                                </Link></>
+                                :
+                                ""
+                            }
+                        </p>
+                        <p>
+                            {handleDate(article.published_at)}
+                        </p>
+                    </div>
+
                 </div>
                 {article.image
                     ?
