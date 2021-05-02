@@ -118,8 +118,6 @@ class Header extends React.Component {
                   </div>
                   <div className="w-1/4 flex justify-end items-center">
                     <div className="hidden md:block" id="search-input">
-
-
                       <form className="bg-gray-100 text-gray-600 flex items-center px-4 py-1 pl-2 border focus-within:border-blue-600 rounded sans-serif" onSubmit={this.handleSubmit}>
                         {this.state.query.length > 0 ?
                           <button onClick={this.handleSubmit}>
@@ -148,7 +146,7 @@ class Header extends React.Component {
               </div>
             </div>
               {!this.state.menuOpen ?
-                <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16">
+                <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16 border-b border-black">
                   <div className="flex justify-between content-center" id="horizontal-header">
                     <Link to={`/category/climate-change`}>
                       Climate Change
@@ -186,7 +184,6 @@ class Header extends React.Component {
                 ""
               }
             </div>
-          </div>
           {this.state.menuOpen ?
             <>
               <span className="hidden lg:block h-10"></span>
