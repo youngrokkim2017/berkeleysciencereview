@@ -16,11 +16,14 @@ const Layout = ({ children }) => {
           }
         }
       }
-      allStrapiMagazineIssue {
+      allStrapiMagazineIssue(
+        sort: {order: DESC, fields: issue}
+      ) {
         edges {
           node {
             id
             title
+            issue
             pdf {
               publicURL
             }

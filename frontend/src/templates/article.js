@@ -293,7 +293,9 @@ export const query = graphql`
       }
     }
   }
-  allStrapiMagazineIssue {
+  allStrapiMagazineIssue(
+    sort: {order: DESC, fields: issue}
+  ) {
         edges {
           node {
             id

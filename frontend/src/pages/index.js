@@ -226,7 +226,9 @@ export const splashQuery = graphql`
         }
       }
     }
-    allStrapiMagazineIssue {
+    allStrapiMagazineIssue(
+      sort: {order: DESC, fields: issue}
+    ) {
       edges {
         node {
           id

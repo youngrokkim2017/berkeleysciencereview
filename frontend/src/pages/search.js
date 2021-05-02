@@ -31,7 +31,9 @@ const SearchPage = ({ location }) => {
           }
         }
       }
-      allStrapiMagazineIssue {
+      allStrapiMagazineIssue(
+        sort: {order: DESC, fields: issue}
+      ) {
         edges {
           node {
             id
