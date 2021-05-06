@@ -72,7 +72,7 @@ class ArticleTemplate extends React.Component {
       <div className="flex flex-col min-h-screen justify-between">
         <Header data={data} />
         {/* <div className="justify-between overflow-visible relative items-start px-4 lg:px-2 xl:px-0 mx-auto" style={{ maxWidth: '1036px' }}> */}
-        <div className="justify-between overflow-visible relative items-start mx-auto" style={{ maxWidth: '1036px' }}>
+        <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
               {data.strapiArticle.author ?
@@ -87,7 +87,7 @@ class ArticleTemplate extends React.Component {
             </div>
           </div>
 
-          <div className="">
+          <div className="w-full">
             <div className="antialiased leading-relaxed mx-auto text-black mb-12">
               <div className="border-b border-black pb-8 mb-8">
                 <p className='my-0 tracking-tight text-xl sans-serif items-center'>
@@ -100,7 +100,7 @@ class ArticleTemplate extends React.Component {
                       ""
                     }
                     {data.strapiArticle.categories[1] ?
-                      <><span className="mx-1">&</span>
+                      <><span className="mx-1">and</span>
                         <Link to={`/category/${data.strapiArticle.categories[1].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
                           {data.strapiArticle.categories[1].title}
                         </Link>
@@ -127,7 +127,7 @@ class ArticleTemplate extends React.Component {
                 </div>
               </div>
               <div className="flex flex-wrap lg:flex-nowrap">
-                <div className="flex-grow flex-shrink-0 prose tracking-normal text-black max-w-prose lg:max-w-2xl w-full mr-8">
+                <div className="flex-grow prose tracking-normal text-black max-w-prose mr-8">
                   <div>
                     {data.strapiArticle.image ?
                       <img src={data.strapiArticle.image.publicURL} className="featured-img-container mb-8 mt-0 w-full" alt="" />
@@ -168,7 +168,7 @@ class ArticleTemplate extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div className="flex-grow">
+                <div className="flex-1">
                   {data.strapiArticle.categories.length === 0 ?
                     <div className="mt-12 lg:mt-0">
                       <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
