@@ -12,30 +12,31 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
-        <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiAuthors.name}</h2>
-        <ul className="mb-12">
-          {data.strapiAuthors.articles.map(article => (
-            <li key={article.id} className="mt-8 pb-8 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+      <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiAuthors.name}</h2>
+      <ul className="mb-12">
+        {data.strapiAuthors.articles.map(article => (
+            <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
+                <div className="mr-6 flex-grow">
+
+                  <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                    <h2 className="font-medium mb-2 text-2xl leading-none">{article.title}</h2>
+                  </Link>
+                  <p>
+                    {handleDate(article.published_at)}
+                  </p>
+                </div>
                 {article.image ?
-                  <div className="mr-6">
-                    <img src={article.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                  <div className="flex-shrink-0">
+                    <img src={article.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
                   </div>
                   :
                   ""
                 }
-                <div>
-                  <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="font-medium mb-2 text-3xl leading-none">{article.title}</h2>
-                  </Link>
-                  <p className='my-0'>
-                    {handleDate(article.published_at)}
-                  </p>
-                </div>
               </div>
             </li>
           ))}
-        </ul>
+      </ul>
     </Layout>
 
   )
