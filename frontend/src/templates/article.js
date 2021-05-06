@@ -201,14 +201,13 @@ class ArticleTemplate extends React.Component {
 
             </div>
           </div>
-        </div>
-
-        <div className='mt-12 mx-auto' style={{ maxWidth: '1036px' }}>
-          <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
-            Most Popular
+          <div className='mt-12 mx-auto'>
+            <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+              Most Popular
           </h2>
-          {/* GOOGLE ANALYTICS gatsby-plugin-google-analytics */}
-          {/* https://hippocampus-garden.com/trend/ */}
+            {/* GOOGLE ANALYTICS gatsby-plugin-google-analytics */}
+            {/* https://hippocampus-garden.com/trend/ */}
+          </div>
         </div>
         <Footer />
       </div>
