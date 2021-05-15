@@ -19,11 +19,15 @@
       "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     },
     "articles": {
-      "via": "author",
-      "collection": "article"
+      "collection": "article",
+      "via": "author"
     },
     "about": {
       "type": "richtext"
+    },
+    "instagram": {
+      "type": "string",
+      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     }
   }
 }
