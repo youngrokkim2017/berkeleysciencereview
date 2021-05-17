@@ -16,6 +16,10 @@ a:hover > * {
     color: #666;
 }
 
+#report:hover > * {
+    color: inherit !important;
+}
+
 body {
     font-weight: 400 !important;
     font-family: 'Lora';
