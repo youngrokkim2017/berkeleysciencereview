@@ -134,7 +134,7 @@ class Header extends React.Component {
                           </button>
                         }
                         <input
-                          className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2 sans-serif"
+                          className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none ml-2 sans-serif"
                           type="text"
                           placeholder="Search"
                           value={this.state.query}
@@ -204,7 +204,7 @@ class Header extends React.Component {
                             value={this.state.query}
                             // onChange={(e) => setQuery(e.target.value)}
                             onChange={this.handleChange('query')}
-                            className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
+                            className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none ml-2"
                           />
                         </form>
                       </div>

@@ -91,7 +91,6 @@ class SearchHeader extends React.Component {
                   </div>
                   <div className="w-1/4 flex justify-end items-center">
                     <div className="hidden md:block" id="search-input">
-                      
                     </div>
                   </div>
                 </div>
@@ -144,7 +143,6 @@ class SearchHeader extends React.Component {
                   <div className="md:flex md:space-x-24">
                     <div className="flex-grow md:max-w-xl lg:max-w-3xl mb-6 md:mb-0">
                       <div className="block md:hidden mb-8">
-                        
                       </div>
 
                       <h2 className="font-semibold mb-2">Categories</h2>

@@ -88,7 +88,7 @@ class ArticleTemplate extends React.Component {
           </div>
 
           <div className="w-full">
-            <div className="antialiased leading-relaxed mx-auto text-black mb-12">
+            <div className="antialiased mx-auto text-black mb-12">
               <div className="border-b border-black pb-8 mb-8">
                 <p className='my-0 tracking-tight text-xl sans-serif items-center'>
                   <span>
@@ -110,11 +110,12 @@ class ArticleTemplate extends React.Component {
                     }
                   </span>
                 </p>
-                <h2 className="font-medium mt-2 mb-4 text-4xl leading-tight">{data.strapiArticle.title}</h2>
-                <div className="text-base not-italic leading-5" id="metadata">
+                <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
+                <h3 className="mb-4 text-lg">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                <div className="text-base" id="metadata">
                   {data.strapiArticle.author ?
-                    <p className='mb-2 text-base'>
-                      By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                    <p className='mb-1 text-base'>
+                      <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                         {data.strapiArticle.author.name}
                       </Link>
                     </p>
@@ -171,7 +172,7 @@ class ArticleTemplate extends React.Component {
                 <div className="flex-grow">
                   {data.strapiArticle.categories.length === 0 ?
                     <div className="mt-12 lg:mt-0">
-                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black'>
                         Recent Articles
                       </h2>
                       <ul>
@@ -184,7 +185,7 @@ class ArticleTemplate extends React.Component {
                     </div>
                     :
                     <div className="mt-12 lg:mt-0">
-                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+                      <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black'>
                         Related Articles
                       </h2>
                       <ul>
@@ -202,7 +203,7 @@ class ArticleTemplate extends React.Component {
             </div>
           </div>
           <div className='mt-12 mx-auto'>
-            <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black leading-none'>
+            <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black'>
               Most Popular
           </h2>
             {/* GOOGLE ANALYTICS gatsby-plugin-google-analytics */}

@@ -25,7 +25,7 @@ const MagazineIssueTemplate = ({ data }) => {
   return (
     <Layout>
         <div className="mb-8 pb-4 border-b border-black">
-          <h2 className="font-normal text-4xl leading-tight mb-2">{data.strapiMagazineIssue.title}</h2>
+          <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
           {pdfOpen && data.strapiMagazineIssue.pdf ?
             <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
             :
@@ -66,7 +66,7 @@ const MagazineIssueTemplate = ({ data }) => {
 
                   <div className="mr-6 flex-grow">
                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                      <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
+                      <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
                     </Link>
                     <p className='my-2'>
                       {handleDate(document.published_at)}
@@ -130,7 +130,7 @@ const MagazineIssueTemplate = ({ data }) => {
 //       <Layout>
 //         <div className="px-4 sm:px-6 xl:px-6 mx-auto">
 //           <div className="mb-8 pb-4 border-b border-black">
-//             <h2 className="font-normal text-4xl leading-tight mb-2">{data.strapiMagazineIssue.title}</h2>
+//             <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
 //             <Link to={'/'} className="font-medium underline">View the PDF</Link>
 //           </div>
 
@@ -200,7 +200,7 @@ const MagazineIssueTemplate = ({ data }) => {
 
 //                   <div className="mr-6 flex-grow">
 //                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-//                       <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
+//                       <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
 //                     </Link>
 //                     <p className='my-2'>
 //                       {handleDate(document.published_at)}

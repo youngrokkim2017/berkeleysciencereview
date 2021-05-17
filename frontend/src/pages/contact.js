@@ -12,7 +12,7 @@ const MyForm = () => {
   return (
     <Layout>
       <Seo title="Contact Us" />
-      <h2 className="font-normal text-4xl leading-tight mb-4">Contact us</h2>
+      <h2 className="font-normal text-4xl mb-4">Contact us</h2>
       <form
         onSubmit={handleSubmit}
         className="sans-serif"
@@ -53,7 +53,7 @@ const MyForm = () => {
           </div>
         </div>
         <div className="mt-6">
-          {state.succeeded ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
+          {state.succeeded ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
           {state.errors.length > 0 && <p>Ooops! There was an error.</p>}
         </div>
       </form>
@@ -101,7 +101,7 @@ export default MyForm;
 //     return (
 //       <Layout>
 //         <Seo title="Contact Us" />
-//         <h2 className="font-normal text-4xl leading-tight mb-4">Contact us</h2>
+//         <h2 className="font-normal text-4xl mb-4">Contact us</h2>
 //         <form
 //           onSubmit={this.submitForm}
 //           action="#"
@@ -131,7 +131,7 @@ export default MyForm;
 //             </div>
 //           </div>
 //           <div className="mt-6">
-//             {status === "SUCCESS" ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
+//             {status === "SUCCESS" ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
 //             {status === "ERROR" && <p>Ooops! There was an error.</p>}
 //           </div>
 //         </form>
@@ -199,7 +199,7 @@ export default MyForm;
 // //           </div>
 // //         </div>
 // //         <div className="mt-6">
-// //           {state.succeeded ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
+// //           {state.succeeded ? <p>Thanks!</p> : <button className="inline-block px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
 // //           {state.errors.length > 0 && <p>Ooops! There was an error.</p>}
 // //         </div>
 // //     </form>
@@ -210,7 +210,7 @@ export default MyForm;
 // //   return (
 // //     <Layout>
 // //       <Seo title="Contact Us" />
-// //       <h2 className="font-normal text-4xl leading-tight mb-4">Contact us</h2>
+// //       <h2 className="font-normal text-4xl mb-4">Contact us</h2>
 // //       <ContactForm />
 // //     </Layout>
 // //   );

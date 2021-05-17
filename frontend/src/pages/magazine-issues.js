@@ -9,7 +9,7 @@ const MagazineIssuePage = ({ data }) => {
   return (
     <Layout>
       <Seo title="Magazine issues" />
-        <h2 className="font-normal mb-4 text-4xl leading-tight">Magazine Issues</h2>
+        <h2 className="font-normal mb-4 text-4xl">Magazine Issues</h2>
         <div className="space-y-1">
           {magazinesSortedByIssue.map(document => (
             <div>
