@@ -7,7 +7,7 @@ img + em {
     @apply block text-gray-700 text-sm not-italic bg-gray-200 p-4;
 }
 
-a > *{
+/* a > *{
     -webkit-transition: color 0.6s ease-in-out;
     transition: color 0.6s ease-in-out;
 }
@@ -15,6 +15,10 @@ a > *{
 a:hover > * {
     color: #666;
 }
+
+#report:hover > * {
+    color: inherit !important;
+} */
 
 body {
     font-weight: 400 !important;

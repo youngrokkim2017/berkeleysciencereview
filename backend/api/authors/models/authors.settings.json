@@ -15,19 +15,17 @@
       "type": "string"
     },
     "twitter": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+      "type": "string"
     },
     "articles": {
-      "via": "author",
+      "via": "authors",
       "collection": "article"
     },
     "about": {
       "type": "richtext"
     },
     "instagram": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+      "type": "string"
     }
   }
 }

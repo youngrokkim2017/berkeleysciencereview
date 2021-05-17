@@ -28,10 +28,6 @@
       "plugin": "upload",
       "required": false
     },
-    "author": {
-      "model": "authors",
-      "via": "articles"
-    },
     "categories": {
       "collection": "category",
       "via": "articles",
@@ -41,8 +37,19 @@
       "model": "magazine-issue",
       "via": "articles"
     },
+    "designers": {
+      "collection": "designer",
+      "via": "articles",
+      "dominant": true
+    },
+    "authors": {
+      "collection": "authors",
+      "via": "articles",
+      "dominant": true
+      },
     "subtitle": {
       "type": "text"
+      }
     }
   }
 }

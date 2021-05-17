@@ -76,7 +76,7 @@ module.exports = {
   variants: {
     textColor: ['active'],
     borderColor: ['focus-within'],
-    backgroundColor: ['focus-within'],
+    backgroundColor: ['focus-within', 'hover'],
     backgroundOpacity: ['focus-within']
   },
 }
