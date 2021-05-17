@@ -2,7 +2,7 @@
   "kind": "collectionType",
   "collectionName": "designers",
   "info": {
-    "name": "Designer",
+    "name": "Designers",
     "description": ""
   },
   "options": {
@@ -14,16 +14,18 @@
     "name": {
       "type": "string"
     },
-    "twitterURL": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+    "twitter": {
+      "type": "string"
     },
-    "instagramURL": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+    "instagram": {
+      "type": "string"
     },
     "about": {
       "type": "richtext"
+    },
+    "articles": {
+      "collection": "article",
+      "via": "designer"
     }
   }
 }

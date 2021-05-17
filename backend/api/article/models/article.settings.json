@@ -40,6 +40,10 @@
     "magazine": {
       "via": "articles",
       "model": "magazine-issue"
+    },
+    "designer": {
+      "via": "articles",
+      "model": "designer"
     }
   }
 }

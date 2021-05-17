@@ -15,8 +15,7 @@
       "type": "string"
     },
     "twitter": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+      "type": "string"
     },
     "articles": {
       "collection": "article",
@@ -26,8 +25,7 @@
       "type": "richtext"
     },
     "instagram": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
+      "type": "string"
     }
   }
 }
