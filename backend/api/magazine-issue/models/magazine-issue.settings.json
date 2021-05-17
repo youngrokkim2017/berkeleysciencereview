@@ -24,8 +24,8 @@
       "required": false
     },
     "articles": {
-      "collection": "article",
-      "via": "magazine"
+      "via": "magazine",
+      "collection": "article"
     },
     "issue": {
       "type": "integer"
