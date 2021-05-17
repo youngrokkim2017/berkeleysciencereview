@@ -46,10 +46,9 @@
       "collection": "authors",
       "via": "articles",
       "dominant": true
-      },
+    },
     "subtitle": {
       "type": "text"
-      }
     }
   }
 }
