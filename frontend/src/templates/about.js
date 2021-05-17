@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown"
 
 const AboutUsTemplate = ({ data }) => (
   <Layout>
-      <h2 className="font-normal mb-8 text-4xl leading-tight">{data.strapiAboutUs.title}</h2>
+      <h2 className="font-normal mb-8 text-4xl">{data.strapiAboutUs.title}</h2>
       <div className="flex-grow flex-shrink-0 prose tracking-normal text-black max-w-full">
         <ReactMarkdown source={data.strapiAboutUs.content} />
       </div>

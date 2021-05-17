@@ -19,7 +19,7 @@ const Error = ({ msg }) => {
                                 </svg>
                             </div>
                             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                <h3 className="text-lg leading-6 font-medium text-black" id="modal-headline">
+                                <h3 className="text-lg font-medium text-black" id="modal-headline">
                                     Error
                                 </h3>
                                 <div className="mt-2">

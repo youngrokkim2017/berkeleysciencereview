@@ -12,7 +12,7 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <h2 className="font-normal mb-12 pb-8 text-4xl leading-tight border-b border-black">{data.strapiAuthors.name}</h2>
+      <h2 className="font-normal mb-12 pb-8 text-4xl border-b border-black">{data.strapiAuthors.name}</h2>
       <ul className="mb-12">
         {data.strapiAuthors.articles.map(article => (
             <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
@@ -20,7 +20,7 @@ const AuthorTemplate = ({ data }) => {
                 <div className="mr-6 flex-grow">
 
                   <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="font-medium mb-2 text-2xl leading-none">{article.title}</h2>
+                    <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
                   </Link>
                   <p>
                     {handleDate(article.published_at)}

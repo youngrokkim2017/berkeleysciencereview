@@ -44,26 +44,27 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
-        <h2 className="font-normal mb-8 pb-2 text-4xl leading-tight border-b border-black">{data.strapiCategory.title}</h2>
-        <ul className="mb-12">
+      <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">{data.strapiCategory.title}</h2>
+      <ul className="mb-12">
 
-          {list.map(document => (
-            <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-              <div className="flex items-start">
-                <div className="mr-6 flex-grow">
-                  <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="font-medium mb-2 text-2xl leading-none">{document.title}</h2>
-                  </Link>
+        {list.map(document => (
+          <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+            <div className="flex items-start">
+              <div className="mr-6 flex-grow">
+                <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                  <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                </Link>
+                <h3 className="font-normal mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                <div className="text-sm md:text-base lg:text-sm lg:leading-none">
                   {data.allStrapiAuthors.edges.map(author => (
-                    <p className='mb-2 text-base' key={author.node.id}>
+                    <p className='mb-2' key={author.node.id}>
                       {author.node.id.split("_")[1] === document.author ?
-                        <>
-                          By <Link
-                            className="font-medium underline"
-                            to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                          >
-                            {author.node.name}
-                          </Link>
+                        <><Link
+                          className="font-medium"
+                          to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        >
+                          {author.node.name}
+                        </Link>
                         </>
                         :
                         ""
@@ -74,23 +75,24 @@ const CategoryTemplate = ({ data }) => {
                     {handleDate(document.published_at)}
                   </p>
                 </div>
-                {document.image ?
-                  <div className="flex-shrink-0">
-                    <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
-                  </div>
-                  :
-                  ""
-                }
               </div>
-            </li>
-          ))}
+              {document.image ?
+                <div className="flex-shrink-0">
+                  <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
+                </div>
+                :
+                ""
+              }
+            </div>
+          </li>
+        ))}
 
-        </ul>
-        {hasMore ? (
-          <button onClick={handleLoadMore} className="sans-serif block mx-auto px-4 py-2 leading-none text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
-        ) : (
-            <p>No more results</p>
-          )}
+      </ul>
+      {hasMore ? (
+        <button onClick={handleLoadMore} className="sans-serif block mx-auto px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
+      ) : (
+        <p>No more results</p>
+      )}
     </Layout>
   )
 }

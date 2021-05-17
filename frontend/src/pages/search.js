@@ -121,7 +121,7 @@ const SearchPage = ({ location }) => {
               </button>
             }
             <input
-              className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2 sans-serif"
+              className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none ml-2 sans-serif"
               type="text"
               placeholder="Search"
               value={searchTerm}

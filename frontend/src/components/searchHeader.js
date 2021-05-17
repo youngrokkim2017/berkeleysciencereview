@@ -134,7 +134,7 @@ class SearchHeader extends React.Component {
                           </button>
                         }
                         <input
-                          className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2 sans-serif"
+                          className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none ml-2 sans-serif"
                           type="text"
                           placeholder="Search"
                           value={this.state.query}
@@ -203,7 +203,7 @@ class SearchHeader extends React.Component {
                             value={this.state.query}
                             // onChange={(e) => setQuery(e.target.value)}
                             onChange={this.handleChange('query')}
-                            className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none ml-2"
+                            className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none ml-2"
                           />
                         </form> */}
                       </div>
@@ -415,7 +415,7 @@ export default SearchHeader
 //                         placeholder="Search"
 //                         value={this.state.query}
 //                         onChange={this.handleChange('query')}
-//                         className="bg-transparent border-none w-full text-black placeholder-gray-600 leading-tight focus:outline-none mr-2"
+//                         className="bg-transparent border-none w-full text-black placeholder-gray-600 focus:outline-none mr-2"
 //                       />
 //                       <button type="submit">
 //                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
@@ -424,7 +424,7 @@ export default SearchHeader
 //                       </button>
 //                     </form>
 //                   </div>
-//                   <button onClick={this.toggleSearchBar} className="inline-block leading-none text-black flex-shrink-0 cursor-pointer">
+//                   <button onClick={this.toggleSearchBar} className="inline-block text-black flex-shrink-0 cursor-pointer">
 //                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="text-black">
 //                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 //                     </svg>

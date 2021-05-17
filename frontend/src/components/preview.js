@@ -15,20 +15,18 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base mb-2 md:text-2xl lg:text-base">{article.title}</h2>
+                        <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
                     </Link>
-                    <p className='mb-1 text-sm md:text-base lg:text-sm leading-none lg:leading-none'>
+                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    <p className='mb-1 text-sm'>
                         {article.author ?
-                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
+                            <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                 {article.author.name}
-                            </Link></>
+                            </Link>
                             :
                             ""
                         }
                     </p>
-                    {/* <p className="text-sm">
-                        {handleDate(article.published_at)}
-                    </p> */}
                 </div>
                 {article.image ? <img src={article.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48 lg:w-20 lg:h-20 lg:object-cover" alt="" /> : ""}
             </div>
@@ -39,13 +37,14 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base mb-2 md:text-2xl lg:text-base">{article.title}</h2>
+                        <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
                     </Link>
-                    <p className='text-sm md:text-base lg:text-sm leading-none lg:leading-none'>
+                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    <p className='mb-1 text-sm'>
                         {article.author ?
-                            <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
+                            <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                 {article.author.name}
-                            </Link></>
+                            </Link>
                             :
                             ""
                         }
@@ -59,14 +58,15 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start">
                 <div className="mr-6 flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                        <h2 className="font-normal text-base mb-2 md:text-xl">{article.title}</h2>
+                        <h2 className="text-base mb-2 md:text-3xl">{article.title}</h2>
                     </Link>
-                    <div className="text-sm md:text-base lg:text-sm leading-none lg:leading-none">
+                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    <div className="text-sm md:text-base lg:text-sm">
                         <p className='mb-2'>
                             {article.author ?
-                                <>By <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="underline">
+                                <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                     {article.author.name}
-                                </Link></>
+                                </Link>
                                 :
                                 ""
                             }
@@ -88,29 +88,8 @@ const Preview = ({ article, format }) => {
             </div>
 
         )
-    } else if (format === "large") {
-        return (
-            <>
-                <div>
-                    <h4>{article.title}</h4>
-                    {article.image
-                        ?
-                        <div className="">
-                            <img src={article.image.publicURL} alt="" />
-                        </div>
-                        :
-                        ""
-                    }
-                </div>
-            </>
-
-        )
     }
 }
-
-// this.props.article.title
-// this.props.article.author.name
-// this.props.article.image
 
 export default Preview
 
