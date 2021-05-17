@@ -1,33 +1,29 @@
 {
   "kind": "collectionType",
-  "collectionName": "authors",
+  "collectionName": "designers",
   "info": {
-    "name": "Authors",
+    "name": "Designer",
     "description": ""
   },
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "attributes": {
     "name": {
       "type": "string"
     },
-    "twitter": {
+    "twitterURL": {
       "type": "string",
       "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     },
-    "articles": {
-      "collection": "article",
-      "via": "author"
+    "instagramURL": {
+      "type": "string",
+      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     },
     "about": {
       "type": "richtext"
-    },
-    "instagram": {
-      "type": "string",
-      "regex": "http(?:s)?:\\/\\/(?:www\\.)?twitter\\.com\\/(\\w*)"
     }
   }
 }
