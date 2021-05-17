@@ -18,8 +18,8 @@
       "type": "string"
     },
     "articles": {
-      "collection": "article",
-      "via": "author"
+      "via": "authors",
+      "collection": "article"
     },
     "about": {
       "type": "richtext"

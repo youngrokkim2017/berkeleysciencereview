@@ -24,8 +24,8 @@
       "type": "richtext"
     },
     "articles": {
-      "collection": "article",
-      "via": "designer"
+      "via": "designers",
+      "collection": "article"
     }
   }
 }
