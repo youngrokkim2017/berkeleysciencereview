@@ -8,7 +8,7 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "name": {
@@ -24,8 +24,8 @@
       "type": "richtext"
     },
     "articles": {
-      "via": "designers",
-      "collection": "article"
+      "collection": "article",
+      "via": "designers"
     }
   }
 }
