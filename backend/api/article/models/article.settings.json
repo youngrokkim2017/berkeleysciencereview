@@ -38,8 +38,8 @@
       "via": "articles"
     },
     "designers": {
-      "collection": "designer",
       "via": "articles",
+      "collection": "designer",
       "dominant": true
     },
     "authors": {
