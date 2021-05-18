@@ -21,9 +21,20 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                         </h2>
                       </Link>
                       <p className='mb-2 text-base'>
-                        By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        {/* By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                           {document.node.author.name}
-                        </Link>
+                        </Link> */}
+                        {document.node.authors.map(author => (
+                          <span key={author.id}>
+                            By <Link 
+                              // key={author.id}
+                              to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                              className="font-medium underline"
+                            >
+                              {author.name}
+                            </Link>
+                          </span>
+                        ))}
                       </p>
                       <p className='my-2'>
                         {handleDate(document.node.published_at)}

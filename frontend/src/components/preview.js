@@ -19,10 +19,27 @@ const Preview = ({ article, format }) => {
                     </Link>
                     <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                     <p className='mb-1 text-sm'>
-                        {article.author ?
+                        {/* {article.author ?
                             <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                 {article.author.name}
                             </Link>
+                            :
+                            ""
+                        } */}
+                        {article.authors ?
+                            <>
+                                {article.authors.map(author => (
+                                    <span key={author.id}>
+                                        <Link
+                                            // key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
+                                            {author.name}
+                                        </Link>
+                                    </span>
+                                ))}
+                            </>
                             :
                             ""
                         }
@@ -41,10 +58,27 @@ const Preview = ({ article, format }) => {
                     </Link>
                     <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                     <p className='mb-1 text-sm'>
-                        {article.author ?
+                        {/* {article.author ?
                             <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                 {article.author.name}
                             </Link>
+                            :
+                            ""
+                        } */}
+                        {article.authors ?
+                            <>
+                                {article.authors.map(author => (
+                                    <span key={author.id}>
+                                        <Link 
+                                            // key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
+                                            {author.name}
+                                        </Link>
+                                    </span>
+                                ))}
+                            </>
                             :
                             ""
                         }
@@ -63,13 +97,30 @@ const Preview = ({ article, format }) => {
                     <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                     <div className="text-sm md:text-base lg:text-sm">
                         <p className='mb-2'>
-                            {article.author ?
+                            {/* {article.author ?
                                 <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                                     {article.author.name}
                                 </Link>
                                 :
                                 ""
-                            }
+                            } */}
+                            {article.authors ?
+                            <>
+                                {article.authors.map(author => (
+                                    <span key={author.id}>
+                                        <Link 
+                                            key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
+                                            {author.name}
+                                        </Link>
+                                    </span>
+                                ))}
+                            </>
+                            :
+                            ""
+                        }
                         </p>
                         <p>
                             {handleDate(article.published_at)}
