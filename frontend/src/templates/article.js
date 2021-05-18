@@ -75,11 +75,24 @@ class ArticleTemplate extends React.Component {
         <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
-              {data.strapiArticle.author ?
+              {/* {data.strapiArticle.author ?
                 <p className='text-sm'>
                   By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                     {data.strapiArticle.author.name}
                   </Link>
+                </p>
+                :
+                ""
+              } */}
+              {data.strapiArticle.authors ?
+                <p className='text-sm'>
+                  {data.strapiArticle.authors.map(author => (
+                    <>
+                      By <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                        {author.name}
+                      </Link>
+                    </>
+                  ))}
                 </p>
                 :
                 ""
@@ -113,11 +126,24 @@ class ArticleTemplate extends React.Component {
                 <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
                 <h3 className="mb-4 text-lg">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                 <div className="text-base" id="metadata">
-                  {data.strapiArticle.author ?
+                  {/* {data.strapiArticle.author ?
                     <p className='mb-1 text-base'>
                       <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
                         {data.strapiArticle.author.name}
                       </Link>
+                    </p>
+                    :
+                    ""
+                  } */}
+                  {data.strapiArticle.authors ?
+                    <p className='mb-1 text-base'>
+                      {data.strapiArticle.authors.map(author => (
+                        <>
+                          By <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
+                            {author.name}
+                          </Link>
+                        </>
+                      ))}
                     </p>
                     :
                     ""
@@ -238,7 +264,7 @@ export const query = graphql`
       image {
         publicURL
       }
-      author {
+      authors {
         id
         name
       }
@@ -255,7 +281,7 @@ export const query = graphql`
       node {
         id
         title
-        author {
+        authors {
           id
           name
         }
@@ -287,7 +313,7 @@ export const query = graphql`
       node {
         id
         title
-        author {
+        authors {
           id
           name
         }

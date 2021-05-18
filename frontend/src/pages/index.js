@@ -83,7 +83,10 @@ const IndexPage = ({ data }) => {
                     }
                     <h2 className="text-4xl mb-2">{document.node.title}</h2>
                     <p>
-                      {document.node.author.name}
+                      {/* {document.node.author.name} */}
+                      {document.node.authors.map(author => (
+                        <div>{author.name}</div>
+                      ))}
                     </p>
                     <p>
                       {handleDate(document.node.published_at)}
@@ -220,7 +223,8 @@ export const splashQuery = graphql`
         node {
           id
           title
-          author {
+          authors {
+            id
             name
           }
           image {
