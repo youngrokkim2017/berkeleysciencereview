@@ -29,11 +29,15 @@ const Preview = ({ article, format }) => {
                         {article.authors ?
                             <>
                                 {article.authors.map(author => (
-                                    <>
-                                        <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
+                                    <span key={author.id}>
+                                        <Link
+                                            // key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
                                             {author.name}
                                         </Link>
-                                    </>
+                                    </span>
                                 ))}
                             </>
                             :
@@ -64,11 +68,15 @@ const Preview = ({ article, format }) => {
                         {article.authors ?
                             <>
                                 {article.authors.map(author => (
-                                    <>
-                                        <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
+                                    <span key={author.id}>
+                                        <Link 
+                                            // key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
                                             {author.name}
                                         </Link>
-                                    </>
+                                    </span>
                                 ))}
                             </>
                             :
@@ -99,11 +107,15 @@ const Preview = ({ article, format }) => {
                             {article.authors ?
                             <>
                                 {article.authors.map(author => (
-                                    <>
-                                        <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
+                                    <span key={author.id}>
+                                        <Link 
+                                            key={author.id}
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            className="font-medium"
+                                        >
                                             {author.name}
                                         </Link>
-                                    </>
+                                    </span>
                                 ))}
                             </>
                             :

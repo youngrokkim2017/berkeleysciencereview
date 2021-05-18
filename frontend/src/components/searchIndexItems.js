@@ -25,11 +25,15 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                           {document.node.author.name}
                         </Link> */}
                         {document.node.authors.map(author => (
-                          <>
-                            By <Link to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
+                          <span key={author.id}>
+                            By <Link 
+                              // key={author.id}
+                              to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                              className="font-medium underline"
+                            >
                               {author.name}
                             </Link>
-                          </>
+                          </span>
                         ))}
                       </p>
                       <p className='my-2'>
