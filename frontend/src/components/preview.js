@@ -17,7 +17,13 @@ const Preview = ({ article, format }) => {
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
                     </Link>
-                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    {article.subtitle ? 
+                        <h3 className="mb-4 text-sm">
+                            {article.subtitle}
+                        </h3>
+                    :
+                        ""
+                    }
                     <p className='mb-1 text-sm'>
                         {/* {article.author ?
                             <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
@@ -56,7 +62,13 @@ const Preview = ({ article, format }) => {
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
                         <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
                     </Link>
-                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    {article.subtitle ? 
+                        <h3 className="mb-4 text-sm">
+                            {article.subtitle}
+                        </h3>
+                    :
+                        ""
+                    }
                     <p className='mb-1 text-sm'>
                         {/* {article.author ?
                             <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
@@ -94,7 +106,13 @@ const Preview = ({ article, format }) => {
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                         <h2 className="text-base mb-2 md:text-3xl">{article.title}</h2>
                     </Link>
-                    <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                    {article.subtitle ? 
+                        <h3 className="mb-4 text-sm">
+                            {article.subtitle}
+                        </h3>
+                    :
+                        ""
+                    }
                     <div className="text-sm md:text-base lg:text-sm">
                         <p className='mb-2'>
                             {/* {article.author ?

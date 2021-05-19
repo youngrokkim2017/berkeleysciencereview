@@ -227,6 +227,7 @@ export const splashQuery = graphql`
         node {
           id
           title
+          subtitle
           authors {
             id
             name

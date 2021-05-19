@@ -128,7 +128,13 @@ class ArticleTemplate extends React.Component {
                   </span>
                 </p>
                 <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
-                <h3 className="mb-4 text-lg">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                {data.strapiArticle.subtitle ? 
+                  <h3 className="mb-4 text-lg">
+                    {data.strapiArticle.subtitle}
+                  </h3>
+                :
+                  ""
+                }
                 <div className="text-base" id="metadata">
                   {/* {data.strapiArticle.author ?
                     <p className='mb-1 text-base'>
@@ -267,6 +273,7 @@ export const query = graphql`
     strapiArticle(id: {eq: $id }) {
       id
       title
+      subtitle
       published_at
       content
       image {

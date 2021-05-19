@@ -54,7 +54,13 @@ const CategoryTemplate = ({ data }) => {
                 <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                   <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
                 </Link>
-                <h3 className="font-normal mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                {document.subtitle ? 
+                  <h3 className="font-normal mb-4 text-sm">
+                    {document.subtitle}
+                  </h3>
+                :
+                  ""
+                }
                 <div className="text-sm md:text-base lg:text-sm lg:leading-none">
                   {data.allStrapiAuthors.edges.map(author => (
                     <p className='mb-2' key={author.node.id}>
@@ -107,6 +113,7 @@ export const query = graphql`
       articles {
         id
         title
+        subtitle
         author
         image {
           publicURL
