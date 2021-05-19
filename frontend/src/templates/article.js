@@ -75,29 +75,89 @@ class ArticleTemplate extends React.Component {
         <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
-              {/* {data.strapiArticle.author ?
-                <p className='text-sm'>
-                  By <Link to={`/author/${data.strapiArticle.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
-                    {data.strapiArticle.author.name}
-                  </Link>
-                </p>
-                :
-                ""
-              } */}
-              {data.strapiArticle.authors ?
-                <p className='text-sm'>
-                  {data.strapiArticle.authors.map(author => (
-                    <span key={author.id}>
-                      By <Link 
-                        // key={author.id}
-                        to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                        className="font-medium underline"
-                      >
-                        {author.name}
-                      </Link>
-                    </span>
-                  ))}
-                </p>
+              {data.strapiArticle.authors
+                ?
+                [
+                  (data.strapiArticle.authors.length === 1
+                    ?
+                    <p className='text-sm'>
+                      {
+                        <span key={data.strapiArticle.authors[0].id}>
+                          By <Link
+                            to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                            className="font-medium"
+                          >
+                            {data.strapiArticle.authors[0].name}
+                          </Link>
+                        </span>
+                      }
+                    </p>
+                    :
+                    data.strapiArticle.authors.length === 2
+                      ?
+                      <p className='text-sm'>
+                        {<>
+                          <span key={data.strapiArticle.authors[0].id}>
+                            By <Link
+                              to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              className="font-medium"
+                            >
+                              {data.strapiArticle.authors[0].name}
+                            </Link>
+                          </span>
+                          <span> and </span>
+                          <span key={data.strapiArticle.authors[1].id}>
+                            <Link
+                              to={`/author/${data.strapiArticle.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              className="font-medium"
+                            >
+                              {data.strapiArticle.authors[1].name}
+                            </Link>
+                          </span>
+                        </>}
+                      </p>
+                      :
+                      data.strapiArticle.authors.length === 3
+                        ?
+                        <p className='text-sm'>
+                          {<>
+                            <span key={data.strapiArticle.authors[0].id}>
+                              By <Link
+                                to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {data.strapiArticle.authors[0].name}
+                              </Link>
+                            </span>
+                            {data.strapiArticle.authors.slice(1, -1).map(author => (
+                              <>
+                                <span>, </span>
+                                <span key={author.id}>
+                                  <Link
+                                    to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {author.name}
+                                  </Link>
+                                </span>
+                              </>
+                            ))}
+
+                            <span> and </span>
+                            <span key={data.strapiArticle.authors[data.strapiArticle.authors.length - 1].id}>
+                              <Link
+                                to={`/author/${data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name}
+                              </Link>
+                            </span>
+                          </>}
+                        </p>
+                        :
+                        ""
+                  )
+                ]
                 :
                 ""
               }
@@ -145,20 +205,88 @@ class ArticleTemplate extends React.Component {
                     :
                     ""
                   } */}
-                  {data.strapiArticle.authors ?
-                    <p className='mb-1 text-base'>
-                      {data.strapiArticle.authors.map(author => (
-                        <span key={author.id}>
-                          By <Link 
-                            // key={author.id}
-                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                            className="font-medium"
-                          >
-                            {author.name}
-                          </Link>
-                        </span>
-                      ))}
-                    </p>
+                  {data.strapiArticle.authors
+                    ?
+                    [
+                      (data.strapiArticle.authors.length === 1
+                        ?
+                        <p className='text-base mb-1'>
+                          {
+                            <span key={data.strapiArticle.authors[0].id}>
+                              By <Link
+                                to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {data.strapiArticle.authors[0].name}
+                              </Link>
+                            </span>
+                          }
+                        </p>
+                        :
+                        data.strapiArticle.authors.length === 2
+                          ?
+                          <p className='text-base mb-1'>
+                            {<>
+                              <span key={data.strapiArticle.authors[0].id}>
+                                By <Link
+                                  to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium"
+                                >
+                                  {data.strapiArticle.authors[0].name}
+                                </Link>
+                              </span>
+                              <span> and </span>
+                              <span key={data.strapiArticle.authors[1].id}>
+                                <Link
+                                  to={`/author/${data.strapiArticle.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium"
+                                >
+                                  {data.strapiArticle.authors[1].name}
+                                </Link>
+                              </span>
+                            </>}
+                          </p>
+                          :
+                          data.strapiArticle.authors.length === 3
+                            ?
+                            <p className='text-base mb-1'>
+                              {<>
+                                <span key={data.strapiArticle.authors[0].id}>
+                                  By <Link
+                                    to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {data.strapiArticle.authors[0].name}
+                                  </Link>
+                                </span>
+                                {data.strapiArticle.authors.slice(1, -1).map(author => (
+                                  <>
+                                    <span>, </span>
+                                    <span key={author.id}>
+                                      <Link
+                                        to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                        className="font-medium"
+                                      >
+                                        {author.name}
+                                      </Link>
+                                    </span>
+                                  </>
+                                ))}
+                                <span>, and </span>
+                                <span key={data.strapiArticle.authors[data.strapiArticle.authors.length - 1].id}>
+                                  <Link
+                                    to={`/author/${data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name}
+                                  </Link>
+                                </span>
+                              </>}
+                            </p>
+                            :
+                            ""
+                      )
+                    ]
                     :
                     ""
                   }
@@ -361,20 +489,20 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!, $categoryList: [String!]) {
-    strapiArticle(id: {eq: $id }) {
-      id
+            strapiArticle(id: {eq: $id }) {
+            id
       title
       published_at
       content
       image {
-        publicURL
-      }
+            publicURL
+          }
       authors {
-        id
+            id
         name
       }
       categories {
-        id
+            id
         title
       }
   }
@@ -382,21 +510,21 @@ export const query = graphql`
     sort: {order: DESC, fields: published_at}
     limit: 4
   ) {
-    edges {
-      node {
-        id
+            edges {
+            node {
+            id
         title
         authors {
-          id
+            id
           name
         }
         categories {
-          id
+            id
           title
         }
         image {
-          publicURL
-        }
+            publicURL
+          }
         published_at
       }
     }
@@ -405,30 +533,30 @@ export const query = graphql`
     sort: {order: DESC, fields: published_at}
     limit: 4
     filter: {
-      categories: {
-        elemMatch: {
-          id: {
+            categories: {
+            elemMatch: {
+            id: {
             in: $categoryList
           }
         }
       }
     }
   ) {
-    edges {
-      node {
-        id
+            edges {
+            node {
+            id
         title
         authors {
-          id
+            id
           name
         }
         categories {
-          id
+            id
           title
         }
         image {
-          publicURL
-        }
+            publicURL
+          }
         published_at
       }
     }
@@ -436,13 +564,13 @@ export const query = graphql`
   allStrapiMagazineIssue(
     sort: {order: DESC, fields: issue}
   ) {
-        edges {
-          node {
+            edges {
+            node {
             id
             title
             pdf {
-              publicURL
-            }
+            publicURL
+          }
           }
         }
       }
