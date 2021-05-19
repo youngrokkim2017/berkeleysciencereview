@@ -125,7 +125,7 @@ export const query = graphql`
       articles {
         id
         title
-        author
+        authors
         image {
           publicURL
         }
