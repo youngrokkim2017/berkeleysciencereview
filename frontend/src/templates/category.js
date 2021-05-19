@@ -154,7 +154,7 @@ export const query = graphql`
       articles {
         id
         title
-        authors
+        author
         image {
           publicURL
         }
@@ -172,30 +172,3 @@ export const query = graphql`
     }
   }
 `
-
-// query CategoryTemplate($id: String!) {
-//   allStrapiArticle(
-//     sort: { order: DESC, fields: published_at }
-//     filter: {categories: {elemMatch: {id: { eq: $id }}}}
-//   ) {
-//     edges {
-//       node {
-//         id
-//         title
-//         authors {
-//           id
-//           name
-//         }
-//         image {
-//           publicURL
-//         }
-//         categories {
-//           id
-//           title
-//         }
-//         published_at
-//         updatedAt
-//       }
-//     }
-//   }
-// }

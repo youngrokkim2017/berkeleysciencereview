@@ -24,45 +24,46 @@ const MagazineIssueTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div className="mb-8 pb-4 border-b border-black">
-        <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
+        <div className="mb-8 pb-4 border-b border-black">
+          <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
+          {pdfOpen && data.strapiMagazineIssue.pdf ?
+            <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
+            :
+            <>
+              {data.strapiMagazineIssue.pdf ?
+                <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
+                :
+                ""
+              }
+            </>
+          }
+        </div>
+
         {pdfOpen && data.strapiMagazineIssue.pdf ?
-          <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
-          :
-          <>
-            {data.strapiMagazineIssue.pdf ?
-              <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
-              :
-              ""
-            }
-          </>
-        }
-      </div>
+          <div className="mx-auto text-center mt-6 sans-serif">
+            <div className="max-w-full">
+              <div
+                style={{
+                  height: '750px',
+                }}
+              >
+                <Viewer
+                  fileUrl={data.strapiMagazineIssue.pdf.publicURL}
+                  // defaultScale={SpecialZoomLevel.PageFit}
+                  plugins={[
+                    defaultLayoutPluginInstance,
+                  ]}
 
-      {pdfOpen && data.strapiMagazineIssue.pdf ?
-        <div className="mx-auto text-center mt-6 sans-serif">
-          <div className="max-w-full">
-            <div
-              style={{
-                height: '750px',
-              }}
-            >
-              <Viewer
-                fileUrl={data.strapiMagazineIssue.pdf.publicURL}
-                // defaultScale={SpecialZoomLevel.PageFit}
-                plugins={[
-                  defaultLayoutPluginInstance,
-                ]}
-
-              />
+                />
+              </div>
             </div>
           </div>
-        </div>
-        :
-        <ul className="mb-12">
-          {data.strapiMagazineIssue.articles.map(document => (
-            <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-              <div className="flex items-start">
+          :
+          <ul className="mb-12">
+            {data.strapiMagazineIssue.articles.map(document => (
+              <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <div className="flex items-start">
+
                   <div className="mr-6 flex-grow">
                     {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                       <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
@@ -78,7 +79,8 @@ const MagazineIssueTemplate = ({ data }) => {
                     }
                     <p className='my-2'>
                       {handleDate(document.published_at)}
-                      {/* {data.allStrapiAuthors.edges.map(author => (
+                    </p>
+                    {data.allStrapiAuthors.edges.map(author => (
                       <p className='mb-2 text-base' key={author.node.id}>
                         {author.node.id.split("_")[1] === document.author ?
                           <>By <Link
@@ -91,23 +93,20 @@ const MagazineIssueTemplate = ({ data }) => {
                           ""
                         }
                       </p>
-                    ))} */}
-                    </p>
+                    ))}
                   </div>
-
+                  {document.image ?
+                    <div>
+                      <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                    </div>
+                    :
+                    ""
+                  }
                 </div>
-                {document.image ?
-                  <div>
-                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
-                  </div>
-                  :
-                  ""
-                }
-              </div>
-            </li>
-          ))}
-        </ul>
-      }
+              </li>
+            ))}
+          </ul>
+        }
     </Layout>
   )
 }
@@ -259,7 +258,7 @@ export const query = graphql`
       articles {
         id
         title
-        authors
+        author
         image {
           publicURL
         }
