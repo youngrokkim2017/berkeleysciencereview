@@ -68,6 +68,10 @@ class ArticleTemplate extends React.Component {
 
     // relatedArticles = temp.slice(0, 3);
 
+    let firstAuthor = data.strapiArticle.authors[0];
+    let middleAuthors = data.strapiArticle.authors.slice(1, -1);
+    let lastAuthor = data.strapiArticle.authors[data.strapiArticle.authors.length - 1];
+
     return (
       <div key={data.strapiArticle.id} className="flex flex-col min-h-screen justify-between">
         <Header data={data} />
@@ -75,7 +79,73 @@ class ArticleTemplate extends React.Component {
         <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
           <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
             <div className="leading-5">
-              {data.strapiArticle.authors
+              {data.strapiArticle.authors.length === 1 ? 
+                <p className='text-sm'>
+                    <span key={firstAuthor.id}>
+                      By <Link
+                        to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        className="font-medium"
+                      >
+                        {firstAuthor.name}
+                      </Link>
+                    </span>
+                </p>
+              : data.strapiArticle.authors.length === 2 ? 
+                <p className='text-sm'>
+                  <>
+                    <span key={firstAuthor.id}>
+                      By <Link
+                        to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        className="font-medium"
+                      >
+                        {firstAuthor.name}
+                      </Link>
+                    </span>
+                    <span> and </span>
+                    <span key={lastAuthor.id}>
+                      <Link
+                        to={`/author/${lastAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        className="font-medium"
+                      >
+                        {lastAuthor.name}
+                      </Link>
+                    </span>
+                  </>
+                </p>
+              :
+                <p className='text-sm'>
+                  <>
+                    <span key={firstAuthor.id}>
+                      By <Link
+                        to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        className="font-medium"
+                      >
+                        {firstAuthor.name}
+                      </Link>
+                    </span>
+                    {middleAuthors.map(author => (
+                      <span key={author.id}>
+                        , <Link
+                          to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          className="font-medium"
+                        >
+                          {author.name}
+                        </Link>
+                      </span>
+                    ))}
+                    <span>, and </span>
+                    <span key={lastAuthor.id}>
+                      <Link
+                        to={`/author/${lastAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        className="font-medium"
+                      >
+                        {lastAuthor.name}
+                      </Link>
+                    </span>
+                  </>
+                </p>
+              }
+              {/* {data.strapiArticle.authors
                 ?
                 [
                   (data.strapiArticle.authors.length === 1
@@ -160,7 +230,7 @@ class ArticleTemplate extends React.Component {
                 ]
                 :
                 ""
-              }
+              } */}
             </div>
           </div>
 
