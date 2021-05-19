@@ -81,17 +81,35 @@ const MagazineIssueTemplate = ({ data }) => {
                       {handleDate(document.published_at)}
                     </p>
                     {data.allStrapiAuthors.edges.map(author => (
-                      <p className='mb-2 text-base' key={author.node.id}>
-                        {author.node.id.split("_")[1] === document.author ?
-                          <>By <Link
-                            className="font-medium underline"
-                            to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                            {author.node.name}
-                          </Link>
-                          </>
+                      // <p className='mb-2 text-base' key={author.node.id}>
+                      //   {author.node.id.split("_")[1] === document.author ?
+                      //     <>By <Link
+                      //       className="font-medium underline"
+                      //       to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                      //       {author.node.name}
+                      //     </Link>
+                      //     </>
+                      //     :
+                      //     ""
+                      //   }
+                      // </p>
+                      <p className='mb-2' key={author.node.id}>
+                        {document.authors.map(currAuthor => (
+                          <>
+                          {currAuthor === author.node.id.split("_")[1] ?
+                            <>
+                              <Link
+                                className="font-medium"
+                                to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              >
+                                {author.node.name}
+                               </Link>
+                            </>
                           :
-                          ""
-                        }
+                            ""
+                          }
+                          </>
+                        ))}
                       </p>
                     ))}
                   </div>

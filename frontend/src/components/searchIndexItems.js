@@ -41,7 +41,7 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                         {/* By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                           {document.node.author.name}
                         </Link> */}
-                        {document.node.authors.map(author => (
+                        {/* {document.node.authors.map(author => (
                           <span key={author.id}>
                             By <Link 
                               // key={author.id}
@@ -51,7 +51,73 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                               {author.name}
                             </Link>
                           </span>
-                        ))}
+                        ))} */}
+                        {document.node.authors.length === 1 ? 
+                          <p className='text-sm'>
+                              <span key={document.node.authors[0].id}>
+                                By <Link
+                                  to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium underline"
+                                >
+                                  {document.node.authors[0].name}
+                                </Link>
+                              </span>
+                          </p>
+                        : document.node.authors.length === 2 ? 
+                          <p className='text-sm'>
+                            <>
+                              <span key={document.node.authors[0].id}>
+                                By <Link
+                                  to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium underline"
+                                >
+                                  {document.node.authors[0].name}
+                                </Link>
+                              </span>
+                              <span> and </span>
+                              <span key={document.node.authors[document.node.authors.length - 1].id}>
+                                <Link
+                                  to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium underline"
+                                >
+                                  {document.node.authors[document.node.authors.length - 1].name}
+                                </Link>
+                              </span>
+                            </>
+                          </p>
+                        :
+                          <p className='text-sm'>
+                            <>
+                              <span key={document.node.authors[0]}>
+                                By <Link
+                                  to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium underline"
+                                >
+                                  {document.node.authors[0].name}
+                                </Link>
+                              </span>
+                              {document.node.authors.slice(1, -1).map(author => (
+                                <span key={author.id}>
+                                  , <Link
+                                    to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium underline"
+                                  >
+                                    {author.name}
+                                  </Link>
+                                </span>
+                              ))}
+                              <span>, and </span>
+                              <span key={document.node.authors[document.node.authors.length - 1].id}>
+                                <Link
+                                  to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium underline"
+                                >
+                                  {document.node.authors[document.node.authors.length - 1].name}
+                                </Link>
+                              </span>
+                            </>
+                          </p>
+                        }
                       </p>
                       <p className='my-2'>
                         {handleDate(document.node.published_at)}
