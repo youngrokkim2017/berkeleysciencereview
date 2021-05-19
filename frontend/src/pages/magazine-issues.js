@@ -6,6 +6,12 @@ import Seo from "../components/seo"
 const MagazineIssuePage = ({ data }) => {
   const magazinesSortedByIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue).slice(1, data.allStrapiMagazineIssue.edges.length);
 
+  // let pathURL = document.node.title.split(" ").map((a) => a.toLowerCase()).join("-");
+
+  // if (pathURL[pathURL.length - 1] === "-") {
+  //   pathURL = pathURL.slice(0, -1);
+  // }
+
   return (
     <Layout>
       <Seo title="Magazine issues" />
@@ -13,10 +19,26 @@ const MagazineIssuePage = ({ data }) => {
         <div className="space-y-1">
           {magazinesSortedByIssue.map(document => (
             <div>
-              <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                {document.node.title}
-              </Link>
+              {document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[document.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                <div>
+                  <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                    {document.node.title}
+                  </Link>
+                </div>
+              :
+                <div>
+                  <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                    {document.node.title}
+                  </Link>
+                </div>
+              }
             </div>
+
+            // <div>
+            //   <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+            //     {document.node.title}
+            //   </Link>
+            // </div>
           ))}
         </div>
     </Layout>

@@ -15,11 +15,28 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                 <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
                   <div className="flex items-start">
                     <div className="mr-6 flex-grow">
-                      <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                      {/* <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                         <h2 className="font-medium mb-2 text-2xl">
                           {document.node.title}
                         </h2>
-                      </Link>
+                      </Link> */}
+                      {document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                        <div>
+                          <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-").slice(0, -1)}`} style={{ textDecoration: `none` }}>
+                            <h2 className="font-medium mb-2 text-2xl">
+                              {document.node.title}
+                            </h2>
+                          </Link>
+                        </div>
+                      :
+                        <div>
+                          <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                            <h2 className="font-medium mb-2 text-2xl">
+                              {document.node.title}
+                            </h2>
+                          </Link>
+                        </div>
+                      }
                       <p className='mb-2 text-base'>
                         {/* By <Link to={`/author/${document.node.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium underline">
                           {document.node.author.name}

@@ -19,9 +19,18 @@ const AuthorTemplate = ({ data }) => {
               <div className="flex items-start">
                 <div className="mr-6 flex-grow">
 
-                  <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                  {/* <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
-                  </Link>
+                  </Link> */}
+                  {article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                    <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                      <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
+                    </Link>
+                  :
+                    <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                      <h2 className="font-medium mb-2 text-2xl">{article.title}</h2>
+                    </Link>
+                  }
                   <p>
                     {handleDate(article.published_at)}
                   </p>

@@ -51,9 +51,22 @@ const CategoryTemplate = ({ data }) => {
           <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                   <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
-                </Link>
+                </Link> */}
+                {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                  <div>
+                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                    </Link>
+                  </div>
+                :
+                  <div>
+                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                    </Link>
+                  </div>
+                }
                 {document.subtitle ? 
                   <h3 className="font-normal mb-4 text-sm">
                     {document.subtitle}
@@ -105,6 +118,34 @@ const CategoryTemplate = ({ data }) => {
 
 export default CategoryTemplate;
 
+// export const query = graphql`
+//   query CategoryTemplate($id: String!) {
+//     strapiCategory(id: { eq: $id }) {
+//       id
+//       title
+//       articles {
+//         id
+//         title
+//         subtitle
+//         author
+//         image {
+//           publicURL
+//         }
+//         magazine
+//         published_at
+//       }
+//     }
+//     allStrapiAuthors {
+//       edges {
+//         node {
+//           id
+//           name
+//         }
+//       }
+//     }
+//   }
+// `
+
 export const query = graphql`
   query CategoryTemplate($id: String!) {
     strapiCategory(id: { eq: $id }) {
@@ -113,7 +154,6 @@ export const query = graphql`
       articles {
         id
         title
-        subtitle
         author
         image {
           publicURL

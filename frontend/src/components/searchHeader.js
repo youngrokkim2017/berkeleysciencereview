@@ -101,34 +101,43 @@ class SearchHeader extends React.Component {
                   <div className="flex justify-between content-center" id="horizontal-header">
                     <Link to={`/category/climate-change`}>
                       Climate Change
-                </Link>
+                    </Link>
                     <Link to={`/category/life-science`}>
                       Life Science
-                </Link>
+                    </Link>
                     <Link to={`/category/tech-&-ai`}>
                       Technology & Artificial Intelligence
-                </Link>
+                    </Link>
                     <Link to={`/category/the-universe`}>
                       The Universe
-                </Link>
+                    </Link>
                     <Link to={`/category/labscopes`}>
                       Labscopes
-                </Link>
+                    </Link>
                     <Link to={`/category/people`}>
                       People
-                </Link>
+                    </Link>
                     <Link to={`/category/noteworthy-news`}>
                       Noteworthy News
-                </Link>
+                    </Link>
                     <Link to={`/category/the-scientist-life`}>
                       The Scientist Life
-                </Link>
-                    <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
+                    </Link>
+                    {/* <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
                       Current Magazine
-                </Link>
+                    </Link> */}
+                    {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                      <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} className="hidden xl:inline-block">
+                        Current Magazine
+                      </Link>
+                    :
+                      <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
+                        Current Magazine
+                      </Link>
+                    }
                     <Link to={`/category/archive`} className="hidden xl:inline-block">
                       Archive
-                </Link>
+                    </Link>
                   </div>
                 </div>
                 :
@@ -199,14 +208,23 @@ class SearchHeader extends React.Component {
                       <h2 className="font-semibold mb-2">Magazine</h2>
                       <ul className="grid gap-1">
                         <li>
-                          <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                          {/* <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
                             Current Magazine
-                        </Link>
+                          </Link> */}
+                          {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                            <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                              Current Magazine
+                            </Link>
+                          :
+                            <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                              Current Magazine
+                            </Link>
+                          }
                         </li>
                         <li>
                           <Link to={`/magazine-issues`}>
                             Past Issues
-                        </Link>
+                          </Link>
                         </li>
                       </ul>
                     </div>

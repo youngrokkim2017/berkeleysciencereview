@@ -65,9 +65,18 @@ const MagazineIssueTemplate = ({ data }) => {
                 <div className="flex items-start">
 
                   <div className="mr-6 flex-grow">
-                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                    {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
                       <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
-                    </Link>
+                    </Link> */}
+                    {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                      <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                        <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
+                      </Link>
+                    :
+                      <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                        <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
+                      </Link>
+                    }
                     <p className='my-2'>
                       {handleDate(document.published_at)}
                     </p>
