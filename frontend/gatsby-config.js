@@ -25,6 +25,7 @@ module.exports = {
         contentTypes: [
           `user`,
           `authors`,
+          `designers`,
           `article`,
           `category`,
           `magazine-issue`,

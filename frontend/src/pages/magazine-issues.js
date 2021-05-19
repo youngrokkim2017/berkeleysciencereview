@@ -9,14 +9,14 @@ const MagazineIssuePage = ({ data }) => {
   return (
     <Layout>
       <Seo title="Magazine issues" />
-        <h2 className="font-normal mb-4 text-4xl">Magazine Issues</h2>
-        <div className="space-y-1">
-          {magazinesSortedByIssue.map(document => (
-            <div>
+      <h2 className="font-normal mb-4 pb-2 text-4xl border-b border-black">Magazine Issues</h2>
+        <div>
+          {magazinesSortedByIssue.reverse().map(document => (
+            <h2 className="font-normal text-base mb-2 md:text-xl">
               <Link to={`/magazine/${document.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
                 {document.node.title}
               </Link>
-            </div>
+            </h2>
           ))}
         </div>
     </Layout>
