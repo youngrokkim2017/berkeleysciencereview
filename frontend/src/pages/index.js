@@ -367,12 +367,13 @@ export const splashQuery = graphql`
           id
           issue
           title
+          thumbnail {
+            publicURL
+          }
         }
       }
     }
   }
 `
 
-          // thumbnail {
-          //   publicURL
-          // }
+          
