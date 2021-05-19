@@ -15,7 +15,7 @@ const Preview = ({ article, format }) => {
             <div className="flex items-start space-x-4">
                 <div className="flex-grow">
                     <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
+                        <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
                     </Link>
                     <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                     <p className='mb-1 text-sm'>
@@ -26,20 +26,89 @@ const Preview = ({ article, format }) => {
                             :
                             ""
                         } */}
-                        {article.authors ?
-                            <>
-                                {article.authors.map(author => (
-                                    <span key={author.id}>
-                                        <Link
-                                            // key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                                            className="font-medium"
-                                        >
-                                            {author.name}
-                                        </Link>
-                                    </span>
-                                ))}
-                            </>
+                        {article.authors
+                            ?
+                            [
+                                (article.authors.length === 1
+                                    ?
+                                    <>
+                                        {
+                                            <span key={article.authors[0].id}>
+                                                By <Link
+                                                    to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                    className="font-medium"
+                                                >
+                                                    {article.authors[0].name}
+                                                </Link>
+                                            </span>
+                                        }
+
+                                    </>
+                                    :
+                                    article.authors.length === 2
+                                        ?
+                                        <>
+                                            {<>
+                                                <span key={article.authors[0].id}>
+                                                    By <Link
+                                                        to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[0].name}
+                                                    </Link>
+                                                </span>
+                                                <span> and </span>
+                                                <span key={article.authors[1].id}>
+                                                    <Link
+                                                        to={`/author/${article.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[1].name}
+                                                    </Link>
+                                                </span>
+                                            </>}
+                                        </>
+                                        :
+                                        article.authors.length === 3
+                                            ?
+                                            <>
+                                                {<>
+                                                    <span key={article.authors[0].id}>
+                                                        By <Link
+                                                            to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[0].name}
+                                                        </Link>
+                                                    </span>
+                                                    {article.authors.slice(1, -1).map(author => (
+                                                        <>
+                                                            <span>, </span>
+                                                            <span key={author.id}>
+                                                                <Link
+                                                                    to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                                    className="font-medium"
+                                                                >
+                                                                    {author.name}
+                                                                </Link>
+                                                            </span>
+                                                        </>
+                                                    ))}
+                                                    <span>, and </span>
+                                                    <span key={article.authors[article.authors.length - 1].id}>
+                                                        <Link
+                                                            to={`/author/${article.authors[article.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[article.authors.length - 1].name}
+                                                        </Link>
+                                                    </span>
+                                                </>}
+                                            </>
+                                            :
+                                            ""
+                                )
+                            ]
                             :
                             ""
                         }
@@ -58,27 +127,89 @@ const Preview = ({ article, format }) => {
                     </Link>
                     <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
                     <p className='mb-1 text-sm'>
-                        {/* {article.author ?
-                            <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
-                                {article.author.name}
-                            </Link>
-                            :
-                            ""
-                        } */}
-                        {article.authors ?
-                            <>
-                                {article.authors.map(author => (
-                                    <span key={author.id}>
-                                        <Link 
-                                            // key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                                            className="font-medium"
-                                        >
-                                            {author.name}
-                                        </Link>
-                                    </span>
-                                ))}
-                            </>
+                    {article.authors
+                            ?
+                            [
+                                (article.authors.length === 1
+                                    ?
+                                    <>
+                                        {
+                                            <span key={article.authors[0].id}>
+                                                By <Link
+                                                    to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                    className="font-medium"
+                                                >
+                                                    {article.authors[0].name}
+                                                </Link>
+                                            </span>
+                                        }
+
+                                    </>
+                                    :
+                                    article.authors.length === 2
+                                        ?
+                                        <>
+                                            {<>
+                                                <span key={article.authors[0].id}>
+                                                    By <Link
+                                                        to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[0].name}
+                                                    </Link>
+                                                </span>
+                                                <span> and </span>
+                                                <span key={article.authors[1].id}>
+                                                    <Link
+                                                        to={`/author/${article.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[1].name}
+                                                    </Link>
+                                                </span>
+                                            </>}
+                                        </>
+                                        :
+                                        article.authors.length === 3
+                                            ?
+                                            <>
+                                                {<>
+                                                    <span key={article.authors[0].id}>
+                                                        By <Link
+                                                            to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[0].name}
+                                                        </Link>
+                                                    </span>
+                                                    {article.authors.slice(1, -1).map(author => (
+                                                        <>
+                                                            <span>, </span>
+                                                            <span key={author.id}>
+                                                                <Link
+                                                                    to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                                    className="font-medium"
+                                                                >
+                                                                    {author.name}
+                                                                </Link>
+                                                            </span>
+                                                        </>
+                                                    ))}
+                                                    <span>, and </span>
+                                                    <span key={article.authors[article.authors.length - 1].id}>
+                                                        <Link
+                                                            to={`/author/${article.authors[article.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[article.authors.length - 1].name}
+                                                        </Link>
+                                                    </span>
+                                                </>}
+                                            </>
+                                            :
+                                            ""
+                                )
+                            ]
                             :
                             ""
                         }
@@ -104,20 +235,89 @@ const Preview = ({ article, format }) => {
                                 :
                                 ""
                             } */}
-                            {article.authors ?
-                            <>
-                                {article.authors.map(author => (
-                                    <span key={author.id}>
-                                        <Link 
-                                            key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                                            className="font-medium"
-                                        >
-                                            {author.name}
-                                        </Link>
-                                    </span>
-                                ))}
-                            </>
+                            {article.authors
+                            ?
+                            [
+                                (article.authors.length === 1
+                                    ?
+                                    <>
+                                        {
+                                            <span key={article.authors[0].id}>
+                                                By <Link
+                                                    to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                    className="font-medium"
+                                                >
+                                                    {article.authors[0].name}
+                                                </Link>
+                                            </span>
+                                        }
+
+                                    </>
+                                    :
+                                    article.authors.length === 2
+                                        ?
+                                        <>
+                                            {<>
+                                                <span key={article.authors[0].id}>
+                                                    By <Link
+                                                        to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[0].name}
+                                                    </Link>
+                                                </span>
+                                                <span> and </span>
+                                                <span key={article.authors[1].id}>
+                                                    <Link
+                                                        to={`/author/${article.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                        className="font-medium"
+                                                    >
+                                                        {article.authors[1].name}
+                                                    </Link>
+                                                </span>
+                                            </>}
+                                        </>
+                                        :
+                                        article.authors.length === 3
+                                            ?
+                                            <>
+                                                {<>
+                                                    <span key={article.authors[0].id}>
+                                                        By <Link
+                                                            to={`/author/${article.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[0].name}
+                                                        </Link>
+                                                    </span>
+                                                    {article.authors.slice(1, -1).map(author => (
+                                                        <>
+                                                            <span>, </span>
+                                                            <span key={author.id}>
+                                                                <Link
+                                                                    to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                                    className="font-medium"
+                                                                >
+                                                                    {author.name}
+                                                                </Link>
+                                                            </span>
+                                                        </>
+                                                    ))}
+                                                    <span>, and </span>
+                                                    <span key={article.authors[article.authors.length - 1].id}>
+                                                        <Link
+                                                            to={`/author/${article.authors[article.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                            className="font-medium"
+                                                        >
+                                                            {article.authors[article.authors.length - 1].name}
+                                                        </Link>
+                                                    </span>
+                                                </>}
+                                            </>
+                                            :
+                                            ""
+                                )
+                            ]
                             :
                             ""
                         }

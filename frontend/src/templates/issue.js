@@ -24,54 +24,55 @@ const MagazineIssueTemplate = ({ data }) => {
 
   return (
     <Layout>
-        <div className="mb-8 pb-4 border-b border-black">
-          <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
-          {pdfOpen && data.strapiMagazineIssue.pdf ?
-            <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
-            :
-            <>
-              {data.strapiMagazineIssue.pdf ?
-                <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
-                :
-                ""
-              }
-            </>
-          }
-        </div>
-
+      <div className="mb-8 pb-4 border-b border-black">
+        <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
         {pdfOpen && data.strapiMagazineIssue.pdf ?
-          <div className="mx-auto text-center mt-6 sans-serif">
-            <div className="max-w-full">
-              <div
-                style={{
-                  height: '750px',
-                }}
-              >
-                <Viewer
-                  fileUrl={data.strapiMagazineIssue.pdf.publicURL}
-                  // defaultScale={SpecialZoomLevel.PageFit}
-                  plugins={[
-                    defaultLayoutPluginInstance,
-                  ]}
+          <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
+          :
+          <>
+            {data.strapiMagazineIssue.pdf ?
+              <button onClick={() => setpdfOpen(true)} className="font-medium underline">View the PDF</button>
+              :
+              ""
+            }
+          </>
+        }
+      </div>
 
-                />
-              </div>
+      {pdfOpen && data.strapiMagazineIssue.pdf ?
+        <div className="mx-auto text-center mt-6 sans-serif">
+          <div className="max-w-full">
+            <div
+              style={{
+                height: '750px',
+              }}
+            >
+              <Viewer
+                fileUrl={data.strapiMagazineIssue.pdf.publicURL}
+                // defaultScale={SpecialZoomLevel.PageFit}
+                plugins={[
+                  defaultLayoutPluginInstance,
+                ]}
+
+              />
             </div>
           </div>
-          :
-          <ul className="mb-12">
-            {data.strapiMagazineIssue.articles.map(document => (
-              <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                <div className="flex items-start">
+        </div>
+        :
+        <ul className="mb-12">
+          {data.strapiMagazineIssue.articles.map(document => (
+            <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+              <div className="flex items-start">
 
-                  <div className="mr-6 flex-grow">
-                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                      <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
-                    </Link>
-                    <p className='my-2'>
+                <div className="mr-6 flex-grow">
+                  <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                    <h2 className="text-base mb-2 md:text-3xl">{document.title}</h2>
+                  </Link>
+                  <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                  <div className="text-sm md:text-base lg:text-sm">
+                    <p className='mb-2'>
                       {handleDate(document.published_at)}
-                    </p>
-                    {data.allStrapiAuthors.edges.map(author => (
+                      {/* {data.allStrapiAuthors.edges.map(author => (
                       <p className='mb-2 text-base' key={author.node.id}>
                         {author.node.id.split("_")[1] === document.author ?
                           <>By <Link
@@ -84,20 +85,23 @@ const MagazineIssueTemplate = ({ data }) => {
                           ""
                         }
                       </p>
-                    ))}
+                    ))} */}
+                    </p>
                   </div>
-                  {document.image ?
-                    <div>
-                      <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
-                    </div>
-                    :
-                    ""
-                  }
+
                 </div>
-              </li>
-            ))}
-          </ul>
-        }
+                {document.image ?
+                  <div>
+                    <img src={document.image.publicURL} style={{ maxWidth: '200px' }} alt="" />
+                  </div>
+                  :
+                  ""
+                }
+              </div>
+            </li>
+          ))}
+        </ul>
+      }
     </Layout>
   )
 }
@@ -249,7 +253,7 @@ export const query = graphql`
       articles {
         id
         title
-        author
+        authors
         image {
           publicURL
         }

@@ -83,14 +83,92 @@ const IndexPage = ({ data }) => {
                     }
                     <h2 className="text-4xl mb-2">{document.node.title}</h2>
                     <p>
-                      {/* {document.node.author.name} */}
-                      {document.node.authors.map(author => (
-                        <span 
-                          key={author.id}
-                        >
-                          {author.name}
-                        </span>
-                      ))}
+                      {document.node.authors
+                        ?
+                        [
+                          (document.node.authors.length === 1
+                            ?
+                            <>
+                              {
+                                <span key={document.node.authors[0].id}>
+                                  By <Link
+                                    to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {document.node.authors[0].name}
+                                  </Link>
+                                </span>
+                              }
+
+                            </>
+                            :
+                            document.node.authors.length === 2
+                              ?
+                              <>
+                                {<>
+                                  <span key={document.node.authors[0].id}>
+                                    By <Link
+                                      to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                      className="font-medium"
+                                    >
+                                      {document.node.authors[0].name}
+                                    </Link>
+                                  </span>
+                                  <span> and </span>
+                                  <span key={document.node.authors[1].id}>
+                                    <Link
+                                      to={`/author/${document.node.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                      className="font-medium"
+                                    >
+                                      {document.node.authors[1].name}
+                                    </Link>
+                                  </span>
+                                </>}
+                              </>
+                              :
+                              document.node.authors.length === 3
+                                ?
+                                <>
+                                  {<>
+                                    <span key={document.node.authors[0].id}>
+                                      By <Link
+                                        to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                        className="font-medium"
+                                      >
+                                        {document.node.authors[0].name}
+                                      </Link>
+                                    </span>
+                                    {document.node.authors.slice(1, -1).map(author => (
+                                      <>
+                                        <span>, </span>
+                                        <span key={author.id}>
+                                          <Link
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                            className="font-medium"
+                                          >
+                                            {author.name}
+                                          </Link>
+                                        </span>
+                                      </>
+                                    ))}
+                                    <span>, and </span>
+                                    <span key={document.node.authors[document.node.authors.length - 1].id}>
+                                      <Link
+                                        to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                        className="font-medium"
+                                      >
+                                        {document.node.authors[document.node.authors.length - 1].name}
+                                      </Link>
+                                    </span>
+                                  </>}
+                                </>
+                                :
+                                ""
+                          )
+                        ]
+                        :
+                        ""
+                      }
                     </p>
                     <p>
                       {handleDate(document.node.published_at)}
@@ -202,14 +280,14 @@ const IndexPage = ({ data }) => {
         </div>
       </main>
       <Link to="https://forms.gle/QnnTu8sfCAGKkdWe7" id="report" className="fixed bottom-8 right-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-3 text-white rounded-full space-x-4 sans-serif">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 inline-block align-middle" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-          </svg>
-          <span className="inline-block align-middle">
-            <p className="m-0 p-0 text-lg font-extrabold">Notice something wrong?</p>
-            <p>Please report it here.</p>
-          </span>
-        </Link>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 inline-block align-middle" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+        </svg>
+        <span className="inline-block align-middle">
+          <p className="m-0 p-0 text-lg font-extrabold">Notice something wrong?</p>
+          <p>Please report it here.</p>
+        </span>
+      </Link>
       <Footer />
     </div>
   )
