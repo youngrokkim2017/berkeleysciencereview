@@ -76,18 +76,36 @@ const CategoryTemplate = ({ data }) => {
                 }
                 <div className="text-sm md:text-base lg:text-sm lg:leading-none">
                   {data.allStrapiAuthors.edges.map(author => (
+                    // <p className='mb-2' key={author.node.id}>
+                    //   {author.node.id.split("_")[1] === document.author ?
+                    //     <><Link
+                    //       className="font-medium"
+                    //       to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                    //     >
+                    //       {author.node.name}
+                    //     </Link>
+                    //     </>
+                    //     :
+                    //     ""
+                    //   }
+                    // </p>
                     <p className='mb-2' key={author.node.id}>
-                      {author.node.id.split("_")[1] === document.author ?
-                        <><Link
-                          className="font-medium"
-                          to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                        >
-                          {author.node.name}
-                        </Link>
-                        </>
+                      {document.authors.map(currAuthor => (
+                        <>
+                        {currAuthor === author.node.id.split("_")[1] ?
+                          <>
+                            <Link
+                              className="font-medium"
+                              to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                            >
+                              {author.node.name}
+                             </Link>
+                          </>
                         :
-                        ""
-                      }
+                          ""
+                        }
+                        </>
+                      ))}
                     </p>
                   ))}
                   <p>
@@ -127,7 +145,7 @@ export default CategoryTemplate;
 //         id
 //         title
 //         subtitle
-//         author
+//         authors
 //         image {
 //           publicURL
 //         }
@@ -154,7 +172,7 @@ export const query = graphql`
       articles {
         id
         title
-        author
+        authors
         image {
           publicURL
         }
