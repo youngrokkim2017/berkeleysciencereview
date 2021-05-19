@@ -71,110 +71,89 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
-                  <div className="text-center">
-                    {document.node.image
-                      ?
-                      <div className="">
-                        <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                      </div>
-                      :
-                      ""
-                    }
-                    <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                    <p>
-                      {document.node.authors
+                // <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                //   <div className="text-center">
+                //     {document.node.image
+                //       ?
+                //       <div className="">
+                //         <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
+                //       </div>
+                //       :
+                //       ""
+                //     }
+                //     <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                //     <p>
+                //       {/* {document.node.author.name} */}
+                //       {document.node.authors.map(author => (
+                //         <span 
+                //           key={author.id}
+                //         >
+                //           {author.name}
+                //         </span>
+                //       ))}
+                //     </p>
+                //     <p>
+                //       {handleDate(document.node.published_at)}
+                //     </p>
+                //   </div>
+                // </Link>
+                <>
+                {document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} key={document.node.title}>
+                    <div className="text-center">
+                      {document.node.image
                         ?
-                        [
-                          (document.node.authors.length === 1
-                            ?
-                            <>
-                              {
-                                <span key={document.node.authors[0].id}>
-                                  By <Link
-                                    to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                    className="font-medium"
-                                  >
-                                    {document.node.authors[0].name}
-                                  </Link>
-                                </span>
-                              }
-
-                            </>
-                            :
-                            document.node.authors.length === 2
-                              ?
-                              <>
-                                {<>
-                                  <span key={document.node.authors[0].id}>
-                                    By <Link
-                                      to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                      className="font-medium"
-                                    >
-                                      {document.node.authors[0].name}
-                                    </Link>
-                                  </span>
-                                  <span> and </span>
-                                  <span key={document.node.authors[1].id}>
-                                    <Link
-                                      to={`/author/${document.node.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                      className="font-medium"
-                                    >
-                                      {document.node.authors[1].name}
-                                    </Link>
-                                  </span>
-                                </>}
-                              </>
-                              :
-                              document.node.authors.length === 3
-                                ?
-                                <>
-                                  {<>
-                                    <span key={document.node.authors[0].id}>
-                                      By <Link
-                                        to={`/author/${document.node.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                        className="font-medium"
-                                      >
-                                        {document.node.authors[0].name}
-                                      </Link>
-                                    </span>
-                                    {document.node.authors.slice(1, -1).map(author => (
-                                      <>
-                                        <span>, </span>
-                                        <span key={author.id}>
-                                          <Link
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                            className="font-medium"
-                                          >
-                                            {author.name}
-                                          </Link>
-                                        </span>
-                                      </>
-                                    ))}
-                                    <span>, and </span>
-                                    <span key={document.node.authors[document.node.authors.length - 1].id}>
-                                      <Link
-                                        to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                        className="font-medium"
-                                      >
-                                        {document.node.authors[document.node.authors.length - 1].name}
-                                      </Link>
-                                    </span>
-                                  </>}
-                                </>
-                                :
-                                ""
-                          )
-                        ]
+                        <div className="">
+                          <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
+                        </div>
                         :
                         ""
                       }
-                    </p>
-                    <p>
-                      {handleDate(document.node.published_at)}
-                    </p>
-                  </div>
-                </Link>
+                      <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                      <p>
+                        {/* {document.node.author.name} */}
+                        {document.node.authors.map(author => (
+                          <span 
+                            key={author.id}
+                          >
+                            {author.name}
+                          </span>
+                        ))}
+                      </p>
+                      <p>
+                        {handleDate(document.node.published_at)}
+                      </p>
+                    </div>
+                  </Link>
+                :
+                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                    <div className="text-center">
+                      {document.node.image
+                        ?
+                        <div className="">
+                          <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
+                        </div>
+                        :
+                        ""
+                      }
+                      <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                      <p>
+                        {/* {document.node.author.name} */}
+                        {document.node.authors.map(author => (
+                          <span 
+                            key={author.id}
+                          >
+                            {author.name}
+                          </span>
+                        ))}
+                      </p>
+                      <p>
+                        {handleDate(document.node.published_at)}
+                      </p>
+                    </div>
+                  </Link>
+                }
+                </>
               ))}
             </Slider>
           </div>
@@ -224,6 +203,25 @@ const IndexPage = ({ data }) => {
                 </Document> */}
                   {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
                 </Link>
+                {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                  <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                    {/* <Document
+                    file={latestIssue.node.pdf.publicURL}
+                  >
+                    <Page pageNumber={1} />
+                  </Document> */}
+                    {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
+                  </Link>
+                :
+                  <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                    {/* <Document
+                    file={latestIssue.node.pdf.publicURL}
+                  >
+                    <Page pageNumber={1} />
+                  </Document> */}
+                    {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
+                  </Link>
+                }
               </div>
             </div>
           </div>
@@ -296,6 +294,46 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 // gql query
+// export const splashQuery = graphql`
+//   query SplashQuery {
+//     allStrapiArticle(
+//       sort: { order: DESC, fields: published_at }
+//     ) {
+//       edges {
+//         node {
+//           id
+//           title
+//           subtitle
+//           authors {
+//             id
+//             name
+//           }
+//           image {
+//             publicURL
+//           }
+//           categories {
+//             id
+//             title
+//           }
+//           published_at
+//           updatedAt
+//         }
+//       }
+//     }
+//     allStrapiMagazineIssue(
+//       sort: {order: DESC, fields: issue}
+//     ) {
+//       edges {
+//         node {
+//           id
+//           issue
+//           title
+//         }
+//       }
+//     }
+//   }
+// `
+
 export const splashQuery = graphql`
   query SplashQuery {
     allStrapiArticle(

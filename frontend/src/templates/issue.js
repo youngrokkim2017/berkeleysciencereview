@@ -63,14 +63,20 @@ const MagazineIssueTemplate = ({ data }) => {
           {data.strapiMagazineIssue.articles.map(document => (
             <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
-
-                <div className="mr-6 flex-grow">
-                  <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="text-base mb-2 md:text-3xl">{document.title}</h2>
-                  </Link>
-                  <h3 className="mb-4 text-sm">This is a placeholder subtitle. A preview of the article content goes here.</h3>
-                  <div className="text-sm md:text-base lg:text-sm">
-                    <p className='mb-2'>
+                  <div className="mr-6 flex-grow">
+                    {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                      <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
+                    </Link> */}
+                    {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                      <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                        <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
+                      </Link>
+                    :
+                      <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                        <h2 className="font-medium mb-2 text-2xl">{document.title}</h2>
+                      </Link>
+                    }
+                    <p className='my-2'>
                       {handleDate(document.published_at)}
                       {/* {data.allStrapiAuthors.edges.map(author => (
                       <p className='mb-2 text-base' key={author.node.id}>

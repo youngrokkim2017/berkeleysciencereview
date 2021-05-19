@@ -126,8 +126,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // ARTICLE CONTENT TYPE
   // const ArticleTemplate = require.resolve("./src/templates/article.js");
   articles.forEach(({ node }) => {
+    let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
+    if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
+
     createPage({
-      path: `/article/${node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`,
+      // path: `/article/${node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`,
+      path: `/article/${pathURL}`,
       component: path.resolve(`src/templates/article.js`),
       context: {
         id: node.id,
@@ -161,8 +165,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // MAGAZINE ISSUE CONTENT TYPE
   issues.forEach(({ node }) => {
+    let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
+    if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
+
     createPage({
-      path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      // path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      path: `/magazine/${pathURL}`,
       component: path.resolve(`src/templates/issue.js`),
       context: {
         id: node.id,

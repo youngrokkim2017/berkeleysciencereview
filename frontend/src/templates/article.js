@@ -188,7 +188,13 @@ class ArticleTemplate extends React.Component {
                   </span>
                 </p>
                 <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
-                <h3 className="mb-4 text-lg">This is a placeholder subtitle. A preview of the article content goes here.</h3>
+                {data.strapiArticle.subtitle ? 
+                  <h3 className="mb-4 text-lg">
+                    {data.strapiArticle.subtitle}
+                  </h3>
+                :
+                  ""
+                }
                 <div className="text-base" id="metadata">
                   {/* {data.strapiArticle.author ?
                     <p className='mb-1 text-base'>
@@ -389,6 +395,97 @@ class ArticleTemplate extends React.Component {
 
 
 export default ArticleTemplate
+
+// export const query = graphql`
+//   query ArticleTemplate($id: String!, $categoryList: [String!]) {
+//     strapiArticle(id: {eq: $id }) {
+//       id
+//       title
+//       subtitle
+//       published_at
+//       content
+//       image {
+//         publicURL
+//       }
+//       authors {
+//         id
+//         name
+//       }
+//       categories {
+//         id
+//         title
+//       }
+//   }
+//   recent: allStrapiArticle(
+//     sort: {order: DESC, fields: published_at}
+//     limit: 4
+//   ) {
+//     edges {
+//       node {
+//         id
+//         title
+//         authors {
+//           id
+//           name
+//         }
+//         categories {
+//           id
+//           title
+//         }
+//         image {
+//           publicURL
+//         }
+//         published_at
+//       }
+//     }
+//   }
+//   related: allStrapiArticle(
+//     sort: {order: DESC, fields: published_at}
+//     limit: 4
+//     filter: {
+//       categories: {
+//         elemMatch: {
+//           id: {
+//             in: $categoryList
+//           }
+//         }
+//       }
+//     }
+//   ) {
+//     edges {
+//       node {
+//         id
+//         title
+//         authors {
+//           id
+//           name
+//         }
+//         categories {
+//           id
+//           title
+//         }
+//         image {
+//           publicURL
+//         }
+//         published_at
+//       }
+//     }
+//   }
+//   allStrapiMagazineIssue(
+//     sort: {order: DESC, fields: issue}
+//   ) {
+//         edges {
+//           node {
+//             id
+//             title
+//             pdf {
+//               publicURL
+//             }
+//           }
+//         }
+//       }
+// }
+// `
 
 export const query = graphql`
   query ArticleTemplate($id: String!, $categoryList: [String!]) {
