@@ -201,7 +201,7 @@ const IndexPage = ({ data }) => {
                 >
                   <Page pageNumber={1} />
                 </Document> */}
-                  {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
+                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
                 </Link>
                 {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
                   <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
@@ -367,12 +367,13 @@ export const splashQuery = graphql`
           id
           issue
           title
+          thumbnail {
+            publicURL
+          }
         }
       }
     }
   }
 `
 
-          // thumbnail {
-          //   publicURL
-          // }
+          

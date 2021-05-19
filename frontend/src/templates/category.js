@@ -51,164 +51,47 @@ const CategoryTemplate = ({ data }) => {
           <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                  <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
-                </Link> */}
                 {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
                   <div>
                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
                     </Link>
                   </div>
-                :
+                  :
                   <div>
                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
                     </Link>
                   </div>
                 }
-                {document.subtitle ? 
-                  <h3 className="font-normal mb-4 text-sm">
+                {document.subtitle ?
+                  <h3 className="mb-4 text-sm">
                     {document.subtitle}
                   </h3>
-                :
+                  :
                   ""
                 }
-                <div className="text-sm md:text-base lg:text-sm lg:leading-none">
-                  {data.allStrapiAuthors.edges.map(author => (
-                    // <p className='mb-2' key={author.node.id}>
-                    //   {author.node.id.split("_")[1] === document.author ?
-                    //     <><Link
-                    //       className="font-medium"
-                    //       to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                    //     >
-                    //       {author.node.name}
-                    //     </Link>
-                    //     </>
-                    //     :
-                    //     ""
-                    //   }
-                    // </p>
-                    <p className='mb-2' key={author.node.id}>
-                      
-                      {document.authors.map(currAuthor => (
+                <div className="text-sm md:text-base lg:text-sm">
+                  <p className='mb-2'>
+                    {data.allStrapiAuthors.edges.map(author => (
+                      document.authors.map(currAuthor => (
                         <>
-                        {currAuthor === author.node.id.split("_")[1] ?
-                          <>
-                            <Link
-                              className="font-medium"
-                              to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                            >
-                              {author.node.name}
-                              {/* <span> | </span> */}
-                              <span>  </span>
-                             </Link>
-                          </>
-                        :
-                          ""
-                        }
-                        {/* {document.authors.length === 1 ? 
-                          <p className='text-sm'>
-                              <span key={document.authors[0].id}>
-                                {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
-                                  <>
-                                    By <Link
-                                    to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                    className="font-medium underline"
-                                    >
-                                      {document.authors[0].name}
-                                    </Link>
-                                  </>
-                                :
-                                  ""
-                                }
-                              </span>
-                          </p>
-                        : document.authors.length === 2 ? 
-                          <p className='text-sm'>
+                          {currAuthor === author.node.id.split("_")[1] ?
                             <>
-                              <span key={document.authors[0].id}>
-                                {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
-                                  <>
-                                    By <Link
-                                    to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                    className="font-medium underline"
-                                    >
-                                      {document.authors[0].name}
-                                    </Link>
-                                  </>
-                                :
-                                  ""
-                                }
-                              </span>
-                              <span> and </span>
-                              <span key={document.authors[document.authors.length - 1].id}>
-                                {currAuthor === document.authors[document.authors.length - 1].id && currAuthor === author.node.id.split("_")[1] ?
-                                  <Link
-                                  to={`/author/${document.authors[document.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  className="font-medium underline"
-                                  >
-                                    {document.authors[document.authors.length - 1].name}
-                                  </Link>
-                                :
-                                  ""
-                                }
-                              </span>
+                              <Link
+                                className="font-medium"
+                                to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              >
+                                {author.node.name}
+                              </Link>
                             </>
-                          </p>
-                        :
-                          <p className='text-sm'>
-                            <>
-                              <span key={document.authors[0]}>
-                                {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
-                                  <>
-                                    By <Link
-                                    to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                    className="font-medium underline"
-                                    >
-                                      {document.authors[0].name}
-                                    </Link>
-                                  </>
-                                :
-                                  ""
-                                }
-                              </span>
-                              {document.authors.slice(1, -1).map(midAuthor => (
-                                <span key={midAuthor.id}>
-                                  {currAuthor === midAuthor.id && currAuthor === author.node.id.split("_")[1] ?
-                                    <>
-                                      , <Link
-                                      to={`/author/${midAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                      className="font-medium underline"
-                                      >
-                                        {midAuthor.name}
-                                      </Link>
-                                    </>
-                                  :
-                                    ""
-                                  }
-                                </span>
-                              ))}
-                              <span>, and </span>
-                              <span key={document.authors[document.authors.length - 1].id}>
-                                {currAuthor === document.authors[document.authors.length - 1].id && currAuthor === author.node.id.split("_")[1] ?
-                                  <Link
-                                  to={`/author/${document.authors[document.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  className="font-medium underline"
-                                  >
-                                    {document.authors[document.authors.length - 1].name}
-                                  </Link>
-                                :
-                                  ""
-                                }
-                              </span>
-                            </>
-                          </p>
-                        } */}
+                            :
+                            ""
+                          }
                         </>
-                      ))}
-                    </p>
-                  ))}
+                      ))
+                    ))}
+                  </p>
                   <p>
                     {handleDate(document.published_at)}
                   </p>
