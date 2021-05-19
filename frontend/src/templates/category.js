@@ -51,63 +51,47 @@ const CategoryTemplate = ({ data }) => {
           <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                {/* <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                  <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
-                </Link> */}
                 {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
                   <div>
                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
                     </Link>
                   </div>
-                :
+                  :
                   <div>
                     <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                      <h2 className="font-normal text-base mb-2 md:text-xl">{document.title}</h2>
+                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
                     </Link>
                   </div>
                 }
-                {document.subtitle ? 
-                  <h3 className="font-normal mb-4 text-sm">
+                {document.subtitle ?
+                  <h3 className="mb-4 text-sm">
                     {document.subtitle}
                   </h3>
-                :
+                  :
                   ""
                 }
-                <div className="text-sm md:text-base lg:text-sm lg:leading-none">
-                  {data.allStrapiAuthors.edges.map(author => (
-                    // <p className='mb-2' key={author.node.id}>
-                    //   {author.node.id.split("_")[1] === document.author ?
-                    //     <><Link
-                    //       className="font-medium"
-                    //       to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                    //     >
-                    //       {author.node.name}
-                    //     </Link>
-                    //     </>
-                    //     :
-                    //     ""
-                    //   }
-                    // </p>
-                    <p className='mb-2' key={author.node.id}>
-                      {document.authors.map(currAuthor => (
+                <div className="text-sm md:text-base lg:text-sm">
+                  <p className='mb-2'>
+                    {data.allStrapiAuthors.edges.map(author => (
+                      document.authors.map(currAuthor => (
                         <>
-                        {currAuthor === author.node.id.split("_")[1] ?
-                          <>
-                            <Link
-                              className="font-medium"
-                              to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                            >
-                              {author.node.name}
-                             </Link>
-                          </>
-                        :
-                          ""
-                        }
+                          {currAuthor === author.node.id.split("_")[1] ?
+                            <>
+                              <Link
+                                className="font-medium"
+                                to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              >
+                                {author.node.name}
+                              </Link>
+                            </>
+                            :
+                            ""
+                          }
                         </>
-                      ))}
-                    </p>
-                  ))}
+                      ))
+                    ))}
+                  </p>
                   <p>
                     {handleDate(document.published_at)}
                   </p>

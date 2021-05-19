@@ -14,44 +14,34 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start space-x-4">
                 <div className="flex-grow">
-                    {/* <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
-                    </Link> */}
                     {article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-").slice(0, -1)}`}>
-                            <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
-                        </Link>
-                      </div>
-                    :
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                            <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>                        
-                        </Link>
-                      </div>
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-").slice(0, -1)}`}>
+                                <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
+                            </Link>
+                        </div>
+                        :
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
+                                <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
+                            </Link>
+                        </div>
                     }
-                    {article.subtitle ? 
+                    {article.subtitle ?
                         <h3 className="mb-4 text-sm">
                             {article.subtitle}
                         </h3>
-                    :
+                        :
                         ""
                     }
                     <p className='mb-1 text-sm'>
-                        {/* {article.author ?
-                            <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
-                                {article.author.name}
-                            </Link>
-                            :
-                            ""
-                        } */}
                         {article.authors ?
                             <>
                                 {article.authors.map(author => (
                                     <span key={author.id}>
                                         <Link
                                             // key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                                             className="font-medium"
                                         >
                                             {author.name}
@@ -72,44 +62,34 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start space-x-4">
                 <div className="flex-grow">
-                    {/* <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                        <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
-                    </Link> */}
                     {article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-").slice(0, -1)}`}>
-                            <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
-                        </Link>
-                      </div>
-                    :
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
-                            <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
-                        </Link>
-                      </div>
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-").slice(0, -1)}`}>
+                                <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
+                            </Link>
+                        </div>
+                        :
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((category) => category.toLowerCase()).join("-")}`}>
+                                <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
+                            </Link>
+                        </div>
                     }
-                    {article.subtitle ? 
+                    {article.subtitle ?
                         <h3 className="mb-4 text-sm">
                             {article.subtitle}
                         </h3>
-                    :
+                        :
                         ""
                     }
                     <p className='mb-1 text-sm'>
-                        {/* {article.author ?
-                            <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
-                                {article.author.name}
-                            </Link>
-                            :
-                            ""
-                        } */}
                         {article.authors ?
                             <>
                                 {article.authors.map(author => (
                                     <span key={author.id}>
-                                        <Link 
+                                        <Link
                                             // key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
+                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                                             className="font-medium"
                                         >
                                             {author.name}
@@ -129,61 +109,50 @@ const Preview = ({ article, format }) => {
         return (
             <div className="flex items-start">
                 <div className="mr-6 flex-grow">
-                    {/* <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                        <h2 className="text-base mb-2 md:text-3xl">{article.title}</h2>
-                    </Link> */}
                     {article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                            <h2 className="text-base mb-2 md:text-3xl">{article.title}</h2>
-                        </Link>
-                      </div>
-                    :
-                      <div>
-                        <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                            <h2 className="text-base mb-2 md:text-3xl">{article.title}</h2>
-                        </Link>
-                      </div>
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                                <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
+                            </Link>
+                        </div>
+                        :
+                        <div>
+                            <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
+                                <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
+                            </Link>
+                        </div>
                     }
-                    {article.subtitle ? 
+                    {article.subtitle ?
                         <h3 className="mb-4 text-sm">
                             {article.subtitle}
                         </h3>
-                    :
+                        :
                         ""
                     }
                     <div className="text-sm md:text-base lg:text-sm">
                         <p className='mb-2'>
-                            {/* {article.author ?
-                                <Link to={`/author/${article.author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="font-medium">
-                                    {article.author.name}
-                                </Link>
+                            {article.authors ?
+                                <>
+                                    {article.authors.map(author => (
+                                        <span key={author.id}>
+                                            <Link
+                                                key={author.id}
+                                                to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                                className="font-medium"
+                                            >
+                                                {author.name}
+                                            </Link>
+                                        </span>
+                                    ))}
+                                </>
                                 :
                                 ""
-                            } */}
-                            {article.authors ?
-                            <>
-                                {article.authors.map(author => (
-                                    <span key={author.id}>
-                                        <Link 
-                                            key={author.id}
-                                            to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`} 
-                                            className="font-medium"
-                                        >
-                                            {author.name}
-                                        </Link>
-                                    </span>
-                                ))}
-                            </>
-                            :
-                            ""
-                        }
+                            }
                         </p>
                         <p>
                             {handleDate(article.published_at)}
                         </p>
                     </div>
-
                 </div>
                 {article.image
                     ?
