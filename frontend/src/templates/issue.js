@@ -94,6 +94,7 @@ const MagazineIssueTemplate = ({ data }) => {
                       //   }
                       // </p>
                       <p className='mb-2' key={author.node.id}>
+                        
                         {document.authors.map(currAuthor => (
                           <>
                           {currAuthor === author.node.id.split("_")[1] ?
@@ -103,12 +104,114 @@ const MagazineIssueTemplate = ({ data }) => {
                                 to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
                               >
                                 {author.node.name}
+                                {/* <span> | </span> */}
+                                <span>  </span>
                                </Link>
                             </>
                           :
                             ""
                           }
                           </>
+                          // <>
+                          // {document.authors.length === 1 ? 
+                          //   <p className='text-sm'>
+                          //       <span key={document.authors[0].id}>
+                          //         {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
+                          //           <>
+                          //             By <Link
+                          //             to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //             className="font-medium underline"
+                          //             >
+                          //               {document.authors[0].name}
+                          //             </Link>
+                          //           </>
+                          //         :
+                          //           ""
+                          //         }
+                          //       </span>
+                          //   </p>
+                          // : document.authors.length === 2 ? 
+                          //   <p className='text-sm'>
+                          //     <>
+                          //       <span key={document.authors[0].id}>
+                          //         {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
+                          //           <>
+                          //             By <Link
+                          //             to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //             className="font-medium underline"
+                          //             >
+                          //               {document.authors[0].name}
+                          //             </Link>
+                          //           </>
+                          //         :
+                          //           ""
+                          //         }
+                          //       </span>
+                          //       <span> and </span>
+                          //       <span key={document.authors[document.authors.length - 1].id}>
+                          //         {currAuthor === document.authors[document.authors.length - 1].id && currAuthor === author.node.id.split("_")[1] ?
+                          //           <Link
+                          //           to={`/author/${document.authors[document.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //           className="font-medium underline"
+                          //           >
+                          //             {document.authors[document.authors.length - 1].name}
+                          //           </Link>
+                          //         :
+                          //           ""
+                          //         }
+                          //       </span>
+                          //     </>
+                          //   </p>
+                          // :
+                          //   <p className='text-sm'>
+                          //     <>
+                          //       <span key={document.authors[0]}>
+                          //         {currAuthor === document.authors[0].id && currAuthor === author.node.id.split("_")[1] ?
+                          //           <>
+                          //             By <Link
+                          //             to={`/author/${document.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //             className="font-medium underline"
+                          //             >
+                          //               {document.authors[0].name}
+                          //             </Link>
+                          //           </>
+                          //         :
+                          //           ""
+                          //         }
+                          //       </span>
+                          //       {document.authors.slice(1, -1).map(midAuthor => (
+                          //         <span key={midAuthor.id}>
+                          //           {currAuthor === midAuthor.id && currAuthor === author.node.id.split("_")[1] ?
+                          //             <>
+                          //               , <Link
+                          //               to={`/author/${midAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //               className="font-medium underline"
+                          //               >
+                          //                 {midAuthor.name}
+                          //               </Link>
+                          //             </>
+                          //           :
+                          //             ""
+                          //           }
+                          //         </span>
+                          //       ))}
+                          //       <span>, and </span>
+                          //       <span key={document.authors[document.authors.length - 1].id}>
+                          //         {currAuthor === document.authors[document.authors.length - 1].id && currAuthor === author.node.id.split("_")[1] ?
+                          //           <Link
+                          //           to={`/author/${document.authors[document.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                          //           className="font-medium underline"
+                          //           >
+                          //             {document.authors[document.authors.length - 1].name}
+                          //           </Link>
+                          //         :
+                          //           ""
+                          //         }
+                          //       </span>
+                          //     </>
+                          //   </p>
+                          // }
+                          // </>
                         ))}
                       </p>
                     ))}
