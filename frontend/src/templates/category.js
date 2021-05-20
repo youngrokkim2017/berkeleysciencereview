@@ -42,40 +42,6 @@ const CategoryTemplate = ({ data }) => {
     setHasMore(isMore)
   }, [list]) //eslint-disable-line
 
-  // let authorIDList = data.allStrapiAuthors.edges.map(author => (
-  //   [author.node.id.split("_")[1], author.node.name]
-  // ));
-
-  // function filterAuthors(authors, check) {
-  //   let results = [];
-  //   authors.map(currAuthor => (
-  //     check.map(checkAuthor => {
-  //       if (currAuthor === checkAuthor[0]) {
-  //         results.push([checkAuthor[0],checkAuthor[1]])
-  //       }
-  //     })
-  //   ))
-  //   return results;
-  // }
-
-  // let authorList = list.map(document => (
-  //   filterAuthors(document.authors, authorIDList)
-  // ))
-
-  // function getArticleAuthor(authorData, checkList) {
-  //   let results = []
-  //   authorData.map(document => (
-  //     document.authors.map(currAuthor => (
-  //       filterAuthors(document.authors, checkList).map(checkAuthor => {
-  //         if (currAuthor === checkAuthor[0]) {
-  //           results.push(checkAuthor[1])
-  //         }
-  //       })
-  //     ))
-  //   ))
-  //   return results;
-  // }
-
   return (
     <Layout>
       <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">{data.strapiCategory.title}</h2>
@@ -107,27 +73,6 @@ const CategoryTemplate = ({ data }) => {
                 }
                 <div className="text-sm md:text-base lg:text-sm">
                   <p className='mb-2'>
-                    {/* {getArticleAuthor(list, authorIDList)} */}
-
-                    {/* {data.allStrapiAuthors.edges.map(author => (
-                      document.authors.map(currAuthor => (
-                        <>
-                          {currAuthor === author.node.id.split("_")[1] ?
-                            <>
-                              <Link
-                                className="font-medium"
-                                to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                              >
-                                {author.node.name}
-                              </Link>
-                            </>
-                            :
-                            ""
-                          }
-                        </>
-                      ))
-                    ))} */}
-                    
                     {/* {document.authors.map(currAuthor => (
                       data.allStrapiAuthors.edges.map(author => (
                         <div>
@@ -146,28 +91,6 @@ const CategoryTemplate = ({ data }) => {
                         </div>
                       ))
                     ))} */}
-
-                    {/* {document.authors.map(currAuthor => (
-                      <>
-                      {filterAuthors(document.authors, authorIDList).map(checkAuthor => (
-                        <>
-                          {currAuthor === checkAuthor[0] ?
-                            <>
-                              <Link
-                                className="font-medium"
-                                to={`/author/${checkAuthor[1].split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                              >
-                                {checkAuthor[1]}
-                              </Link>
-                            </>
-                            :
-                            ""
-                          }
-                        </>
-                      ))}
-                      </>
-                    ))} */}
-
                     {document.authors.length === 1 ?
                       <>
                         {document.authors.map(currAuthor => (
