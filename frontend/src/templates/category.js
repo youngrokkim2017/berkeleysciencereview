@@ -226,7 +226,7 @@ const CategoryTemplate = ({ data }) => {
       {hasMore ? (
         <button onClick={handleLoadMore} className="sans-serif block mx-auto px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
       ) : (
-        <p>No more results</p>
+        <p className="sans-serif">No more results</p>
       )}
     </Layout>
   )
