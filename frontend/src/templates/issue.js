@@ -74,7 +74,7 @@ const MagazineIssueTemplate = ({ data }) => {
                   }
                   <div className="text-sm md:text-base lg:text-sm">
                     <p className='mb-2'>
-                      {data.allStrapiAuthors.edges.map(author => (
+                      {/* {data.allStrapiAuthors.edges.map(author => (
                         document.authors.map(currAuthor => (
                           <>
                             {currAuthor === author.node.id.split("_")[1] ?
@@ -91,7 +91,121 @@ const MagazineIssueTemplate = ({ data }) => {
                             }
                           </>
                         ))
-                      ))}
+                      ))} */}
+                      {document.authors.length === 1 ?
+                        <>
+                          {document.authors.map(currAuthor => (
+                            data.allStrapiAuthors.edges.map(author => (
+                              <div>
+                                {currAuthor === author.node.id.split("_")[1] ?
+                                  <>
+                                    By <Link
+                                      className="font-medium"
+                                      to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    >
+                                      {author.node.name}
+                                    </Link>
+                                  </>
+                                  :
+                                  ""
+                                }
+                              </div>
+                            ))
+                          ))}
+                        </>
+                      : document.authors.length === 2 ?
+                        <>
+                          {data.allStrapiAuthors.edges.map(author => (
+                            <>
+                              {document.authors[0] === author.node.id.split("_")[1] ?
+                                <>
+                                  By <Link
+                                    className="font-medium"
+                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  >
+                                    {author.node.name}
+                                  </Link>
+                                </>
+                                :
+                                ""
+                              }
+                            </>
+                          ))}
+                          <span> and </span>
+                          {data.allStrapiAuthors.edges.map(author => (
+                            <>
+                              {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
+                                <>
+                                  <Link
+                                    className="font-medium"
+                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  >
+                                    {author.node.name}
+                                  </Link>
+                                </>
+                                :
+                                ""
+                              }
+                            </>
+                          ))}
+                        </>
+                      :
+                        <>
+                          {data.allStrapiAuthors.edges.map(author => (
+                            <>
+                              {document.authors[0] === author.node.id.split("_")[1] ?
+                                <>
+                                  By <Link
+                                    className="font-medium"
+                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  >
+                                    {author.node.name}
+                                  </Link>
+                                </>
+                                :
+                                ""
+                              }
+                            </>
+                          ))}
+                          {document.authors.slice(1, -1).map(currAuthor => (
+                            <>
+                            {data.allStrapiAuthors.edges.map(author => (
+                              <>
+                                {currAuthor === author.node.id.split("_")[1] ?
+                                  <>
+                                    , <Link
+                                      className="font-medium"
+                                      to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    >
+                                      {author.node.name}
+                                    </Link>
+                                  </>
+                                  :
+                                  ""
+                                }
+                              </>
+                            ))}
+                            </>
+                          ))}
+                          <span>, and </span>
+                          {data.allStrapiAuthors.edges.map(author => (
+                            <>
+                              {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
+                                <>
+                                  <Link
+                                    className="font-medium"
+                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  >
+                                    {author.node.name}
+                                  </Link>
+                                </>
+                                :
+                                ""
+                              }
+                            </>
+                          ))}
+                        </>
+                      }
                     </p>
                     <p>
                       {handleDate(document.published_at)}
