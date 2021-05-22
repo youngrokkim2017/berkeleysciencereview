@@ -44,6 +44,14 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        designers: allStrapiDesigner {
+          edges {
+            node {
+              id
+              name
+            }
+          }
+        }
         issues: allStrapiMagazineIssue {
           edges {
             node {
@@ -113,6 +121,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const articles = result.data.articles.edges;
   const categories = result.data.categories.edges;
   const authors = result.data.authors.edges;
+  const designers = result.data.designers.edges;
   const issues = result.data.issues.edges;
 
   // single types
@@ -157,6 +166,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/author/${node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/author.js`),
+      context: {
+        id: node.id,
+      },
+    })
+  })
+
+  // DESIGNER CONTENT TYPE
+  designers.forEach(({ node }) => {
+    createPage({
+      path: `/designer/${node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      component: path.resolve(`src/templates/designer.js`),
       context: {
         id: node.id,
       },
