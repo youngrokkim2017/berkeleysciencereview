@@ -148,7 +148,7 @@ const CategoryTemplate = ({ data }) => {
                           </>
                         ))}
                       </>
-                    :
+                    : document.authors.length > 2 ?
                       <>
                         {data.allStrapiAuthors.edges.map(author => (
                           <>
@@ -204,6 +204,8 @@ const CategoryTemplate = ({ data }) => {
                           </>
                         ))}
                       </>
+                      :
+                      ""
                     }
                   </p>
                   <p>

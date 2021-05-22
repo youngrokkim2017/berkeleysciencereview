@@ -67,7 +67,7 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                           </span>
                         </>
 
-                        :
+                        :document.node.authors.length > 2 ?
 
                         <>
                           <span key={document.node.authors[0]}>
@@ -98,7 +98,8 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
                             </Link>
                           </span>
                         </>
-
+                        :
+                        ""
                     }
                   </p>
                   <p>
