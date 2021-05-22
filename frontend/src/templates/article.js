@@ -112,7 +112,7 @@ class ArticleTemplate extends React.Component {
                       </span>
                     </>
                   </p>
-                  :
+                  : data.strapiArticle.authors.length > 2 ?
                   <p className='text-sm'>
                     <>
                       <span key={firstAuthor.id}>
@@ -144,6 +144,8 @@ class ArticleTemplate extends React.Component {
                       </span>
                     </>
                   </p>
+                  :
+                  ""
               }
               {/* {data.strapiArticle.authors
                 ?

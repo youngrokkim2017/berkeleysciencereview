@@ -77,7 +77,7 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
-                                    :
+                                    : article.authors.length > 2 ?
                                     <>
                                       <span key={article.authors[0]}>
                                         By <Link
@@ -107,6 +107,8 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
+                                    :
+                                    ""
                                 }
                             </>
                             :
@@ -185,7 +187,7 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
-                                    :
+                                    : article.authors.length > 2 ?
                                     <>
                                       <span key={article.authors[0]}>
                                         By <Link
@@ -215,6 +217,8 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
+                                    :
+                                    ""
                                 }
                             </>
                             :
@@ -293,7 +297,7 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
-                                    :
+                                    : article.authors.length > 2 ?
                                     <>
                                       <span key={article.authors[0]}>
                                         By <Link
@@ -323,6 +327,8 @@ const Preview = ({ article, format }) => {
                                         </Link>
                                       </span>
                                     </>
+                                    :
+                                    ""
                                 }
                                 </>
                                 :

@@ -149,7 +149,7 @@ const MagazineIssueTemplate = ({ data }) => {
                             </>
                           ))}
                         </>
-                      :
+                      : document.authors.length > 2 ?
                         <>
                           {data.allStrapiAuthors.edges.map(author => (
                             <>
@@ -205,6 +205,8 @@ const MagazineIssueTemplate = ({ data }) => {
                             </>
                           ))}
                         </>
+                        :
+                        ""
                       }
                     </p>
                     <p>
