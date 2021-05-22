@@ -259,6 +259,20 @@ class ArticleTemplate extends React.Component {
                     }
                   </span>
                 </p>
+                <p className='my-0 tracking-tight text-xl sans-serif items-center'>
+                  {data.strapiArticle.magazine ?
+                    <>
+                      <Link to={`/magazine/${data.strapiArticle.magazine.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="text-black no-underline">
+                        {data.strapiArticle.magazine.title}
+                      </Link>
+                      <span className="mx-1">
+                        Issue {data.strapiArticle.magazine.issue}
+                      </span>
+                    </>
+                  :
+                    ""
+                  }
+                </p>
                 <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
                 {data.strapiArticle.subtitle ?
                   <h3 className="mb-4 text-lg">
@@ -576,6 +590,11 @@ export const query = graphql`
       categories {
             id
         title
+      }
+      magazine {
+        id
+        title
+        issue
       }
   }
   recent: allStrapiArticle(
