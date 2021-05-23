@@ -82,10 +82,6 @@ const SearchPage = ({ location }) => {
   const currentSearchResults = query.length > 2 ? currentResults.map(result => result.item) : data.allStrapiArticle.edges.slice(0, 5);
 
   function handleOnSearch(e) {
-    // function handleOnSearch({ currentTarget = {} }) {
-    // const { value } = currentTarget;
-    // setQuery(value);
-
     e.preventDefault();
     setQuery(searchTerm);
   }
@@ -94,10 +90,6 @@ const SearchPage = ({ location }) => {
     const { value } = currentTarget;
     setSearchTerm(value);
   }
-
-  // // function handleOnChange(e) {
-  // //   setSearchTerm(e.target.value);
-  // // }
 
   ///////////////////////////// FUSE SEARCH ///////////////////////////////////
 

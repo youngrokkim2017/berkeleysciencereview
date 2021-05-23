@@ -135,12 +135,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // ARTICLE CONTENT TYPE
   // const ArticleTemplate = require.resolve("./src/templates/article.js");
   articles.forEach(({ node }) => {
-    let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
-    if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
+    // let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
+    // if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
 
     createPage({
-      // path: `/article/${node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`,
-      path: `/article/${pathURL}`,
+      path: `/article/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
+      // path: `/article/${pathURL}`,
       component: path.resolve(`src/templates/article.js`),
       context: {
         id: node.id,
@@ -153,7 +153,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // const CategoryTemplate = require.resolve("./src/templates/category.js");
   categories.forEach(({ node }) => {
     createPage({
-      path: `/category/${node.title.split(" ").map((cat) => cat.toLowerCase()).join("-")}`,
+      path: `/category/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((cat) => cat.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/category.js`),
       context: {
         id: node.id,
@@ -164,7 +164,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // AUTHOR CONTENT TYPE
   authors.forEach(({ node }) => {
     createPage({
-      path: `/author/${node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      path: `/author/${node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/author.js`),
       context: {
         id: node.id,
@@ -175,7 +175,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // DESIGNER CONTENT TYPE
   designers.forEach(({ node }) => {
     createPage({
-      path: `/designer/${node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`,
+      path: `/designer/${node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/designer.js`),
       context: {
         id: node.id,
@@ -185,12 +185,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // MAGAZINE ISSUE CONTENT TYPE
   issues.forEach(({ node }) => {
-    let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
-    if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
+    // let pathURL = node.title.split(/[\s!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-");
+    // if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
 
     createPage({
-      // path: `/magazine/${node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`,
-      path: `/magazine/${pathURL}`,
+      path: `/magazine/${node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
+      // path: `/magazine/${pathURL}`,
       component: path.resolve(`src/templates/issue.js`),
       context: {
         id: node.id,

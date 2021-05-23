@@ -77,15 +77,16 @@
 //           <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
 //             <div className="flex items-start">
 //               <div className="mr-6 flex-grow">
-//                 {article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-//                   <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-//                     <h2 className="text-base mb-2 text-2xl">{article.title}</h2>
+//                   <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+//                     <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
 //                   </Link>
-//                   :
-//                   <Link to={`/article/${article.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-//                     <h2 className="text-base mb-2 text-2xl">{article.title}</h2>
-//                   </Link>
-//                 }
+// {article.subtitle ?
+//     <h3 className="mb-4 text-sm">
+//       {article.subtitle}
+//     </h3>
+//     :
+//     ""
+//   }
 //                 <p className="text-sm md:text-base lg:text-sm">
 //                   {handleDate(article.published_at)}
 //                 </p>
@@ -104,7 +105,7 @@
 //       {hasMore ? (
 //         <button onClick={handleLoadMore} className="sans-serif block mx-auto px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
 //       ) : (
-//         <p className="sans-serif">No more results</p>
+//         ""
 //       )}
 //     </Layout>
 

@@ -60,7 +60,7 @@ class ArticleTemplate extends React.Component {
                   <p className='text-sm'>
                     <span key={firstAuthor.id}>
                       By <Link
-                        to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                        to={`/author/${firstAuthor.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                         className="font-medium"
                       >
                         {firstAuthor.name}
@@ -72,7 +72,7 @@ class ArticleTemplate extends React.Component {
                       <>
                         <span key={firstAuthor.id}>
                           By <Link
-                            to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                            to={`/author/${firstAuthor.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                             className="font-medium"
                           >
                             {firstAuthor.name}
@@ -81,7 +81,7 @@ class ArticleTemplate extends React.Component {
                         <span> and </span>
                         <span key={lastAuthor.id}>
                           <Link
-                            to={`/author/${lastAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                            to={`/author/${lastAuthor.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                             className="font-medium"
                           >
                             {lastAuthor.name}
@@ -94,7 +94,7 @@ class ArticleTemplate extends React.Component {
                         <>
                           <span key={firstAuthor.id}>
                             By <Link
-                              to={`/author/${firstAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              to={`/author/${firstAuthor.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                               className="font-medium"
                             >
                               {firstAuthor.name}
@@ -103,7 +103,7 @@ class ArticleTemplate extends React.Component {
                           {middleAuthors.map(author => (
                             <span key={author.id}>
                               , <Link
-                                to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                to={`/author/${author.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                 className="font-medium"
                               >
                                 {author.name}
@@ -113,7 +113,7 @@ class ArticleTemplate extends React.Component {
                           <span>, and </span>
                           <span key={lastAuthor.id}>
                             <Link
-                              to={`/author/${lastAuthor.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                              to={`/author/${lastAuthor.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                               className="font-medium"
                             >
                               {lastAuthor.name}
@@ -135,13 +135,13 @@ class ArticleTemplate extends React.Component {
               <div className="border-b border-black pb-8 mb-8">
                 {data.strapiArticle.categories.length !== 0 ?
                   <p className='my-0 tracking-tight text-xl sans-serif items-center'>
-                    <Link to={`/category/${data.strapiArticle.categories[0].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
+                    <Link to={`/category/${data.strapiArticle.categories[0].title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
                       {data.strapiArticle.categories[0].title}
                     </Link>
                     {data.strapiArticle.categories[1] ?
                       <>
                         <span className="mx-1">and</span>
-                        <Link to={`/category/${data.strapiArticle.categories[1].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
+                        <Link to={`/category/${data.strapiArticle.categories[1].title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
                           {data.strapiArticle.categories[1].title}
                         </Link>
                       </>
@@ -172,7 +172,7 @@ class ArticleTemplate extends React.Component {
                           {
                             <span key={data.strapiArticle.authors[0].id}>
                               By <Link
-                                to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                to={`/author/${data.strapiArticle.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                 className="font-medium"
                               >
                                 {data.strapiArticle.authors[0].name}
@@ -187,7 +187,7 @@ class ArticleTemplate extends React.Component {
                             {<>
                               <span key={data.strapiArticle.authors[0].id}>
                                 By <Link
-                                  to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  to={`/author/${data.strapiArticle.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                   className="font-medium"
                                 >
                                   {data.strapiArticle.authors[0].name}
@@ -196,7 +196,7 @@ class ArticleTemplate extends React.Component {
                               <span> and </span>
                               <span key={data.strapiArticle.authors[1].id}>
                                 <Link
-                                  to={`/author/${data.strapiArticle.authors[1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                  to={`/author/${data.strapiArticle.authors[1].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                   className="font-medium"
                                 >
                                   {data.strapiArticle.authors[1].name}
@@ -211,7 +211,7 @@ class ArticleTemplate extends React.Component {
                               {<>
                                 <span key={data.strapiArticle.authors[0].id}>
                                   By <Link
-                                    to={`/author/${data.strapiArticle.authors[0].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    to={`/author/${data.strapiArticle.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                     className="font-medium"
                                   >
                                     {data.strapiArticle.authors[0].name}
@@ -222,7 +222,7 @@ class ArticleTemplate extends React.Component {
                                     <span>, </span>
                                     <span key={author.id}>
                                       <Link
-                                        to={`/author/${author.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                        to={`/author/${author.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                         className="font-medium"
                                       >
                                         {author.name}
@@ -233,7 +233,7 @@ class ArticleTemplate extends React.Component {
                                 <span>, and </span>
                                 <span key={data.strapiArticle.authors[data.strapiArticle.authors.length - 1].id}>
                                   <Link
-                                    to={`/author/${data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                    to={`/author/${data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                     className="font-medium"
                                   >
                                     {data.strapiArticle.authors[data.strapiArticle.authors.length - 1].name}
@@ -269,7 +269,7 @@ class ArticleTemplate extends React.Component {
                   />
 
                   {data.strapiArticle.magazine ?
-                    <p className="italic">This article is part of the <Link to={`/magazine/${data.strapiArticle.magazine.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline">{data.strapiArticle.magazine.title}</Link> issue.</p>
+                    <p className="italic">This article is part of the <Link to={`/magazine/${data.strapiArticle.magazine.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="no-underline">{data.strapiArticle.magazine.title}</Link> issue.</p>
                     :
                     ""
                   }

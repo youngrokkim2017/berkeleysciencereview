@@ -69,61 +69,38 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                <>
-                  {document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                    <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} key={document.node.title}>
-                      <div className="text-center">
-                        {document.node.image
-                          ?
-                          <div className="">
-                            <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                          </div>
-                          :
-                          ""
-                        }
-                        <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                        <p>
-                          {document.node.authors.map(author => (
-                            <span
-                              key={author.id}
-                            >
-                              {author.name}
-                            </span>
-                          ))}
-                        </p>
-                        <p>
-                          {handleDate(document.node.published_at)}
-                        </p>
+                <Link to={`/article/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                  <div className="text-center">
+                    {document.node.image
+                      ?
+                      <div className="">
+                        <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
                       </div>
-                    </Link>
-                    :
-                    <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
-                      <div className="text-center">
-                        {document.node.image
-                          ?
-                          <div className="">
-                            <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                          </div>
-                          :
-                          ""
-                        }
-                        <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                        <p>
-                          {document.node.authors.map(author => (
-                            <span
-                              key={author.id}
-                            >
-                              {author.name}
-                            </span>
-                          ))}
-                        </p>
-                        <p>
-                          {handleDate(document.node.published_at)}
-                        </p>
-                      </div>
-                    </Link>
-                  }
-                </>
+                      :
+                      ""
+                    }
+                    <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                    {document.node.subtitle ?
+                      <h3 className="mb-4 text-sm">
+                        {document.subtitle}
+                      </h3>
+                      :
+                      ""
+                    }
+                    <p>
+                      {document.node.authors.map(author => (
+                        <span
+                          key={author.id}
+                        >
+                          {author.name}
+                        </span>
+                      ))}
+                    </p>
+                    <p>
+                      {handleDate(document.node.published_at)}
+                    </p>
+                  </div>
+                </Link>
               ))}
             </Slider>
           </div>
@@ -165,15 +142,9 @@ const IndexPage = ({ data }) => {
                 <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
                   Magazine
               </h1>
-                {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                  <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
+                  <Link to={`/magazine/${latestIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                     {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
                   </Link>
-                  :
-                  <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                    {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
-                  </Link>
-                }
               </div>
             </div>
           </div>

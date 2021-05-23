@@ -146,54 +146,45 @@ class Header extends React.Component {
                 </div>
               </div>
             </div>
-              {!this.state.menuOpen ?
-                <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16 border-b border-black">
-                  <div className="flex justify-between content-center" id="horizontal-header">
-                    <Link to={`/category/climate-change`}>
-                      Climate Change
+            {!this.state.menuOpen ?
+              <div className="hidden lg:block text-sm tracking-tight space-x-4 py-1 z-0 container px-16 border-b border-black">
+                <div className="flex justify-between content-center" id="horizontal-header">
+                  <Link to={`/category/climate-change`}>
+                    Climate Change
                     </Link>
-                    <Link to={`/category/life-science`}>
-                      Life Science
+                  <Link to={`/category/life-science`}>
+                    Life Science
                     </Link>
-                    <Link to={`/category/tech-&-ai`}>
-                      Technology & Artificial Intelligence
+                  <Link to={`/category/tech-&-ai`}>
+                    Technology & Artificial Intelligence
                     </Link>
-                    <Link to={`/category/the-universe`}>
-                      The Universe
+                  <Link to={`/category/the-universe`}>
+                    The Universe
                     </Link>
-                    <Link to={`/category/labscopes`}>
-                      Labscopes
+                  <Link to={`/category/labscopes`}>
+                    Labscopes
                     </Link>
-                    <Link to={`/category/people`}>
-                      People
+                  <Link to={`/category/people`}>
+                    People
                     </Link>
-                    <Link to={`/category/noteworthy-news`}>
-                      Noteworthy News
+                  <Link to={`/category/noteworthy-news`}>
+                    Noteworthy News
                     </Link>
-                    <Link to={`/category/the-scientist-life`}>
-                      The Scientist Life
+                  <Link to={`/category/the-scientist-life`}>
+                    The Scientist Life
                     </Link>
-                    {/* <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
-                      Current Magazine
-                    </Link> */}
-                    {currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                        <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} className="hidden xl:inline-block">
-                          Current Magazine
+                  <Link to={`/magazine/${currentIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
+                    Current Magazine
                         </Link>
-                      :
-                        <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
-                          Current Magazine
-                        </Link>
-                      }
-                    <Link to={`/category/archive`} className="hidden xl:inline-block">
-                      Archive
+                  <Link to={`/category/archive`} className="hidden xl:inline-block">
+                    Archive
                     </Link>
-                  </div>
                 </div>
-                :
-                ""
-              }
-            </div>
+              </div>
+              :
+              ""
+            }
+          </div>
           {this.state.menuOpen ?
             <>
               <span className="hidden lg:block h-10"></span>
@@ -272,21 +263,10 @@ class Header extends React.Component {
                       <h2 className="font-semibold mb-2">Magazine</h2>
                       <ul className="grid gap-1">
                         <li>
-                          {/* <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
+                          <Link to={`/magazine/${currentIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                             Current Magazine
-                          </Link> */}
-                          {currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                            <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                              Current Magazine
                             </Link>
-                          :
-                            <Link to={`/magazine/${currentIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                              Current Magazine
-                            </Link>
-                          }
                         </li>
-                        {/* <li>Latest Issue</li> */}
-                        {/* <li>Past Issues</li> */}
                         <li>
                           <Link to={`/magazine-issues`}>
                             Past Issues
