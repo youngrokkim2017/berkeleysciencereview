@@ -79,22 +79,83 @@ const IndexPage = ({ data }) => {
                       :
                       ""
                     }
-                    <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                    <h2 className="text-4xl mb-4">{document.node.title}</h2>
                     {document.node.subtitle ?
-                      <h3 className="mb-4 text-sm">
+                      <h3 className="mb-2 text-xl">
                         {document.subtitle}
                       </h3>
                       :
                       ""
                     }
                     <p>
-                      {document.node.authors.map(author => (
-                        <span
-                          key={author.id}
-                        >
-                          {author.name}
-                        </span>
-                      ))}
+                      {document.node.authors.length !== 0 ?
+                        <>
+                          {document.node.authors.length === 1 ?
+                            <span key={document.node.authors[0].id}>
+                              By <Link
+                                to={`/author/${document.node.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {document.node.authors[0].name}
+                              </Link>
+                            </span>
+                            : document.node.authors.length === 2 ?
+                              <>
+                                <span key={document.node.authors[0].id}>
+                                  By <Link
+                                    to={`/author/${document.node.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {document.node.authors[0].name}
+                                  </Link>
+                                </span>
+                                <span> and </span>
+                                <span key={document.node.authors[document.node.authors.length - 1].id}>
+                                  <Link
+                                    to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                    className="font-medium"
+                                  >
+                                    {document.node.authors[document.node.authors.length - 1].name}
+                                  </Link>
+                                </span>
+                              </>
+                              : document.node.authors.length > 2 ?
+                                <>
+                                  <span key={document.node.authors[0]}>
+                                    By <Link
+                                      to={`/author/${document.node.authors[0].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                      className="font-medium"
+                                    >
+                                      {document.node.authors[0].name}
+                                    </Link>
+                                  </span>
+                                  {document.node.authors.slice(1, -1).map(author => (
+                                    <span key={author.id}>
+                                      , <Link
+                                        to={`/author/${author.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                        className="font-medium"
+                                      >
+                                        {author.name}
+                                      </Link>
+                                    </span>
+                                  ))}
+                                  <span>, and </span>
+                                  <span key={document.node.authors[document.node.authors.length - 1].id}>
+                                    <Link
+                                      to={`/author/${document.node.authors[document.node.authors.length - 1].name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                      className="font-medium"
+                                    >
+                                      {document.node.authors[document.node.authors.length - 1].name}
+                                    </Link>
+                                  </span>
+                                </>
+                                :
+                                ""
+                          }
+                        </>
+                        :
+                        ""
+                      }
                     </p>
                     <p>
                       {handleDate(document.node.published_at)}
@@ -142,9 +203,9 @@ const IndexPage = ({ data }) => {
                 <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
                   Magazine
               </h1>
-                  <Link to={`/magazine/${latestIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                    {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
-                  </Link>
+                <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                  {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
+                </Link>
               </div>
             </div>
           </div>
