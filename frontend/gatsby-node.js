@@ -191,10 +191,9 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       path: `/magazine/${node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
-      // path: `/magazine/${pathURL}`,
       component: path.resolve(`src/templates/issue.js`),
       context: {
-        id: node.id,
+        id: node.id.split("_")[1],
       },
     })
   })

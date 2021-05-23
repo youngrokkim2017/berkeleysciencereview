@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Preview from "../components/preview"
 
 const CategoryTemplate = ({ data }) => {
-  function handleDate(e) {
-    var d = new Date(e);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return d.toLocaleDateString(undefined, options)
-  }
 
   const sortedByDate = data.allStrapiArticle.edges;
 
@@ -84,7 +79,6 @@ query CategoryTemplate($id: String!) {
           title
         }
         published_at
-        updatedAt
       }
     }
   }
