@@ -63,14 +63,15 @@ const MagazineIssueTemplate = ({ data }) => {
             <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
                 <div className="mr-6 flex-grow">
-                  {document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
-                    </Link>
+                  <Link to={`/article/${document.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                    <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
+                  </Link>
+                  {document.subtitle ?
+                    <h3 className="mb-4 text-sm">
+                      {document.subtitle}
+                    </h3>
                     :
-                    <Link to={`/article/${document.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`}>
-                      <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
-                    </Link>
+                    ""
                   }
                   <div className="text-sm md:text-base lg:text-sm">
                     <p className='mb-2'>
@@ -83,7 +84,7 @@ const MagazineIssueTemplate = ({ data }) => {
                                   <>
                                     By <Link
                                       className="font-medium"
-                                      to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                     >
                                       {author.node.name}
                                     </Link>
@@ -95,69 +96,15 @@ const MagazineIssueTemplate = ({ data }) => {
                             ))
                           ))}
                         </>
-                      : document.authors.length === 2 ?
-                        <>
-                          {data.allStrapiAuthors.edges.map(author => (
-                            <>
-                              {document.authors[0] === author.node.id.split("_")[1] ?
-                                <>
-                                  By <Link
-                                    className="font-medium"
-                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  >
-                                    {author.node.name}
-                                  </Link>
-                                </>
-                                :
-                                ""
-                              }
-                            </>
-                          ))}
-                          <span> and </span>
-                          {data.allStrapiAuthors.edges.map(author => (
-                            <>
-                              {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
-                                <>
-                                  <Link
-                                    className="font-medium"
-                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  >
-                                    {author.node.name}
-                                  </Link>
-                                </>
-                                :
-                                ""
-                              }
-                            </>
-                          ))}
-                        </>
-                      : document.authors.length > 2 ?
-                        <>
-                          {data.allStrapiAuthors.edges.map(author => (
-                            <>
-                              {document.authors[0] === author.node.id.split("_")[1] ?
-                                <>
-                                  By <Link
-                                    className="font-medium"
-                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  >
-                                    {author.node.name}
-                                  </Link>
-                                </>
-                                :
-                                ""
-                              }
-                            </>
-                          ))}
-                          {document.authors.slice(1, -1).map(currAuthor => (
-                            <>
+                        : document.authors.length === 2 ?
+                          <>
                             {data.allStrapiAuthors.edges.map(author => (
                               <>
-                                {currAuthor === author.node.id.split("_")[1] ?
+                                {document.authors[0] === author.node.id.split("_")[1] ?
                                   <>
-                                    , <Link
+                                    By <Link
                                       className="font-medium"
-                                      to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
+                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
                                     >
                                       {author.node.name}
                                     </Link>
@@ -167,28 +114,82 @@ const MagazineIssueTemplate = ({ data }) => {
                                 }
                               </>
                             ))}
-                            </>
-                          ))}
-                          <span>, and </span>
-                          {data.allStrapiAuthors.edges.map(author => (
+                            <span> and </span>
+                            {data.allStrapiAuthors.edges.map(author => (
+                              <>
+                                {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
+                                  <>
+                                    <Link
+                                      className="font-medium"
+                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                    >
+                                      {author.node.name}
+                                    </Link>
+                                  </>
+                                  :
+                                  ""
+                                }
+                              </>
+                            ))}
+                          </>
+                          : document.authors.length > 2 ?
                             <>
-                              {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
+                              {data.allStrapiAuthors.edges.map(author => (
                                 <>
-                                  <Link
-                                    className="font-medium"
-                                    to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                  >
-                                    {author.node.name}
-                                  </Link>
+                                  {document.authors[0] === author.node.id.split("_")[1] ?
+                                    <>
+                                      By <Link
+                                        className="font-medium"
+                                        to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                      >
+                                        {author.node.name}
+                                      </Link>
+                                    </>
+                                    :
+                                    ""
+                                  }
                                 </>
-                                :
-                                ""
-                              }
+                              ))}
+                              {document.authors.slice(1, -1).map(currAuthor => (
+                                <>
+                                  {data.allStrapiAuthors.edges.map(author => (
+                                    <>
+                                      {currAuthor === author.node.id.split("_")[1] ?
+                                        <>
+                                          , <Link
+                                            className="font-medium"
+                                            to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                          >
+                                            {author.node.name}
+                                          </Link>
+                                        </>
+                                        :
+                                        ""
+                                      }
+                                    </>
+                                  ))}
+                                </>
+                              ))}
+                              <span>, and </span>
+                              {data.allStrapiAuthors.edges.map(author => (
+                                <>
+                                  {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
+                                    <>
+                                      <Link
+                                        className="font-medium"
+                                        to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                      >
+                                        {author.node.name}
+                                      </Link>
+                                    </>
+                                    :
+                                    ""
+                                  }
+                                </>
+                              ))}
                             </>
-                          ))}
-                        </>
-                        :
-                        ""
+                            :
+                            ""
                       }
                     </p>
                     <p>
@@ -198,7 +199,7 @@ const MagazineIssueTemplate = ({ data }) => {
                 </div>
                 {document.image ?
                   <div className="flex-shrink-0">
-                    <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt=""  />
+                    <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
                   </div>
                   :
                   ""
