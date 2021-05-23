@@ -152,11 +152,12 @@ exports.createPages = async ({ graphql, actions }) => {
   // CATEGORY CONTENT TYPE
   // const CategoryTemplate = require.resolve("./src/templates/category.js");
   categories.forEach(({ node }) => {
+    console.log(node)
     createPage({
       path: `/category/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((cat) => cat.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/category.js`),
       context: {
-        id: node.id,
+        id: node.id.split("_")[1],
       },
     });
   });
