@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import Preview from "../components/preview"
 import { pdfjs } from "react-pdf"
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
@@ -12,19 +13,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 const MagazineIssueTemplate = ({ data }) => {
 
-  const handleDate = e => {
-    var d = new Date(e);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return d.toLocaleDateString(undefined, options)
-  }
-
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const [pdfOpen, setpdfOpen] = useState(false);
 
   return (
     <Layout>
-      <div className="mb-8 pb-4 border-b border-black">
+      <div className="pb-4 border-b border-black">
         <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
         {pdfOpen && data.strapiMagazineIssue.pdf ?
           <button onClick={() => setpdfOpen(false)} className="font-medium underline">View the Articles</button>
@@ -59,152 +54,9 @@ const MagazineIssueTemplate = ({ data }) => {
         </div>
         :
         <ul className="mb-12">
-          {data.strapiMagazineIssue.articles.map(document => (
-            <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-              <div className="flex items-start">
-                <div className="mr-6 flex-grow">
-                  <Link to={`/article/${document.published_at.split("-")[0]}/${document.published_at.split("-")[1]}/${document.published_at.split("-")[2].slice(0, 2)}/${document.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                    <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
-                  </Link>
-                  {document.subtitle ?
-                    <h3 className="mb-4 text-sm">
-                      {document.subtitle}
-                    </h3>
-                    :
-                    ""
-                  }
-                  <div className="text-sm md:text-base lg:text-sm">
-                    <p className='mb-2'>
-                      {document.authors.length === 1 ?
-                        <>
-                          {document.authors.map(currAuthor => (
-                            data.allStrapiAuthors.edges.map(author => (
-                              <div>
-                                {currAuthor === author.node.id.split("_")[1] ?
-                                  <>
-                                    By <Link
-                                      className="font-medium"
-                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                    >
-                                      {author.node.name}
-                                    </Link>
-                                  </>
-                                  :
-                                  ""
-                                }
-                              </div>
-                            ))
-                          ))}
-                        </>
-                        : document.authors.length === 2 ?
-                          <>
-                            {data.allStrapiAuthors.edges.map(author => (
-                              <>
-                                {document.authors[0] === author.node.id.split("_")[1] ?
-                                  <>
-                                    By <Link
-                                      className="font-medium"
-                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                    >
-                                      {author.node.name}
-                                    </Link>
-                                  </>
-                                  :
-                                  ""
-                                }
-                              </>
-                            ))}
-                            <span> and </span>
-                            {data.allStrapiAuthors.edges.map(author => (
-                              <>
-                                {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
-                                  <>
-                                    <Link
-                                      className="font-medium"
-                                      to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                    >
-                                      {author.node.name}
-                                    </Link>
-                                  </>
-                                  :
-                                  ""
-                                }
-                              </>
-                            ))}
-                          </>
-                          : document.authors.length > 2 ?
-                            <>
-                              {data.allStrapiAuthors.edges.map(author => (
-                                <>
-                                  {document.authors[0] === author.node.id.split("_")[1] ?
-                                    <>
-                                      By <Link
-                                        className="font-medium"
-                                        to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                      >
-                                        {author.node.name}
-                                      </Link>
-                                    </>
-                                    :
-                                    ""
-                                  }
-                                </>
-                              ))}
-                              {document.authors.slice(1, -1).map(currAuthor => (
-                                <>
-                                  {data.allStrapiAuthors.edges.map(author => (
-                                    <>
-                                      {currAuthor === author.node.id.split("_")[1] ?
-                                        <>
-                                          , <Link
-                                            className="font-medium"
-                                            to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                          >
-                                            {author.node.name}
-                                          </Link>
-                                        </>
-                                        :
-                                        ""
-                                      }
-                                    </>
-                                  ))}
-                                </>
-                              ))}
-                              <span>, and </span>
-                              {data.allStrapiAuthors.edges.map(author => (
-                                <>
-                                  {document.authors[document.authors.length - 1] === author.node.id.split("_")[1] ?
-                                    <>
-                                      <Link
-                                        className="font-medium"
-                                        to={`/author/${author.node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
-                                      >
-                                        {author.node.name}
-                                      </Link>
-                                    </>
-                                    :
-                                    ""
-                                  }
-                                </>
-                              ))}
-                            </>
-                            :
-                            ""
-                      }
-                    </p>
-                    <p>
-                      {handleDate(document.published_at)}
-                    </p>
-                  </div>
-                </div>
-                {document.image ?
-                  <div className="flex-shrink-0">
-                    <img src={document.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
-                  </div>
-                  :
-                  ""
-                }
-              </div>
+          {data.allStrapiArticle.edges.map(document => (
+            <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+              <Preview article={document.node} format="medium" />
             </li>
           ))}
         </ul>
@@ -216,31 +68,37 @@ const MagazineIssueTemplate = ({ data }) => {
 export default MagazineIssueTemplate
 
 export const query = graphql`
-  query MagazineIssueTemplate($id: String!) {
-    strapiMagazineIssue(id: { eq: $id }) {
-      id
-      title
-      issue
-      articles {
+query MagazineIssueTemplate($id: String!) {
+  strapiMagazineIssue(strapiId: { eq: $id }) {
+    id
+    title
+    issue
+    pdf {
+      publicURL
+    }
+  }
+  allStrapiArticle(
+    filter: {magazine: {id: {eq: $id}}}
+    sort: { order: DESC, fields: published_at }
+  ) {
+    edges {
+      node {
         id
         title
-        authors
-        image {
-          publicURL
-        }
-        published_at
-      }
-      pdf {
-        publicURL
-      }
-    }
-    allStrapiAuthors {
-      edges {
-        node {
+        authors {
           id
           name
         }
+        image {
+          publicURL
+        }
+        categories {
+          id
+          title
+        }
+        published_at
       }
     }
   }
+}
 `
