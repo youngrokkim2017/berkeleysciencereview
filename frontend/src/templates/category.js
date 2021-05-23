@@ -73,24 +73,6 @@ const CategoryTemplate = ({ data }) => {
                 }
                 <div className="text-sm md:text-base lg:text-sm">
                   <p className='mb-2'>
-                    {/* {document.authors.map(currAuthor => (
-                      data.allStrapiAuthors.edges.map(author => (
-                        <div>
-                          {currAuthor === author.node.id.split("_")[1] ?
-                            <>
-                              <Link
-                                className="font-medium"
-                                to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                              >
-                                {author.node.name}
-                              </Link>
-                            </>
-                            :
-                            ""
-                          }
-                        </div>
-                      ))
-                    ))} */}
                     {document.authors.length === 1 ?
                       <>
                         {document.authors.map(currAuthor => (

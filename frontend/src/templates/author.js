@@ -47,8 +47,8 @@ const AuthorTemplate = ({ data }) => {
   return (
     <Layout>
 
-      <div className="border-b border-black mb-8">
-        <h2 className="mb-3 text-4xl">{data.strapiAuthors.name}</h2>
+      <div className="mb-8">
+        <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">{data.strapiAuthors.name}</h2>
         <div className="flex flex-row mb-4 space-x-4 align-items-center sans-serif">
           {data.strapiAuthors.instagram ?
             <Link to={data.strapiAuthors.instagram} className="flex items-center space-x-2 no-underline">
@@ -73,7 +73,6 @@ const AuthorTemplate = ({ data }) => {
         </div>
       </div>
       <ul className="mb-12">
-        {/* {data.strapiAuthors.articles.map(article => ( */}
         {list.map(article => (
           <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="flex items-start">

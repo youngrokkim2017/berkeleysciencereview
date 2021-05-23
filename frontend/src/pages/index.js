@@ -21,8 +21,6 @@ const settings = {
   slidesToScroll: 1,
   arrows: false,
   autoplay: true,
-  // fade: true,
-  // adaptiveHeight: true,
 };
 
 const IndexPage = ({ data }) => {
@@ -71,88 +69,60 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                // <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
-                //   <div className="text-center">
-                //     {document.node.image
-                //       ?
-                //       <div className="">
-                //         <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                //       </div>
-                //       :
-                //       ""
-                //     }
-                //     <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                //     <p>
-                //       {/* {document.node.author.name} */}
-                //       {document.node.authors.map(author => (
-                //         <span 
-                //           key={author.id}
-                //         >
-                //           {author.name}
-                //         </span>
-                //       ))}
-                //     </p>
-                //     <p>
-                //       {handleDate(document.node.published_at)}
-                //     </p>
-                //   </div>
-                // </Link>
                 <>
-                {document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
-                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} key={document.node.title}>
-                    <div className="text-center">
-                      {document.node.image
-                        ?
-                        <div className="">
-                          <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                        </div>
-                        :
-                        ""
-                      }
-                      <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                      <p>
-                        {/* {document.node.author.name} */}
-                        {document.node.authors.map(author => (
-                          <span 
-                            key={author.id}
-                          >
-                            {author.name}
-                          </span>
-                        ))}
-                      </p>
-                      <p>
-                        {handleDate(document.node.published_at)}
-                      </p>
-                    </div>
-                  </Link>
-                :
-                  <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
-                    <div className="text-center">
-                      {document.node.image
-                        ?
-                        <div className="">
-                          <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
-                        </div>
-                        :
-                        ""
-                      }
-                      <h2 className="text-4xl mb-2">{document.node.title}</h2>
-                      <p>
-                        {/* {document.node.author.name} */}
-                        {document.node.authors.map(author => (
-                          <span 
-                            key={author.id}
-                          >
-                            {author.name}
-                          </span>
-                        ))}
-                      </p>
-                      <p>
-                        {handleDate(document.node.published_at)}
-                      </p>
-                    </div>
-                  </Link>
-                }
+                  {document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")[document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
+                    <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-").slice(0, -1)}`} key={document.node.title}>
+                      <div className="text-center">
+                        {document.node.image
+                          ?
+                          <div className="">
+                            <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
+                          </div>
+                          :
+                          ""
+                        }
+                        <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                        <p>
+                          {document.node.authors.map(author => (
+                            <span
+                              key={author.id}
+                            >
+                              {author.name}
+                            </span>
+                          ))}
+                        </p>
+                        <p>
+                          {handleDate(document.node.published_at)}
+                        </p>
+                      </div>
+                    </Link>
+                    :
+                    <Link to={`/article/${document.node.title.split(/[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_‘{|}~]+/).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                      <div className="text-center">
+                        {document.node.image
+                          ?
+                          <div className="">
+                            <img src={document.node.image.publicURL} alt="" className="m-0 p-0 text-center mx-auto mb-6 object-cover h-48 sm:w-3xl sm:h-96" />
+                          </div>
+                          :
+                          ""
+                        }
+                        <h2 className="text-4xl mb-2">{document.node.title}</h2>
+                        <p>
+                          {document.node.authors.map(author => (
+                            <span
+                              key={author.id}
+                            >
+                              {author.name}
+                            </span>
+                          ))}
+                        </p>
+                        <p>
+                          {handleDate(document.node.published_at)}
+                        </p>
+                      </div>
+                    </Link>
+                  }
                 </>
               ))}
             </Slider>
@@ -162,7 +132,7 @@ const IndexPage = ({ data }) => {
           <div>
             <h1 className='text-2xl font-medium pb-3 border-b border-black'>
               Popular
-          </h1>
+            </h1>
             <ul>
               {popularArticles.map(document => (
                 <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
@@ -195,30 +165,12 @@ const IndexPage = ({ data }) => {
                 <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
                   Magazine
               </h1>
-                <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                  {/* <Document
-                  file={latestIssue.node.pdf.publicURL}
-                >
-                  <Page pageNumber={1} />
-                </Document> */}
-                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
-                </Link>
                 {latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")[latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").length - 1] === "-" ?
                   <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-").slice(0, -1)}`}>
-                    {/* <Document
-                    file={latestIssue.node.pdf.publicURL}
-                  >
-                    <Page pageNumber={1} />
-                  </Document> */}
                     {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
                   </Link>
-                :
+                  :
                   <Link to={`/magazine/${latestIssue.node.title.split(" ").map((a) => a.toLowerCase()).join("-")}`}>
-                    {/* <Document
-                    file={latestIssue.node.pdf.publicURL}
-                  >
-                    <Page pageNumber={1} />
-                  </Document> */}
                     {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
                   </Link>
                 }
@@ -277,62 +229,21 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
       </main>
-      <Link to="https://forms.gle/QnnTu8sfCAGKkdWe7" id="report" className="fixed bottom-8 right-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-3 text-white rounded-full space-x-4 sans-serif">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 inline-block align-middle" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-          </svg>
-          <span className="inline-block align-middle">
-            <p className="m-0 p-0 text-lg font-extrabold">Notice something wrong?</p>
-            <p>Please report it here.</p>
-          </span>
-        </Link>
+      <a href="https://forms.gle/QnnTu8sfCAGKkdWe7" id="report" className="fixed bottom-8 right-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-3 text-white rounded-full space-x-4 sans-serif">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 inline-block align-middle" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+        </svg>
+        <span className="inline-block align-middle">
+          <p className="m-0 p-0 text-lg font-extrabold">Notice something wrong?</p>
+          <p>Please report it here.</p>
+        </span>
+      </a>
       <Footer />
     </div>
   )
 }
 
 export default IndexPage;
-
-// gql query
-// export const splashQuery = graphql`
-//   query SplashQuery {
-//     allStrapiArticle(
-//       sort: { order: DESC, fields: published_at }
-//     ) {
-//       edges {
-//         node {
-//           id
-//           title
-//           subtitle
-//           authors {
-//             id
-//             name
-//           }
-//           image {
-//             publicURL
-//           }
-//           categories {
-//             id
-//             title
-//           }
-//           published_at
-//           updatedAt
-//         }
-//       }
-//     }
-//     allStrapiMagazineIssue(
-//       sort: {order: DESC, fields: issue}
-//     ) {
-//       edges {
-//         node {
-//           id
-//           issue
-//           title
-//         }
-//       }
-//     }
-//   }
-// `
 
 export const splashQuery = graphql`
   query SplashQuery {
@@ -376,4 +287,3 @@ export const splashQuery = graphql`
   }
 `
 
-          

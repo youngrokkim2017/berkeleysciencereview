@@ -74,24 +74,6 @@ const MagazineIssueTemplate = ({ data }) => {
                   }
                   <div className="text-sm md:text-base lg:text-sm">
                     <p className='mb-2'>
-                      {/* {data.allStrapiAuthors.edges.map(author => (
-                        document.authors.map(currAuthor => (
-                          <>
-                            {currAuthor === author.node.id.split("_")[1] ?
-                              <>
-                                <Link
-                                  className="font-medium"
-                                  to={`/author/${author.node.name.split(" ").map((a) => a.toLowerCase()).join("-")}`}
-                                >
-                                  {author.node.name}
-                                </Link>
-                              </>
-                              :
-                              ""
-                            }
-                          </>
-                        ))
-                      ))} */}
                       {document.authors.length === 1 ?
                         <>
                           {document.authors.map(currAuthor => (

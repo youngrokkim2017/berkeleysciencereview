@@ -46,8 +46,8 @@
 //   return (
 //     <Layout>
 
-//       <div className="border-b border-black mb-8">
-//         <h2 className="mb-3 text-4xl">{data.strapiDesigner.name}</h2>
+//       <div className="mb-8">
+//         <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">{data.strapiDesigner.name}</h2>
 //         <div className="flex flex-row mb-4 space-x-4 align-items-center sans-serif">
 //           {data.strapiDesigner.instagram ?
 //             <Link to={data.strapiDesigner.instagram} className="flex items-center space-x-2 no-underline">
