@@ -15,7 +15,7 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
           <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                <Link to={`/article/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                <Link to={`/article/${document.node.published_at.split("-")[0]}/${document.node.published_at.split("-")[1]}/${document.node.published_at.split("-")[2].slice(0, 2)}/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
                   <h2 className="text-base mb-2 md:text-2xl">
                     {document.node.title}
                   </h2>

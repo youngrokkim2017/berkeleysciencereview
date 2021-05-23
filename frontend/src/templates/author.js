@@ -77,7 +77,7 @@ const AuthorTemplate = ({ data }) => {
           <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                <Link to={`/article/${article.published_at.split("-")[0]}/${article.published_at.split("-")[1]}/${article.published_at.split("-")[2].slice(0, 2)}/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                   <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
                 </Link>
                 {article.subtitle ?
