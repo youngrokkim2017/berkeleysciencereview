@@ -204,7 +204,7 @@ const IndexPage = ({ data }) => {
                   Magazine
               </h1>
                 <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                  {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
+                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
                 </Link>
               </div>
             </div>
