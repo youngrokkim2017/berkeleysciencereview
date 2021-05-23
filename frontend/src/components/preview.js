@@ -14,7 +14,7 @@ const Preview = ({ article, format }) => {
     return (
       <div className="flex items-start space-x-4">
         <div className="flex-grow">
-          <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`}>
+          <Link to={`/article/${article.published_at.split("-")[0]}/${article.published_at.split("-")[1]}/${article.published_at.split("-")[2].slice(0, 2)}/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`}>
             <h2 className="text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
           </Link>
           {article.subtitle ?
@@ -103,7 +103,7 @@ const Preview = ({ article, format }) => {
     return (
       <div className="flex items-start space-x-4">
         <div className="flex-grow">
-            <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`}>
+            <Link to={`/article/${article.published_at.split("-")[0]}/${article.published_at.split("-")[1]}/${article.published_at.split("-")[2].slice(0, 2)}/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`}>
               <h2 className="font-medium text-base mb-2 md:text-2xl lg:text-lg">{article.title}</h2>
             </Link>
           {article.subtitle ?
@@ -191,7 +191,7 @@ const Preview = ({ article, format }) => {
     return (
       <div className="flex items-start">
         <div className="mr-6 flex-grow">
-            <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+            <Link to={`/article/${article.published_at.split("-")[0]}/${article.published_at.split("-")[1]}/${article.published_at.split("-")[2].slice(0, 2)}/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
               <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
             </Link>
           {article.subtitle ?

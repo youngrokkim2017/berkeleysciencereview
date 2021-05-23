@@ -63,7 +63,7 @@ const MagazineIssueTemplate = ({ data }) => {
             <li key={document.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
               <div className="flex items-start">
                 <div className="mr-6 flex-grow">
-                  <Link to={`/article/${document.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                  <Link to={`/article/${document.published_at.split("-")[0]}/${document.published_at.split("-")[1]}/${document.published_at.split("-")[2].slice(0, 2)}/${document.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                     <h2 className="text-base mb-2 md:text-2xl">{document.title}</h2>
                   </Link>
                   {document.subtitle ?
