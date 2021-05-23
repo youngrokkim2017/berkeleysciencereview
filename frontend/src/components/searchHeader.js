@@ -105,7 +105,7 @@ class SearchHeader extends React.Component {
                   <Link to={`/category/life-science`}>
                     Life Science
                     </Link>
-                  <Link to={`/category/tech-&-ai`}>
+                  <Link to={`/category/tech-ai`}>
                     Technology & Artificial Intelligence
                     </Link>
                   <Link to={`/category/the-universe`}>
@@ -159,7 +159,7 @@ class SearchHeader extends React.Component {
                         </Link>
                         </li>
                         <li>
-                          <Link to={`/category/tech-&-ai`} className="block lg:inline-block md:mt-0">
+                          <Link to={`/category/tech-ai`} className="block lg:inline-block md:mt-0">
                             Technology & Artificial Intelligence
                         </Link>
                         </li>
