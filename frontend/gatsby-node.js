@@ -21,6 +21,7 @@ exports.createPages = async ({ graphql, actions }) => {
               categories {
                 id
               }
+              published_at
             }
           }
         }
@@ -139,7 +140,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // if (pathURL[pathURL.length - 1] === '-') pathURL = pathURL.slice(0, -1);
 
     createPage({
-      path: `/article/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
+      path: `/article/${node.published_at.split("-")[0]}/${node.published_at.split("-")[1]}/${node.published_at.split("-")[2].slice(0, 2)}/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
       // path: `/article/${pathURL}`,
       component: path.resolve(`src/templates/article.js`),
       context: {

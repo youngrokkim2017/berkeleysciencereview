@@ -69,7 +69,7 @@ const IndexPage = ({ data }) => {
           <div>
             <Slider {...settings}>
               {recentArticles.map(document => (
-                <Link to={`/article/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
+                <Link to={`/article/${document.node.published_at.split("-")[0]}/${document.node.published_at.split("-")[1]}/${document.node.published_at.split("-")[2].slice(0, 2)}/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} key={document.node.title}>
                   <div className="text-center">
                     {document.node.image
                       ?
