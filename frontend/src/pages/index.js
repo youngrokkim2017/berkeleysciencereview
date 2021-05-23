@@ -85,7 +85,7 @@ const IndexPage = ({ data }) => {
                         {document.subtitle}
                       </h3>
                       :
-                      ""
+                      <h3 className="mb-4 text-sm">LOOOL</h3>
                     }
                     <p>
                       {document.node.authors.map(author => (
@@ -142,7 +142,7 @@ const IndexPage = ({ data }) => {
                 <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
                   Magazine
               </h1>
-                  <Link to={`/magazine/${latestIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                  <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                     {/* <img src={latestIssue.node.thumbnail.publicURL} alt="" /> */}
                   </Link>
               </div>

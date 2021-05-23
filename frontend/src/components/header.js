@@ -173,7 +173,7 @@ class Header extends React.Component {
                   <Link to={`/category/the-scientist-life`}>
                     The Scientist Life
                     </Link>
-                  <Link to={`/magazine/${currentIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
+                  <Link to={`/magazine/${currentIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="hidden xl:inline-block">
                     Current Magazine
                         </Link>
                   <Link to={`/category/archive`} className="hidden xl:inline-block">
@@ -263,7 +263,7 @@ class Header extends React.Component {
                       <h2 className="font-semibold mb-2">Magazine</h2>
                       <ul className="grid gap-1">
                         <li>
-                          <Link to={`/magazine/${currentIssue.node.title.split(" ").filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                          <Link to={`/magazine/${currentIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
                             Current Magazine
                             </Link>
                         </li>
