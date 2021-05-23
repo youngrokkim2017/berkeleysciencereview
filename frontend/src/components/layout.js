@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Header from "./header"
 import Footer from './footer'
 import "./css/styles.css"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

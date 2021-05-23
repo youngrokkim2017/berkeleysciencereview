@@ -35,7 +35,7 @@ const Preview = ({ article, format }) => {
                         ""
                     }
                     <p className='mb-1 text-sm'>
-                        {article.authors ?
+                        {article.authors.length !== 0 ?
                             <>
                                 {/* {article.authors.map(author => (
                                     <span key={author.id}>
@@ -145,7 +145,7 @@ const Preview = ({ article, format }) => {
                         ""
                     }
                     <p className='mb-1 text-sm'>
-                        {article.authors ?
+                        {article.authors.length !== 0 ?
                             <>
                                 {/* {article.authors.map(author => (
                                     <span key={author.id}>
@@ -255,7 +255,7 @@ const Preview = ({ article, format }) => {
                     }
                     <div className="text-sm md:text-base lg:text-sm">
                         <p className='mb-2'>
-                            {article.authors ?
+                            {article.authors.length !== 0 ?
                                 <>
                                     {/* {article.authors.map(author => (
                                         <span key={author.id}>

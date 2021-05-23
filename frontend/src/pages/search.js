@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Fuse from "fuse.js"
 import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer'

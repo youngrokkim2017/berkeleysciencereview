@@ -12,12 +12,12 @@ class ArticleTemplate extends React.Component {
     var metadata = document.getElementById("metadata");
     var share = document.getElementById("sharesheet");
 
-    var metadata = metadata.getBoundingClientRect().bottom + window.scrollY;
-    var share = share.getBoundingClientRect().top + window.scrollY;
+    var metadataPos = metadata.getBoundingClientRect().bottom + window.scrollY;
+    var sharePos = share.getBoundingClientRect().top + window.scrollY;
 
     function myScrollFunc() {
       var y = window.scrollY;
-      if (y >= metadata && y <= share) {
+      if (y >= metadataPos && y <= sharePos) {
         sidebar.classList.remove("opacity-0");
         sidebar.classList.add("opacity-1");
         sidebar.classList.add("transition", "duration-200", "ease-in-out");
@@ -53,7 +53,7 @@ class ArticleTemplate extends React.Component {
       <div key={data.strapiArticle.id} className="flex flex-col min-h-screen justify-between">
         <Header data={data} />
         <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
-          {data.strapiArticle.authors ?
+          {data.strapiArticle.authors.length !== 0 ?
             <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
               <div className="leading-5">
                 {data.strapiArticle.authors.length === 1 ?
@@ -133,7 +133,7 @@ class ArticleTemplate extends React.Component {
           <div className="w-full">
             <div className="antialiased mx-auto text-black mb-12">
               <div className="border-b border-black pb-8 mb-8">
-                {data.strapiArticle.categories ?
+                {data.strapiArticle.categories.length !== 0 ?
                   <p className='my-0 tracking-tight text-xl sans-serif items-center'>
                     <Link to={`/category/${data.strapiArticle.categories[0].title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
                       {data.strapiArticle.categories[0].title}
@@ -163,7 +163,7 @@ class ArticleTemplate extends React.Component {
                   ""
                 }
                 <div className="text-base" id="metadata">
-                  {data.strapiArticle.authors
+                  {data.strapiArticle.authors.length !== 0
                     ?
                     [
                       (data.strapiArticle.authors.length === 1
@@ -269,12 +269,7 @@ class ArticleTemplate extends React.Component {
                   />
 
                   {data.strapiArticle.magazine ?
-                    <p className="italic">This article is part of the
-                    <Link to={`/magazine/${data.strapiArticle.magazine.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline mx-1">
-                        {data.strapiArticle.magazine.title}
-                      </Link>
-                      issue.
-                    </p>
+                    <p className="italic">This article is part of the <Link to={`/magazine/${data.strapiArticle.magazine.title.split(" ").map((a) => a.toLowerCase()).join("-")}`} className="no-underline">{data.strapiArticle.magazine.title}</Link> issue.</p>
                     :
                     ""
                   }
