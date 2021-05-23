@@ -152,7 +152,6 @@ exports.createPages = async ({ graphql, actions }) => {
   // CATEGORY CONTENT TYPE
   // const CategoryTemplate = require.resolve("./src/templates/category.js");
   categories.forEach(({ node }) => {
-    console.log(node)
     createPage({
       path: `/category/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((cat) => cat.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/category.js`),
@@ -168,7 +167,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/author/${node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/author.js`),
       context: {
-        id: node.id,
+        id: node.id.split("_")[1],
       },
     })
   })
@@ -179,7 +178,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/designer/${node.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
       component: path.resolve(`src/templates/designer.js`),
       context: {
-        id: node.id,
+        id: node.id.split("_")[1],
       },
     })
   })

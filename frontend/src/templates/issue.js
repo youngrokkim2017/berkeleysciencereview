@@ -89,6 +89,9 @@ query MagazineIssueTemplate($id: String!) {
           id
           name
         }
+        image {
+          publicURL
+        }
         categories {
           id
           title

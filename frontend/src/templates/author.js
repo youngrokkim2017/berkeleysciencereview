@@ -2,20 +2,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
+import Preview from "../components/preview"
 
 const AuthorTemplate = ({ data }) => {
 
-  function handleDate(e) {
-    var d = new Date(e);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return d.toLocaleDateString(undefined, options)
-  }
-
-  const sortedByDate = data.strapiAuthors.articles.sort((a, b) => {
-    let aDate = parseInt(a.published_at.split("T")[0].split("-").join(""))
-    let bDate = parseInt(b.published_at.split("T")[0].split("-").join(""))
-    return (bDate - aDate)
-  })
+  const sortedByDate = data.allStrapiArticle.edges;
 
   const [list, setList] = useState([...sortedByDate.slice(0, 10)])
   // State to trigger load more
@@ -46,10 +37,9 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
-
-      <div className="mb-8">
-        <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">{data.strapiAuthors.name}</h2>
-        <div className="flex flex-row mb-4 space-x-4 align-items-center sans-serif">
+      <div>
+        <h2 className="font-normal pb-2 text-4xl border-b border-black">{data.strapiAuthors.name}</h2>
+        <div className="flex flex-row space-x-4 align-items-center sans-serif">
           {data.strapiAuthors.instagram ?
             <Link to={data.strapiAuthors.instagram} className="flex items-center space-x-2 no-underline">
               <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">
@@ -74,34 +64,11 @@ const AuthorTemplate = ({ data }) => {
       </div>
       <ul className="mb-12">
         {list.map(article => (
-          <li key={article.id} className="mt-6 pb-6 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-            <div className="flex items-start">
-              <div className="mr-6 flex-grow">
-                <Link to={`/article/${article.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                  <h2 className="text-base mb-2 md:text-2xl">{article.title}</h2>
-                </Link>
-                {article.subtitle ?
-                  <h3 className="mb-4 text-sm">
-                    {article.subtitle}
-                  </h3>
-                  :
-                  ""
-                }
-                <p className="text-sm md:text-base lg:text-sm">
-                  {handleDate(article.published_at)}
-                </p>
-              </div>
-              {article.image ?
-                <div className="flex-shrink-0">
-                  <img src={article.image.publicURL} className="w-20 h-20 object-cover md:object-fit md:h-full md:w-48" alt="" />
-                </div>
-                :
-                ""
-              }
-            </div>
+          <li key={article.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+            <Preview article={article.node} format="medium" />
           </li>
         ))}
-      </ul>
+      </ul >
       {hasMore ? (
         <button onClick={handleLoadMore} className="sans-serif block mx-auto px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded">Load More</button>
       ) : (
@@ -115,20 +82,35 @@ const AuthorTemplate = ({ data }) => {
 export default AuthorTemplate;
 
 export const query = graphql`
-  query AuthorTemplate($id: String!) {
-    strapiAuthors(id: { eq: $id }) {
-      id
-      name
-      twitter
-      instagram
-      articles {
+query AuthorTemplate($id: String!) {
+  strapiAuthors(strapiId: { eq: $id }) {
+    id
+    name
+    twitter
+    instagram
+  }
+  allStrapiArticle(
+    filter: {authors: {elemMatch: {id: {eq: $id}}}}
+    sort: { order: DESC, fields: published_at }
+  ) {
+    edges {
+      node {
         id
         title
-        published_at
+        authors {
+          id
+          name
+        }
         image {
           publicURL
         }
+        categories {
+          id
+          title
+        }
+        published_at
       }
     }
   }
+}
 `

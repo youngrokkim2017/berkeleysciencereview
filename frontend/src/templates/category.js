@@ -74,6 +74,9 @@ query CategoryTemplate($id: String!) {
           id
           name
         }
+        image {
+          publicURL
+        }
         categories {
           id
           title
