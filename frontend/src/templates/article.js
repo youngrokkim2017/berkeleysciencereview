@@ -49,6 +49,10 @@ class ArticleTemplate extends React.Component {
     let middleAuthors = data.strapiArticle.authors.slice(1, -1);
     let lastAuthor = data.strapiArticle.authors[data.strapiArticle.authors.length - 1];
 
+    let firstDesigner = data.strapiArticle.designers[0];
+    let middleDesigners = data.strapiArticle.designers.slice(1, -1);
+    let lastDesigner = data.strapiArticle.designers[data.strapiArticle.designers.length - 1];
+
     return (
       <div key={data.strapiArticle.id} className="flex flex-col min-h-screen justify-between">
         <Header data={data} />
@@ -132,7 +136,7 @@ class ArticleTemplate extends React.Component {
 
           <div className="w-full">
             <div className="antialiased mx-auto text-black mb-12">
-              <div className="border-b border-black pb-8 mb-8">
+              <div className="border-b border-black pb-4 mb-8">
                 {data.strapiArticle.categories.length !== 0 ?
                   <p className='my-0 tracking-tight text-xl sans-serif items-center'>
                     <Link to={`/category/${data.strapiArticle.categories[0].title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`} className="no-underline">
@@ -152,7 +156,6 @@ class ArticleTemplate extends React.Component {
                   :
                   ""
                 }
-
                 <h2 className="my-2 text-4xl">{data.strapiArticle.title}</h2>
 
                 {data.strapiArticle.subtitle ?
@@ -168,7 +171,7 @@ class ArticleTemplate extends React.Component {
                     [
                       (data.strapiArticle.authors.length === 1
                         ?
-                        <p className='text-base mb-1'>
+                        <p className='mb-1'>
                           {
                             <span key={data.strapiArticle.authors[0].id}>
                               By <Link
@@ -183,7 +186,7 @@ class ArticleTemplate extends React.Component {
                         :
                         data.strapiArticle.authors.length === 2
                           ?
-                          <p className='text-base mb-1'>
+                          <p className='mb-1'>
                             {<>
                               <span key={data.strapiArticle.authors[0].id}>
                                 By <Link
@@ -207,7 +210,7 @@ class ArticleTemplate extends React.Component {
                           :
                           data.strapiArticle.authors.length === 3
                             ?
-                            <p className='text-base mb-1'>
+                            <p className='mb-1'>
                               {<>
                                 <span key={data.strapiArticle.authors[0].id}>
                                   By <Link
@@ -248,6 +251,75 @@ class ArticleTemplate extends React.Component {
                     :
                     ""
                   }
+                  {data.strapiArticle.designers.length === 1 ?
+                    <p className='mb-1'>
+                      <span key={firstDesigner.id}>
+                        Designs by <Link
+                          to={`/designer/${firstDesigner.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                          className="font-medium"
+                        >
+                          {firstDesigner.name}
+                        </Link>
+                      </span>
+                    </p>
+                    : data.strapiArticle.designers.length === 2 ?
+                      <p className='mb-1'>
+                        <>
+                          <span key={firstDesigner.id}>
+                            Designs by <Link
+                              to={`/designer/${firstDesigner.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                              className="font-medium"
+                            >
+                              {firstDesigner.name}
+                            </Link>
+                          </span>
+                          <span> and </span>
+                          <span key={lastDesigner.id}>
+                            <Link
+                              to={`/designer/${lastDesigner.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                              className="font-medium"
+                            >
+                              {lastDesigner.name}
+                            </Link>
+                          </span>
+                        </>
+                      </p>
+                      : data.strapiArticle.designers.length > 2 ?
+                        <p className='mb-1'>
+                          <>
+                            <span key={firstDesigner.id}>
+                              Designs by <Link
+                                to={`/designer/${firstDesigner.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {firstDesigner.name}
+                              </Link>
+                            </span>
+                            {middleDesigners.map(designer => (
+                              <span key={designer.id}>
+                                , <Link
+                                  to={`/designer/${designer.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                  className="font-medium"
+                                >
+                                  {designer.name}
+                                </Link>
+                              </span>
+                            ))}
+                            <span>, and </span>
+                            <span key={lastDesigner.id}>
+                              <Link
+                                to={`/designer/${lastDesigner.name.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}
+                                className="font-medium"
+                              >
+                                {lastDesigner.name}
+                              </Link>
+                            </span>
+                          </>
+                        </p>
+                        :
+                        ""
+                  }
+
                   <p className='my-0'>
                     {handleDate(data.strapiArticle.published_at)}
                   </p>
@@ -355,8 +427,8 @@ export default ArticleTemplate
 
 export const query = graphql`
   query ArticleTemplate($id: String!, $categoryList: [String!]) {
-            strapiArticle(id: {eq: $id }) {
-            id
+    strapiArticle(id: {eq: $id }) {
+      id
       title
       published_at
       content
@@ -364,18 +436,22 @@ export const query = graphql`
             publicURL
           }
       authors {
-            id
+        id
+        name
+      }
+      designers {
+        id
         name
       }
       categories {
-            id
+        id
         title
       }
       magazine {
         id
         title
         issue
-      }
+    }
   }
   recent: allStrapiArticle(
     sort: {order: DESC, fields: published_at}

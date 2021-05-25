@@ -39,9 +39,9 @@ const CategoryTemplate = ({ data }) => {
     <Layout>
       <h2 className="font-normal pb-2 text-4xl border-b border-black">{data.strapiCategory.title}</h2>
       <ul className="mb-12">
-        {list.map(document => (
-          <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-            <Preview article={document.node} format="medium" />
+        {list.map(article => (
+          <li key={article.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+            <Preview article={article.node} format="medium" />
           </li>
         ))}
       </ul >

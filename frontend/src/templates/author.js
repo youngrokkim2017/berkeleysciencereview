@@ -37,9 +37,9 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
-      <div>
-        <h2 className="font-normal pb-2 text-4xl border-b border-black">{data.strapiAuthors.name}</h2>
-        <div className="flex flex-row space-x-4 align-items-center sans-serif">
+      <div className="pb-2 border-b border-black">
+        <h2 className="font-normal text-4xl">{data.strapiAuthors.name}</h2>
+        <div className="flex flex-row space-x-4 align-items-center sans-serif mt-2">
           {data.strapiAuthors.instagram ?
             <Link to={data.strapiAuthors.instagram} className="flex items-center space-x-2 no-underline">
               <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512">

@@ -19,12 +19,21 @@ const SearchPage = ({ location }) => {
               id
               name
             }
+            designers {
+              id
+              name
+            }
             image {
               publicURL
             }
             categories {
               id
               title
+            }
+            magazine {
+              id
+              title
+              issue
             }
             published_at
             updatedAt
@@ -58,13 +67,30 @@ const SearchPage = ({ location }) => {
     keys: [
       {
         name: 'node.title',
-        weight: 0.7,
+        weight: 1,
       },
       {
         // name: 'node.author.name',
         name: 'node.authors.name',
-        weight: 0.3,
+        weight: 0.5,
       },
+      {
+        // name: 'node.author.name',
+        name: 'node.designers.name',
+        weight: 0.5,
+      },
+      {
+        name: 'node.categories.title',
+        weight:0.25,
+      },
+      {
+        name: 'node.magazine.title',
+        weight: 0.25,
+      },
+      {
+        name: 'node.magazine.issue',
+        weight: 0.25,
+      }
     ],
     includeScore: true,
     isCaseSensitive: false,
