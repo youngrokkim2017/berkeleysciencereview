@@ -208,7 +208,7 @@ class ArticleTemplate extends React.Component {
                             </>}
                           </p>
                           :
-                          data.strapiArticle.authors.length === 3
+                          data.strapiArticle.authors.length > 2
                             ?
                             <p className='mb-1'>
                               {<>
