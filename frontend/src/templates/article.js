@@ -337,7 +337,6 @@ class ArticleTemplate extends React.Component {
                   }
                   <ReactMarkdown
                     source={data.strapiArticle.content}
-                    transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
                   />
 
                   {data.strapiArticle.magazine ?
@@ -430,6 +429,7 @@ export const query = graphql`
     strapiArticle(id: {eq: $id }) {
       id
       title
+      subtitle
       published_at
       content
       image {
