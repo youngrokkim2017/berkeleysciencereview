@@ -7,6 +7,7 @@ module.exports = {
     title: `Berkeley Science Review`,
     description: `A student-run publication on all things science.`,
     author: `Berkeley Science Review`,
+    siteUrl: `https://www.berkeleysciencereview.com`
   },
   plugins: [
     {

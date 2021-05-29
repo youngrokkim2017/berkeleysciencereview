@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Preview from "../components/preview"
+import Seo from "../components/seo"
 
 const AuthorTemplate = ({ data }) => {
 
@@ -37,6 +38,9 @@ const AuthorTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <Seo
+        title={data.strapiAuthors.name}
+      />
       <div className="pb-2 border-b border-black">
         <h2 className="font-normal text-4xl">{data.strapiAuthors.name}</h2>
         <div className="flex flex-row space-x-4 align-items-center sans-serif mt-2">

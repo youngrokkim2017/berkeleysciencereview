@@ -7,7 +7,9 @@ const MyForm = () => {
   const [state, handleSubmit] = useForm("mnqokooe");
   return (
     <Layout>
-      <Seo title="Contact Us" />
+      <Seo
+        title="Contact Us"
+      />
       <h2 className="font-normal text-4xl mb-4">Contact us</h2>
       <form
         onSubmit={handleSubmit}

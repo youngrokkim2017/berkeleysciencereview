@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "gatsby"
+import "./css/styles.css"
 
 const SearchIndexItems = ({ searchData, searchQuery }) => {
   function handleDate(e) {

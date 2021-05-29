@@ -2,15 +2,18 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Preview from "../components/preview"
+import Popular from "../components/popular"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+import Seo from "../components/seo"
 
 import MailchimpComponentHome from '../components/mailchimpHome'
 
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../components/css/styles.css"
 
 const settings = {
   dots: true,
@@ -55,14 +58,13 @@ const IndexPage = ({ data }) => {
     document.node.categories.map(cat => cat.title).includes('Life Science')
   )).slice(0, 3);
 
-  const popularArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Noteworthy News')
-  )).slice(0, 6);
-
   const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
+      <Seo
+        image={latestIssue.node.thumbnail ? latestIssue.node.thumbnail.publicURL : false}
+      />
       <Header data={data} />
       <main className='container mx-auto px-4 md:px-8 lg:px-4'>
         <div className="mb-16 mx-auto">
@@ -171,13 +173,7 @@ const IndexPage = ({ data }) => {
             <h1 className='text-2xl font-medium pb-3 border-b border-black'>
               Popular
             </h1>
-            <ul>
-              {popularArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                  <Preview article={document.node} format="small" />
-                </li>
-              ))}
-            </ul>
+            <Popular n={5} />
           </div>
           <div className="col-span-1 lg:col-span-2">
             <h1 className='text-2xl font-medium pb-3 border-b border-black'>
@@ -199,14 +195,18 @@ const IndexPage = ({ data }) => {
               </h1>
                 <MailchimpComponentHome />
               </div>
-              <div>
-                <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
-                  Magazine
+              {latestIssue.node.thumbnail ?
+                <div>
+                  <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
+                    Magazine
               </h1>
-                <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
-                </Link>
-              </div>
+                  <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                    <img src={latestIssue.node.thumbnail.publicURL} alt="" />
+                  </Link>
+                </div>
+                :
+                ""
+              }
             </div>
           </div>
         </div>
