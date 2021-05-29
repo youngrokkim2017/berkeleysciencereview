@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import logo from "../images/logo.png"
+import "./css/styles.css"
 
 class SearchHeader extends React.Component {
   constructor(props) {

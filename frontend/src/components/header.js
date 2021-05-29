@@ -5,6 +5,7 @@ import React from "react"
 import { Link, navigate } from "gatsby"
 // import PropTypes from "prop-types"
 import logo from "../images/logo.png"
+import "./css/styles.css"
 
 class Header extends React.Component {
   constructor(props) {

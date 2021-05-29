@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 // import ReactMarkdown from "react-markdown"
+import "./css/styles.css"
 
 const Preview = ({ article, format }) => {
 

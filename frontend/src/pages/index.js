@@ -12,6 +12,7 @@ import MailchimpComponentHome from '../components/mailchimpHome'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../components/css/styles.css"
 
 const settings = {
   dots: true,

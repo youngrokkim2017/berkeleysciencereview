@@ -5,6 +5,7 @@ import SearchHeader from '../components/searchHeader'
 import Footer from '../components/footer'
 import SearchIndexItems from '../components/searchIndexItems'
 import Seo from "../components/seo"
+import "../components/css/styles.css"
 
 const SearchPage = ({ location }) => {
   const data = useStaticQuery(graphql`

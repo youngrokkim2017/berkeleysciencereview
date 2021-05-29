@@ -6,6 +6,7 @@ import Preview from "../components/preview"
 import Seo from "../components/seo"
 import Header from "../components/header"
 import Footer from "../components/footer"
+import "../components/css/styles.css"
 
 class ArticleTemplate extends React.Component {
   componentDidMount() {
