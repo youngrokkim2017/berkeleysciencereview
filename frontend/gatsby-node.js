@@ -357,7 +357,6 @@ exports.sourceNodes = async ({ actions }) => {
     },
   });
 
-    // console.log(result.data.reports[0].data[0]);
   // Add analytics data to graphql
   const { rows } = result.data.reports[0].data;
   for (const { dimensions, metrics } of rows) {

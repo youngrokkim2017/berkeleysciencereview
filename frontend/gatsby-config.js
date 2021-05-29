@@ -15,6 +15,7 @@ module.exports = {
       options: {
         trackingId: "UA-54035-1",
         head: false,
+        exclude: ["/search/", "/contact/", "/author/**", "/designer/**", "/magazine/**", "/magazine-issues", "/category/**", "/about-us/", "/join-us/", "/staff-listing/", "/donate-and-subscribe/", "/write-for-us/", "/writing-resources/"],
         anonymize: true,
         respectDNT: true,
       },
