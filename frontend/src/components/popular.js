@@ -30,7 +30,7 @@ const Popular = ({ n }) => {
             }
           }
         }
-        allPageViews(sort: {order: DESC, fields: totalCount}, limit: 20) {
+        allPageViews(sort: {order: DESC, fields: totalCount}, limit: 50) {
           edges {
             node {
               path
