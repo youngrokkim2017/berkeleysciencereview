@@ -6,7 +6,14 @@
 
 //
 
+require("dotenv").config({
+  path: `.env.analytics`,
+});
+
+const privateKey = process.env.PRIVATE_KEY.replace(new RegExp('\\\\n', '\g'), '\n')
+
 const path = require(`path`);
+const { google } = require('googleapis')
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -289,8 +296,89 @@ module.exports.onCreateNode = async ({ node, actions, createNodeId }) => {
       parent: node,
       child: newNode,
     });
+    actions.createNodeField({
+      node,
+      name: `slug`,
+      value: `/article/${node.published_at.split("-")[0]}/${node.published_at.split("-")[1]}/${node.published_at.split("-")[2].slice(0, 2)}/${node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`,
+    });
   }
 };
+
+
+// exports.sourceNodes = async ({ actions }) => {
+//   const crypto = require(`crypto`);
+//   const { createNode } = actions;
+
+//   // google auth logic
+//   const scopes = "https://www.googleapis.com/auth/analytics.readonly";
+//   const jwt = new google.auth.JWT(
+//     process.env.CLIENT_EMAIL,
+//     null,
+//     process.env.PRIVATE_KEY,
+//     scopes
+//   );
+//   await jwt.authorize();
+
+//   const analyticsReporting = google.analyticsreporting({
+//     version: "v4",
+//     auth: jwt,
+//   });
+
+//   // Analytics Reporting v4 query
+//   const result = await analyticsReporting.reports.batchGet({
+//     requestBody: {
+//       reportRequests: [
+//         {
+//           viewId: process.env.VIEWID,
+//           dateRanges: [
+//             {
+//               startDate: "30DaysAgo",
+//               endDate: "today",
+//             },
+//           ],
+//           metrics: [
+//             {
+//               expression: "ga:pageviews",
+//             },
+//           ],
+//           dimensions: [
+//             {
+//               name: "ga:pagePath",
+//             },
+//           ],
+//           orderBys: [
+//             {
+//               sortOrder: "DESCENDING",
+//               fieldName: "ga:pageviews",
+//             },
+//           ],
+//         },
+//       ],
+//     },
+//   });
+
+//     // console.log(result.data.reports[0].data);
+//   // Add analytics data to graphql
+//   const { rows } = result.data.reports[0].data;
+//   for (const { dimensions, metrics } of rows) {
+//     const path = dimensions[0];
+//     const totalCount = metrics[0].values[0];
+//     createNode({
+//       path,
+//       totalCount: Number(totalCount),
+//       id: path,
+//       internal: {
+//         type: `PageViews`,
+//         contentDigest: crypto
+//           .createHash(`md5`)
+//           .update(JSON.stringify({ path, totalCount }))
+//           .digest(`hex`),
+//         mediaType: `text/plain`,
+//         description: `Page views per path`,
+//       },
+//     });
+//   }
+// };
 
 exports.onCreateWebpackConfig = ({
   stage,

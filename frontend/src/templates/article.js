@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 // import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
+import Seo from "../components/seo"
 import Header from "../components/header"
 import Footer from "../components/footer"
 
@@ -55,6 +56,13 @@ class ArticleTemplate extends React.Component {
 
     return (
       <div key={data.strapiArticle.id} className="flex flex-col min-h-screen justify-between">
+        <Seo
+          title={data.strapiArticle.title}
+          author={data.strapiArticle.authors.length !== 0 ? data.strapiArticle.authors[0].name : false}
+          description={data.strapiArticle.subtitle ? data.strapiArticle.subtitle : false}
+          path={this.props.location.href}
+          image={data.strapiArticle.image ? data.strapiArticle.image.publicURL : false}
+        />
         <Header data={data} />
         <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
           {data.strapiArticle.authors.length !== 0 ?

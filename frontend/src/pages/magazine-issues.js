@@ -7,7 +7,9 @@ const MagazineIssuePage = ({ data }) => {
   const magazinesSortedByIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue).slice(1, data.allStrapiMagazineIssue.edges.length);
   return (
     <Layout>
-      <Seo title="Magazine issues" />
+      <Seo
+        title={"Magazine issues"}
+      />
       <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">Magazine Issues</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-6 -mb-6 sm:mb-0 h-full">
         {magazinesSortedByIssue.reverse().map(document => (

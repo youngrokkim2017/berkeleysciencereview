@@ -5,6 +5,7 @@ import Preview from "../components/preview"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
+import Seo from "../components/seo"
 
 import MailchimpComponentHome from '../components/mailchimpHome'
 
@@ -63,6 +64,9 @@ const IndexPage = ({ data }) => {
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
+      <Seo
+        image={latestIssue.node.thumbnail ? latestIssue.node.thumbnail.publicURL : false}
+      />
       <Header data={data} />
       <main className='container mx-auto px-4 md:px-8 lg:px-4'>
         <div className="mb-16 mx-auto">
@@ -199,14 +203,18 @@ const IndexPage = ({ data }) => {
               </h1>
                 <MailchimpComponentHome />
               </div>
-              <div>
-                <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
-                  Magazine
+              {latestIssue.node.thumbnail ?
+                <div>
+                  <h1 className='text-2xl font-medium pb-3 mb-4 border-b border-black'>
+                    Magazine
               </h1>
-                <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
-                  <img src={latestIssue.node.thumbnail.publicURL} alt="" />
-                </Link>
-              </div>
+                  <Link to={`/magazine/${latestIssue.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
+                    <img src={latestIssue.node.thumbnail.publicURL} alt="" />
+                  </Link>
+                </div>
+                :
+                ""
+              }
             </div>
           </div>
         </div>

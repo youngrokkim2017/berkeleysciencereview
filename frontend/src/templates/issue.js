@@ -5,6 +5,7 @@ import Preview from "../components/preview"
 import { pdfjs } from "react-pdf"
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import Seo from "../components/seo"
 
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
@@ -19,6 +20,10 @@ const MagazineIssueTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <Seo
+        title={data.strapiMagazineIssue.title}
+        image={data.strapiMagazineIssue.thumbnail ? data.strapiMagazineIssue.thumbnail.publicURL : false}
+      />
       <div className="pb-4 border-b border-black">
         <h2 className="font-normal text-4xl mb-2">{data.strapiMagazineIssue.title}</h2>
         {pdfOpen && data.strapiMagazineIssue.pdf ?
@@ -73,6 +78,9 @@ query MagazineIssueTemplate($id: String!) {
     id
     title
     issue
+    thumbnail {
+      publicURL
+    }
     pdf {
       publicURL
     }

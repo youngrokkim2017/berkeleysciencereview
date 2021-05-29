@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Preview from "../components/preview"
+import Seo from "../components/seo"
 
 const CategoryTemplate = ({ data }) => {
 
@@ -37,6 +38,9 @@ const CategoryTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <Seo
+        title={data.strapiCategory.title}
+      />
       <h2 className="font-normal pb-2 text-4xl border-b border-black">{data.strapiCategory.title}</h2>
       <ul className="mb-12">
         {list.map(article => (
