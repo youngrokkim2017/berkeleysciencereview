@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Preview from "../components/preview"
+import Popular from "../components/popular"
 
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -56,10 +57,6 @@ const IndexPage = ({ data }) => {
   const lifeScienceArticles = sortedByDate.filter(document => (
     document.node.categories.map(cat => cat.title).includes('Life Science')
   )).slice(0, 3);
-
-  const popularArticles = sortedByDate.filter(document => (
-    document.node.categories.map(cat => cat.title).includes('Noteworthy News')
-  )).slice(0, 6);
 
   const latestIssue = data.allStrapiMagazineIssue.edges.sort((a, b) => b.node.issue - a.node.issue)[0];
 
@@ -176,13 +173,7 @@ const IndexPage = ({ data }) => {
             <h1 className='text-2xl font-medium pb-3 border-b border-black'>
               Popular
             </h1>
-            <ul>
-              {popularArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
-                  <Preview article={document.node} format="small" />
-                </li>
-              ))}
-            </ul>
+            <Popular n={5} />
           </div>
           <div className="col-span-1 lg:col-span-2">
             <h1 className='text-2xl font-medium pb-3 border-b border-black'>

@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 // import Layout from "../components/layout"
 import ReactMarkdown from "react-markdown"
 import Preview from "../components/preview"
+import Popular from "../components/popular"
 import Seo from "../components/seo"
 import Header from "../components/header"
 import Footer from "../components/footer"
@@ -411,8 +412,7 @@ class ArticleTemplate extends React.Component {
             <h2 className='text-2xl font-medium pb-2 mb-4 border-b border-black'>
               Most Popular
           </h2>
-            {/* GOOGLE ANALYTICS gatsby-plugin-google-analytics */}
-            {/* https://hippocampus-garden.com/trend/ */}
+            <Popular n={3} />
           </div>
         </div>
         <a href={`https://docs.google.com/forms/d/e/1FAIpQLSdMCiDUSUOxaK6tPFR0jimZnEX0gvVPwPcJ6V9PvSQzTryvmw/viewform?usp=pp_url&entry.299816419=${this.props.location.href}`} id="report" className="fixed bottom-8 right-8 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 px-6 py-3 text-white rounded-full space-x-4 sans-serif">

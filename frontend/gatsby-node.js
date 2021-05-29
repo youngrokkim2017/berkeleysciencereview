@@ -305,80 +305,80 @@ module.exports.onCreateNode = async ({ node, actions, createNodeId }) => {
 };
 
 
-// exports.sourceNodes = async ({ actions }) => {
-//   const crypto = require(`crypto`);
-//   const { createNode } = actions;
+exports.sourceNodes = async ({ actions }) => {
+  const crypto = require(`crypto`);
+  const { createNode } = actions;
 
-//   // google auth logic
-//   const scopes = "https://www.googleapis.com/auth/analytics.readonly";
-//   const jwt = new google.auth.JWT(
-//     process.env.CLIENT_EMAIL,
-//     null,
-//     process.env.PRIVATE_KEY,
-//     scopes
-//   );
-//   await jwt.authorize();
+  // google auth logic
+  const scopes = "https://www.googleapis.com/auth/analytics.readonly";
+  const jwt = new google.auth.JWT(
+    process.env.CLIENT_EMAIL,
+    null,
+    process.env.PRIVATE_KEY,
+    scopes
+  );
+  await jwt.authorize();
 
-//   const analyticsReporting = google.analyticsreporting({
-//     version: "v4",
-//     auth: jwt,
-//   });
+  const analyticsReporting = google.analyticsreporting({
+    version: "v4",
+    auth: jwt,
+  });
 
-//   // Analytics Reporting v4 query
-//   const result = await analyticsReporting.reports.batchGet({
-//     requestBody: {
-//       reportRequests: [
-//         {
-//           viewId: process.env.VIEWID,
-//           dateRanges: [
-//             {
-//               startDate: "30DaysAgo",
-//               endDate: "today",
-//             },
-//           ],
-//           metrics: [
-//             {
-//               expression: "ga:pageviews",
-//             },
-//           ],
-//           dimensions: [
-//             {
-//               name: "ga:pagePath",
-//             },
-//           ],
-//           orderBys: [
-//             {
-//               sortOrder: "DESCENDING",
-//               fieldName: "ga:pageviews",
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   });
+  // Analytics Reporting v4 query
+  const result = await analyticsReporting.reports.batchGet({
+    requestBody: {
+      reportRequests: [
+        {
+          viewId: process.env.VIEWID,
+          dateRanges: [
+            {
+              startDate: "30DaysAgo",
+              endDate: "today",
+            },
+          ],
+          metrics: [
+            {
+              expression: "ga:pageviews",
+            },
+          ],
+          dimensions: [
+            {
+              name: "ga:pagePath",
+            },
+          ],
+          orderBys: [
+            {
+              sortOrder: "DESCENDING",
+              fieldName: "ga:pageviews",
+            },
+          ],
+        },
+      ],
+    },
+  });
 
-//     // console.log(result.data.reports[0].data);
-//   // Add analytics data to graphql
-//   const { rows } = result.data.reports[0].data;
-//   for (const { dimensions, metrics } of rows) {
-//     const path = dimensions[0];
-//     const totalCount = metrics[0].values[0];
-//     createNode({
-//       path,
-//       totalCount: Number(totalCount),
-//       id: path,
-//       internal: {
-//         type: `PageViews`,
-//         contentDigest: crypto
-//           .createHash(`md5`)
-//           .update(JSON.stringify({ path, totalCount }))
-//           .digest(`hex`),
-//         mediaType: `text/plain`,
-//         description: `Page views per path`,
-//       },
-//     });
-//   }
-// };
+    // console.log(result.data.reports[0].data[0]);
+  // Add analytics data to graphql
+  const { rows } = result.data.reports[0].data;
+  for (const { dimensions, metrics } of rows) {
+    const path = dimensions[0];
+    const totalCount = metrics[0].values[0];
+    createNode({
+      path,
+      totalCount: Number(totalCount),
+      id: path,
+      internal: {
+        type: `PageViews`,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(JSON.stringify({ path, totalCount }))
+          .digest(`hex`),
+        mediaType: `text/plain`,
+        description: `Page views per path`,
+      },
+    });
+  }
+};
 
 exports.onCreateWebpackConfig = ({
   stage,
