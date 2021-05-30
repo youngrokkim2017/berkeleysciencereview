@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import coverImage from "../images/coverImage.jpeg"
 
 const Seo = ({ title, author, description, path, image }) => {
   const data = useStaticQuery(graphql`
@@ -31,7 +32,7 @@ const Seo = ({ title, author, description, path, image }) => {
   const metaAuthor = author || defaults.author;
   const metaDescription = description || defaults.description;
   const url = new URL(path || '', defaults.siteUrl);
-  const metaImage = image ? new URL(image, defaults.siteUrl) : false;
+  const metaImage = image ? new URL(image, defaults.siteUrl) : new URL(coverImage, defaults.siteUrl);
 
   return (
     <Helmet>
