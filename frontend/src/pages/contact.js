@@ -51,7 +51,7 @@ const MyForm = () => {
           </div>
         </div>
         <div className="mt-6">
-          {state.succeeded ? <p>Thank you.</p> : <button className="inline-block px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
+          {state.succeeded ? <p>Thank you for contacting us.</p> : <button className="inline-block px-4 py-2 text-white bg-black flex-shrink-0 cursor-pointer rounded w-full lg:w-48">Submit</button>}
           {state.errors.length > 0 && <p>Ooops! There was an error.</p>}
         </div>
       </form>

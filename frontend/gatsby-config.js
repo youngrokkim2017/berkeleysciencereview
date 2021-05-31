@@ -20,6 +20,23 @@ module.exports = {
         respectDNT: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-csp`,
+      options: {
+        disableOnDev: false,
+        reportOnly: false,
+        mergeScriptHashes: true,
+        mergeStyleHashes: true,
+        mergeDefaultDirectives: true,
+        directives: {
+          "script-src": "'self' https://www.google-analytics.com http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.js https://berkeleysciencereview.us6.list-manage.com/subscribe/",
+          "style-src": "'self' https://fonts.googleapis.com",
+          "font-src": "'self' data: https://fonts.gstatic.com",
+          "img-src": "'self' data: https://www.google-analytics.com",
+          "connect-src": "'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://formspree.io/f/mnqokooe",
+        }
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -32,7 +49,7 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         // apiURL: process.env.API_URL || `http://localhost:1337`,
-        apiURL:`http://localhost:1337`,
+        apiURL: `http://localhost:1337`,
         contentTypes: [
           `user`,
           `authors`,
@@ -52,7 +69,7 @@ module.exports = {
         queryLimit: 1000000,
       },
     },
-    `gatsby-plugin-image`,
+    // `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -70,8 +87,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
-          endpoint: 'https://berkeleysciencereview.us6.list-manage.com/subscribe/post?u=6089ba0af6ca14defb3115ed3&amp;id=c29e546b96', // string; add your MC list endpoint here; see instructions below
-          timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
+        endpoint: 'https://berkeleysciencereview.us6.list-manage.com/subscribe/post?u=6089ba0af6ca14defb3115ed3&amp;id=c29e546b96', // string; add your MC list endpoint here; see instructions below
+        timeout: 3500, // number; the amount of time, in milliseconds, that you want to allow mailchimp to respond to your request before timing out. defaults to 3500
       },
     },
     `gatsby-plugin-offline`,

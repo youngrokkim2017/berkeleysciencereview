@@ -66,7 +66,7 @@ class ArticleTemplate extends React.Component {
           image={data.strapiArticle.image ? data.strapiArticle.image.publicURL : false}
         />
         <Header data={data} />
-        <div className='container mx-auto px-4 md:px-8 lg:px-4' style={{ maxWidth: '1036px' }}>
+        <div className='container mx-auto px-4 md:px-8 lg:px-4 max-width-1036'>
           {data.strapiArticle.authors.length !== 0 ?
             <div className='fixed top-0 mt-40 opacity-0 -ml-40 hidden w-36' id="sidebar">
               <div className="leading-5">
@@ -384,7 +384,7 @@ class ArticleTemplate extends React.Component {
                       </h2>
                       <ul>
                         {recentArticlesSidebar.map(document => (
-                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                          <li key={document.node.id} className="mt-4 pb-4 border-b border-bottom-gray">
                             <Preview article={document.node} format="small" />
                           </li>
                         ))}
@@ -397,7 +397,7 @@ class ArticleTemplate extends React.Component {
                       </h2>
                       <ul>
                         {relatedArticles.map(document => (
-                          <li key={document.node.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                          <li key={document.node.id} className="mt-4 pb-4 border-b border-bottom-gray">
                             <Preview article={document.node} format="small" />
                           </li>
                         ))}
