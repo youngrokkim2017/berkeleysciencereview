@@ -179,7 +179,7 @@ const IndexPage = ({ data }) => {
           </h1>
             <ul>
               {recentArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b border-bottom-gray">
                   <Preview article={document.node} format="medium" />
                 </li>
               ))}
@@ -215,7 +215,7 @@ const IndexPage = ({ data }) => {
           </h1>
             <ul>
               {labscopesArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b border-bottom-gray">
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
@@ -227,7 +227,7 @@ const IndexPage = ({ data }) => {
           </h1>
             <ul>
               {noteworthyArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b border-bottom-gray">
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
@@ -239,7 +239,7 @@ const IndexPage = ({ data }) => {
           </h1>
             <ul>
               {climateChangeArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b border-bottom-gray">
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}
@@ -251,7 +251,7 @@ const IndexPage = ({ data }) => {
           </h1>
             <ul>
               {lifeScienceArticles.map(document => (
-                <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.node.id} className="py-4 border-b border-bottom-gray">
                   <Preview article={document.node} format="small-no-img" />
                 </li>
               ))}

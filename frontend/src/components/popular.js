@@ -64,7 +64,7 @@ const Popular = ({ n }) => {
     return (
         <ul>
             {recentResults.map(document => (
-                <li key={document.id} className="mt-4 pb-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+                <li key={document.id} className="mt-4 pb-4 border-b border-bottom-gray">
                     <Preview article={document} format="small" />
                 </li>
             ))}

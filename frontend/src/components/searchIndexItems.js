@@ -13,10 +13,10 @@ const SearchIndexItems = ({ searchData, searchQuery }) => {
     <div className="container mx-auto">
       <ul>
         {searchData.map(document => (
-          <li key={document.node.id} className="mb-6 pb-6 border-b" style={{ borderBottomColor: '#ECECF3' }}>
+          <li key={document.node.id} className="mb-6 pb-6 border-b border-bottom-gray">
             <div className="flex items-start">
               <div className="mr-6 flex-grow">
-                <Link to={`/article/${document.node.published_at.split("-")[0]}/${document.node.published_at.split("-")[1]}/${document.node.published_at.split("-")[2].slice(0, 2)}/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`} style={{ textDecoration: `none` }}>
+                <Link to={`/article/${document.node.published_at.split("-")[0]}/${document.node.published_at.split("-")[1]}/${document.node.published_at.split("-")[2].slice(0, 2)}/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((category) => category.toLowerCase()).join("-")}`}>
                   <h2 className="text-base mb-2 md:text-2xl">
                     {document.node.title}
                   </h2>

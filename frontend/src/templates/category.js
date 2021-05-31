@@ -44,7 +44,7 @@ const CategoryTemplate = ({ data }) => {
       <h2 className="font-normal pb-2 text-4xl border-b border-black">{data.strapiCategory.title}</h2>
       <ul className="mb-12">
         {list.map(article => (
-          <li key={article.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+          <li key={article.node.id} className="py-4 border-b border-bottom-gray">
             <Preview article={article.node} format="medium" />
           </li>
         ))}

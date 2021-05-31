@@ -20,6 +20,7 @@ a:hover > * {
     color: inherit !important;
 } */
 
+
 body {
     font-weight: 400 !important;
     font-family: 'Lora';
@@ -214,4 +215,24 @@ body {
     #sidebar {
         display: block !important;
     }
+}
+
+.border-bottom-gray {
+    border-bottom-color: #e2e2e2;
+}
+
+.bg-dark-blue {
+    background-color: #003262;
+}
+
+.height-750 {
+    height: 750px;
+}
+
+.max-width-1036 {
+    max-width: 1036px;
+}
+
+.max-width-960 {
+    max-width: 960px;
 }

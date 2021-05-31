@@ -42,17 +42,12 @@ const MagazineIssueTemplate = ({ data }) => {
       {pdfOpen && data.strapiMagazineIssue.pdf ?
         <div className="mx-auto text-center mt-6 sans-serif">
           <div className="max-w-full">
-            <div
-              style={{
-                height: '750px',
-              }}
-            >
+            <div className="height-750">
               <Viewer
                 fileUrl={data.strapiMagazineIssue.pdf.publicURL}
                 plugins={[
                   defaultLayoutPluginInstance,
                 ]}
-
               />
             </div>
           </div>
@@ -60,7 +55,7 @@ const MagazineIssueTemplate = ({ data }) => {
         :
         <ul className="mb-12">
           {data.allStrapiArticle.edges.map(document => (
-            <li key={document.node.id} className="py-4 border-b" style={{ borderBottomColor: '#e2e2e2' }}>
+            <li key={document.node.id} className="py-4 border-b border-bottom-gray">
               <Preview article={document.node} format="medium" />
             </li>
           ))}
