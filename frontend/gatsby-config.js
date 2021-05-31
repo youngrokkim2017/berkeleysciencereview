@@ -32,7 +32,7 @@ module.exports = {
           "script-src": "'self' https://www.google-analytics.com http://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.js https://berkeleysciencereview.us6.list-manage.com/subscribe/",
           "style-src": "'self' https://fonts.googleapis.com",
           "font-src": "'self' data: https://fonts.gstatic.com",
-          "img-src": "'self' data: https://www.google-analytics.com",
+          "img-src": "'self' data: www.berkeleysciencereview.com berkeleysciencereview.com https://www.google-analytics.com",
           "connect-src": "'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://formspree.io/f/mnqokooe",
         }
       }
