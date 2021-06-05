@@ -7,7 +7,18 @@ import Seo from "../components/seo"
 
 const DesignerTemplate = ({ data }) => {
 
+  // const authors = data.authors.edges;
+
+  // const getArticlesOfAuthors = authors.map((author) => (
+  //   author.node.name === data.strapiAuthors.name
+  // ))
+
   const sortedByDate = data.allStrapiArticle.edges;
+  // const getArticlesOfDesigners = data.allStrapiArticle.edges;
+
+  // const mergeAuthorsAndDesigners = [...getArticlesOfAuthors, ...getArticlesOfDesigners]
+
+  // const sortedByDate = mergeAuthorsAndDesigners;
 
   const [list, setList] = useState([...sortedByDate.slice(0, 10)])
   // State to trigger load more
@@ -115,6 +126,63 @@ query DesignerTemplate($id: String!) {
         published_at
       }
     }
-  }
+  } 
 }
 `
+
+// export const query = graphql`
+// query DesignerTemplate($id: String!) {
+//   strapiDesigner(strapiId: { eq: $id }) {
+//     id
+//     name
+//     twitter
+//     instagram
+//   }
+//   allStrapiArticle(
+//     filter: {designers: {elemMatch: {id: {eq: $id}}}}
+//     sort: { order: DESC, fields: published_at }
+//   ) {
+//     edges {
+//       node {
+//         id
+//         title
+//         authors {
+//           id
+//           name
+//         }
+//         image {
+//           publicURL
+//         }
+//         categories {
+//           id
+//           title
+//         }
+//         published_at
+//       }
+//     }
+//   }
+//   authors: allStrapiArticle(
+//     filter: {authors: {elemMatch: {id: {eq: $id}}}}
+//     sort: { order: DESC, fields: published_at }
+//   ) {
+//     edges {
+//       node {
+//         id
+//         title
+//         authors {
+//           id
+//           name
+//         }
+//         image {
+//           publicURL
+//         }
+//         categories {
+//           id
+//           title
+//         }
+//         published_at
+//       }
+//     }
+//   }  
+// }
+// `

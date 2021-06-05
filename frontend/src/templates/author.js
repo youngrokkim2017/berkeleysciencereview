@@ -169,7 +169,7 @@ query AuthorTemplate($id: String!) {
 //       node {
 //         id
 //         title
-//         authors {
+//         designers {
 //           id
 //           name
 //         }
