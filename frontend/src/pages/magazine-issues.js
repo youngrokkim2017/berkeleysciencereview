@@ -12,7 +12,7 @@ const MagazineIssuePage = ({ data }) => {
       />
       <h2 className="font-normal mb-8 pb-2 text-4xl border-b border-black">Magazine Issues</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 lg:gap-x-12 gap-y-6 -mb-6 sm:mb-0 h-full">
-        {magazinesSortedByIssue.reverse().map(document => (
+        {magazinesSortedByIssue.map(document => (
           <Link to={`/magazine/${document.node.title.split(/[^a-zA-Z0-9]/).filter(i => i).map((a) => a.toLowerCase()).join("-")}`}>
             {document.node.thumbnail ?
               <div>
